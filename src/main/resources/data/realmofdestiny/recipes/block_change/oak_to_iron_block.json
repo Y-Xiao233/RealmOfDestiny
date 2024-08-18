@@ -1,0 +1,11 @@
+{
+  "type": "realmofdestiny:block_change",
+  "checkBlock": {
+    "item": "minecraft:oak_log"
+  },
+  "setBlock": [
+    {
+      "item": "minecraft:diamond_block"
+    }
+  ]
+}

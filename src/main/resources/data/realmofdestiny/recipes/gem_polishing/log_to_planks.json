@@ -1,0 +1,12 @@
+{
+  "type": "realmofdestiny:gem_polishing",
+  "ingredients": [
+    {
+      "item": "minecraft:oak_log"
+    }
+  ],
+  "output": {
+    "count": 4,
+    "item": "minecraft:oak_planks"
+  }
+}
