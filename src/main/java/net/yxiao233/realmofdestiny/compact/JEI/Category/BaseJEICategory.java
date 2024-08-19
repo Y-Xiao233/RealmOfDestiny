@@ -15,7 +15,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Recipe;
-import net.yxiao233.realmofdestiny.ModRegistry.ModItems;
 import net.yxiao233.realmofdestiny.RealmOfDestiny;
 import net.yxiao233.realmofdestiny.compact.JEI.AllJEITextures;
 import org.jetbrains.annotations.Nullable;
@@ -26,11 +25,11 @@ public abstract class BaseJEICategory<T extends Recipe<?>> implements IRecipeCat
     public final IDrawable background;
     public final IDrawable icon;
 
-    public BaseJEICategory(IGuiHelper helper, RecipeType<T> type, Component title, Item icon) {
+    public BaseJEICategory(IGuiHelper helper, RecipeType<T> type, Component title, Item icon, int width, int height) {
         ResourceLocation TEXTURE = new ResourceLocation(RealmOfDestiny.MODID,"textures/gui/empty.png");
         this.type = type;
         this.title = title;
-        this.background = helper.createDrawable(TEXTURE,0,0,176,85);
+        this.background = helper.createDrawable(TEXTURE,0,0,width,height);
         this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK,new ItemStack(icon));
     }
     //IRecipeCategory
@@ -96,4 +95,5 @@ public abstract class BaseJEICategory<T extends Recipe<?>> implements IRecipeCat
             tooltip.add(1,Component.translatable("recipe.realmofdestiny.changestone.chance", (chance >= 0.01 ? (int) (chance * 100) : "< 1") + "%").withStyle(ChatFormatting.GOLD));
         };
     }
+
 }

@@ -21,7 +21,7 @@ public class ChangeStoneCategory extends BaseJEICategory<ChangeStoneRecipe> {
     public static final Component TITLE = Component.translatable("item.realmofdestiny.change_stone");
 
     public ChangeStoneCategory(IGuiHelper helper) {
-        super(helper,BLOCK_CHANGE_TYPE,TITLE,ModItems.CHANGE_STONE.get());
+        super(helper,BLOCK_CHANGE_TYPE,TITLE,ModItems.CHANGE_STONE.get(),176,100);
     }
 
     @Override
@@ -29,11 +29,15 @@ public class ChangeStoneCategory extends BaseJEICategory<ChangeStoneRecipe> {
         iRecipeLayoutBuilder.addSlot(RecipeIngredientRole.INPUT,80,11)
                 .addItemStack(changeStoneRecipe.getCheckBlockItem())
                 .setBackground(drawBasiceSlot(AllJEITextures.BASIC_SLOT),-1,-1);
-        int x = 34,y = 0;
-        for (int i = 0; i < changeStoneRecipe.getIngredients().size(); i++) {
+        int size = changeStoneRecipe.getIngredients().size();
+        int y = 59;
+        int x = size>= 3 ? 34 : 45;
+        if(size == 1) x = 56;
+        for (int i = 0; i < size; i++) {
             x += 23;
-            if(i % 3 == 0){
-                y += 59;
+            if(i % 3 == 0 && i != 0){
+                y += 23;
+                x = 56;
             }
             ItemStack stack = changeStoneRecipe.getIngredients().get(i).getItems()[0];
             double chance = changeStoneRecipe.getChanceList().get(i);
@@ -52,6 +56,6 @@ public class ChangeStoneCategory extends BaseJEICategory<ChangeStoneRecipe> {
 
     @Override
     public void draw(ChangeStoneRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
-        AllJEITextures.DOWN_ARROW.render(guiGraphics,50,60);
+        AllJEITextures.DOWN_ARROW.render(guiGraphics,85,30);
     }
 }
