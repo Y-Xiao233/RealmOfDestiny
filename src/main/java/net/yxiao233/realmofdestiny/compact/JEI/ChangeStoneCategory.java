@@ -3,30 +3,19 @@ package net.yxiao233.realmofdestiny.compact.JEI;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
-import mezz.jei.api.gui.ingredient.IRecipeSlotTooltipCallback;
-import mezz.jei.api.gui.ingredient.IRecipeSlotView;
-import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Font;
-import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.FormattedText;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.yxiao233.realmofdestiny.ModRegistry.ModItems;
 import net.yxiao233.realmofdestiny.RealmOfDestiny;
 import net.yxiao233.realmofdestiny.recipes.ChangeStoneRecipe;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ChangeStoneCategory implements IRecipeCategory<ChangeStoneRecipe> {
     public static final ResourceLocation UID = new ResourceLocation(RealmOfDestiny.MODID,"block_change");
@@ -75,7 +64,7 @@ public class ChangeStoneCategory implements IRecipeCategory<ChangeStoneRecipe> {
                     .addTooltipCallback((view ,tooltip) -> {
                         if(chance != 1){
                             tooltip.add(1, Component.translatable("recipe.realmofdestiny.changestone.chance",
-                                    (chance >= 0.01 ? (int) (chance * 100) : "<1") + "%")
+                                    (chance >= 0.01 ? (int) (chance * 100) : "< 1") + "%")
                                     .withStyle(ChatFormatting.GOLD));
                         }
                     });

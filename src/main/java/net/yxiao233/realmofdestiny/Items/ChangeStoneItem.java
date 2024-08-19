@@ -24,6 +24,7 @@ import net.yxiao233.realmofdestiny.recipes.container.EmptyContainer;
 import java.util.*;
 
 public class ChangeStoneItem extends Item {
+    public int i;
 
     public ChangeStoneItem(Properties properties) {
         super(properties);
@@ -44,6 +45,7 @@ public class ChangeStoneItem extends Item {
         return super.use(pLevel, pPlayer, pUsedHand);
     }
     public void craft(Level level, Player player, Optional<ChangeStoneRecipe> recipe){
+        this.i = 0;
         BlockPos blockPos = getTarget(player);
         ItemStack checkBlockItemStack = recipe.get().getCheckBlockItem();
 
@@ -56,6 +58,10 @@ public class ChangeStoneItem extends Item {
     }
     public boolean replaceBlock(Level level, BlockPos blockPos, Player player, ChanceList list){
         BlockState blockState = getChanceBlockState(list);
+        if(blockState == Blocks.AIR.defaultBlockState() && this.i == 0){
+            this.i = 1;
+            player.sendSystemMessage(Component.translatable("recipe.realmofdestiny.changestone.failed"));
+        }
         return level.setBlock(blockPos,blockState,3);
     }
     public void replaceNearbyBlock(Level level, BlockPos blockPos, Player player, ItemStack checkBlockItemStack, ChanceList list){
@@ -101,7 +107,7 @@ public class ChangeStoneItem extends Item {
                 break;
             }
         }
-        return blockState;
+        return blockState == null ? Blocks.AIR.defaultBlockState() : blockState;
     }
     public ChanceList initChanceList(NonNullList<Ingredient> ingredients, ArrayList<Double> chanceList){
         ChanceList list = new ChanceList();

@@ -6,5 +6,7 @@
 
   "block.realmofdestiny.gem_polishing_station": "Gem Polishing Station",
 
-  "recipe.realmofdestiny.changestone.chance": "chance: %d"
+  "recipe.realmofdestiny.changestone.chance": "chance: %d",
+
+  "recipe.realmofdestiny.changestone.failed": "Change Failed"
 }

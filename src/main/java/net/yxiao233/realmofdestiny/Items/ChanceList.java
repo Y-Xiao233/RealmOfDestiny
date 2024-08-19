@@ -24,9 +24,16 @@ public class ChanceList {
         this.blockStateList.add(blockState);
         this.rawChanceList.add(chance);
         this.chanceList.removeAll(this.chanceList);
+        if(isOnly()){
+            this.chanceList.add(this.rawChanceList.get(0));
+            return;
+        }
         for(double rawChance : this.rawChanceList){
             double newChance = rawChance / this.totalChance;
             this.chanceList.add(newChance);
         }
+    }
+    public boolean isOnly(){
+        return this.rawChanceList.size() == 1 ? true : false;
     }
 }

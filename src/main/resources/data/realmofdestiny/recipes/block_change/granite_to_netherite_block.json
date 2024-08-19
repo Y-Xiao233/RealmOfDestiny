@@ -1,0 +1,12 @@
+{
+  "type": "realmofdestiny:block_change",
+  "checkBlock": {
+    "item": "minecraft:granite"
+  },
+  "setBlock": [
+    {
+      "item": "minecraft:netherite_block",
+      "chance": 0.005
+    }
+  ]
+}
