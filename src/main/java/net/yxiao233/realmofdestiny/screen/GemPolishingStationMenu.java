@@ -12,6 +12,7 @@ import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.items.SlotItemHandler;
 import net.yxiao233.realmofdestiny.Entities.GemPolishingStationBlockEntity;
 import net.yxiao233.realmofdestiny.ModRegistry.ModBlocks;
+import net.yxiao233.realmofdestiny.ModRegistry.ModMenuTypes;
 
 public class GemPolishingStationMenu extends AbstractContainerMenu {
     public final GemPolishingStationBlockEntity blockEntity;

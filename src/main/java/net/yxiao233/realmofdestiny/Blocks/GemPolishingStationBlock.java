@@ -19,7 +19,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.network.NetworkHooks;
 import net.yxiao233.realmofdestiny.Entities.GemPolishingStationBlockEntity;
-import net.yxiao233.realmofdestiny.Entities.ModBlockEntities;
+import net.yxiao233.realmofdestiny.ModRegistry.ModBlockEntities;
 import org.jetbrains.annotations.Nullable;
 
 public class GemPolishingStationBlock extends BaseEntityBlock {
@@ -28,6 +28,7 @@ public class GemPolishingStationBlock extends BaseEntityBlock {
         super(pProperties);
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
         return SHAPE;
@@ -38,6 +39,7 @@ public class GemPolishingStationBlock extends BaseEntityBlock {
         return RenderShape.MODEL;
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pMovedByPiston) {
         if(pState.getBlock() != pNewState.getBlock()){
@@ -49,6 +51,7 @@ public class GemPolishingStationBlock extends BaseEntityBlock {
         super.onRemove(pState, pLevel, pPos, pNewState, pMovedByPiston);
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         if(!pLevel.isClientSide()){

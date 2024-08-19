@@ -14,7 +14,6 @@ import net.yxiao233.realmofdestiny.ModRegistry.ModItems;
 import net.yxiao233.realmofdestiny.RealmOfDestiny;
 import net.yxiao233.realmofdestiny.recipes.ChangeStoneRecipe;
 import net.yxiao233.realmofdestiny.recipes.GemPolishingRecipe;
-import net.yxiao233.realmofdestiny.recipes.ModRecipes;
 import net.yxiao233.realmofdestiny.screen.ChangeStoneScreen;
 import net.yxiao233.realmofdestiny.screen.GemPolishingStationScreen;
 

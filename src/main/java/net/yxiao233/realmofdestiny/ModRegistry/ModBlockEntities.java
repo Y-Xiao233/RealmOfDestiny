@@ -1,9 +1,10 @@
-package net.yxiao233.realmofdestiny.Entities;
+package net.yxiao233.realmofdestiny.ModRegistry;
 
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import net.yxiao233.realmofdestiny.Entities.GemPolishingStationBlockEntity;
 import net.yxiao233.realmofdestiny.ModRegistry.ModBlocks;
 import net.yxiao233.realmofdestiny.RealmOfDestiny;
 

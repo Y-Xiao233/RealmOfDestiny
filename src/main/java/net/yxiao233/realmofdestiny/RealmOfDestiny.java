@@ -11,13 +11,13 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.yxiao233.realmofdestiny.Entities.ModBlockEntities;
+import net.yxiao233.realmofdestiny.ModRegistry.ModBlockEntities;
 import net.yxiao233.realmofdestiny.ModRegistry.ModBlocks;
 import net.yxiao233.realmofdestiny.ModRegistry.ModCreativeModeTab;
 import net.yxiao233.realmofdestiny.ModRegistry.ModItems;
-import net.yxiao233.realmofdestiny.recipes.ModRecipes;
+import net.yxiao233.realmofdestiny.ModRegistry.ModRecipes;
 import net.yxiao233.realmofdestiny.screen.GemPolishingStationScreen;
-import net.yxiao233.realmofdestiny.screen.ModMenuTypes;
+import net.yxiao233.realmofdestiny.ModRegistry.ModMenuTypes;
 
 @Mod(RealmOfDestiny.MODID)
 public class RealmOfDestiny

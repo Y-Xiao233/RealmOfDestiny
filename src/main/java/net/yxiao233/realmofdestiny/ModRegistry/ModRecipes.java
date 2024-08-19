@@ -1,10 +1,12 @@
-package net.yxiao233.realmofdestiny.recipes;
+package net.yxiao233.realmofdestiny.ModRegistry;
 
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.yxiao233.realmofdestiny.RealmOfDestiny;
+import net.yxiao233.realmofdestiny.recipes.ChangeStoneRecipe;
+import net.yxiao233.realmofdestiny.recipes.GemPolishingRecipe;
 
 public class ModRecipes {
     public static final DeferredRegister<RecipeSerializer<?>> SERIALIZERS =

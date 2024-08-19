@@ -1,4 +1,4 @@
-package net.yxiao233.realmofdestiny.screen;
+package net.yxiao233.realmofdestiny.ModRegistry;
 
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
@@ -8,6 +8,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.yxiao233.realmofdestiny.RealmOfDestiny;
+import net.yxiao233.realmofdestiny.screen.GemPolishingStationMenu;
 
 public class ModMenuTypes {
     public static final DeferredRegister<MenuType<?>> MENUS =
