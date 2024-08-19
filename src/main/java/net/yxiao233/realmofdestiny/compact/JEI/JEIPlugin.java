@@ -3,14 +3,18 @@ package net.yxiao233.realmofdestiny.compact.JEI;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.registration.IGuiHandlerRegistration;
+import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.RecipeManager;
+import net.yxiao233.realmofdestiny.ModRegistry.ModBlocks;
+import net.yxiao233.realmofdestiny.ModRegistry.ModItems;
 import net.yxiao233.realmofdestiny.RealmOfDestiny;
 import net.yxiao233.realmofdestiny.recipes.ChangeStoneRecipe;
 import net.yxiao233.realmofdestiny.recipes.GemPolishingRecipe;
+import net.yxiao233.realmofdestiny.recipes.ModRecipes;
 import net.yxiao233.realmofdestiny.screen.ChangeStoneScreen;
 import net.yxiao233.realmofdestiny.screen.GemPolishingStationScreen;
 
@@ -50,5 +54,13 @@ public class JEIPlugin implements IModPlugin {
         //Change Stone
         registration.addRecipeClickArea(ChangeStoneScreen.class,70,30,20,30,
                 ChangeStoneCategory.BLOCK_CHANGE_TYPE);
+    }
+
+    @Override
+    public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
+        //Gem Polishing Station
+        registration.addRecipeCatalyst(ModBlocks.GEM_POLISHING_STATION.get().asItem().getDefaultInstance(), GemPolishingStationCategory.GEM_POLISHING_TYPE);
+        //Change Stone
+        registration.addRecipeCatalyst(ModItems.CHANGE_STONE.get().getDefaultInstance(),ChangeStoneCategory.BLOCK_CHANGE_TYPE);
     }
 }

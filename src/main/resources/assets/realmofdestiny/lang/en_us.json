@@ -4,5 +4,7 @@
 
   "item.realmofdestiny.change_stone": "Change Stone",
 
-  "block.realmofdestiny.gem_polishing_station": "Gem Polishing Station"
+  "block.realmofdestiny.gem_polishing_station": "Gem Polishing Station",
+
+  "recipe.realmofdestiny.changestone.chance": "chance: %d"
 }
