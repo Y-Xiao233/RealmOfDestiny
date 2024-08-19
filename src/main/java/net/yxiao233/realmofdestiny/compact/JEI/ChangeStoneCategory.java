@@ -3,12 +3,14 @@ package net.yxiao233.realmofdestiny.compact.JEI;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
+import mezz.jei.api.gui.ingredient.IRecipeSlotTooltipCallback;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
@@ -60,14 +62,55 @@ public class ChangeStoneCategory implements IRecipeCategory<ChangeStoneRecipe> {
             }
             ItemStack stack = changeStoneRecipe.getIngredients().get(i).getItems()[0];
             double chance = changeStoneRecipe.getChanceList().get(i);
-            iRecipeLayoutBuilder.addSlot(RecipeIngredientRole.OUTPUT,x,y).addItemStack(stack)
-                    .addTooltipCallback((view ,tooltip) -> {
-                        if(chance != 1){
-                            tooltip.add(1, Component.translatable("recipe.realmofdestiny.changestone.chance",
-                                    (chance >= 0.01 ? (int) (chance * 100) : "< 1") + "%")
-                                    .withStyle(ChatFormatting.GOLD));
-                        }
-                    });
+            if(chance != 1){
+                iRecipeLayoutBuilder.addSlot(RecipeIngredientRole.OUTPUT,x,y)
+                        .addItemStack(stack)
+                        .addTooltipCallback(addChanceTooltip(chance))
+                        .setBackground(drawChanceSlot(AllJEITextures.CHANCE_SLOT),-1,-1);
+            }else{
+                iRecipeLayoutBuilder.addSlot(RecipeIngredientRole.OUTPUT,x,y).addItemStack(stack);
+            }
         }
+    }
+    public IDrawable drawChanceSlot(AllJEITextures texture){
+        return new IDrawable() {
+            @Override
+            public int getWidth() {
+                return texture.width;
+            }
+
+            @Override
+            public int getHeight() {
+                return texture.height;
+            }
+
+            @Override
+            public void draw(GuiGraphics guiGraphics, int x, int y) {
+                texture.render(guiGraphics,x,y);
+            }
+        };
+    }
+    public IDrawable drawBasiceSlot(AllJEITextures texture){
+        return new IDrawable() {
+            @Override
+            public int getWidth() {
+                return texture.width;
+            }
+
+            @Override
+            public int getHeight() {
+                return texture.height;
+            }
+
+            @Override
+            public void draw(GuiGraphics guiGraphics, int x, int y) {
+                texture.render(guiGraphics,x,y);
+            }
+        };
+    }
+    public IRecipeSlotTooltipCallback addChanceTooltip(double chance){
+        return (view, tooltip) ->{
+            tooltip.add(1,Component.translatable("recipe.realmofdestiny.changestone.chance", (chance >= 0.01 ? (int) (chance * 100) : "< 1") + "%").withStyle(ChatFormatting.GOLD));
+        };
     }
 }

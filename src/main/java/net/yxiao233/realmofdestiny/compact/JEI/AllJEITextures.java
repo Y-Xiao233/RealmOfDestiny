@@ -4,12 +4,12 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.resources.ResourceLocation;
 import net.yxiao233.realmofdestiny.RealmOfDestiny;
 
-public class AllJEITextures implements ScreenElement {
-    public static final AllJEITextures CHANCE_SLOT = new AllJEITextures("chance",20, 156, 18, 18);
+public enum AllJEITextures implements ScreenElement {
+    CHANCE_SLOT("widgets",20, 156, 18, 18),
+    BASIC_SLOT("widgets",0,0,18,18);
     public final ResourceLocation location;
     public int width, height;
     public int startX, startY;
-
     private AllJEITextures(String location, int startX, int startY, int width, int height) {
         this.location = new ResourceLocation(RealmOfDestiny.MODID, "textures/jei/" + location + ".png");
         this.width = width;
