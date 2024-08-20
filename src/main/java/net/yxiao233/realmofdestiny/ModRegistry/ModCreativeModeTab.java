@@ -14,6 +14,7 @@ public class ModCreativeModeTab {
             .displayItems((itemDisplayParameters, output) -> {
                 output.accept(ModItems.CHANGE_STONE.get());
                 output.accept(ModItems.GEM_POLISHING_STATION_ITEM.get());
+                output.accept(ModItems.PEDESTAL_ITEM.get());
             })
             .title(Component.translatable("itemGroup.realmofdestiny"))
             .build()

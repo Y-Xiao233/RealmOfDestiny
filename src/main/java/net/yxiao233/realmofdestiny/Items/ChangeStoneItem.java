@@ -5,6 +5,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -39,10 +40,10 @@ public class ChangeStoneItem extends Item {
         Optional<ChangeStoneRecipe> recipe = getCurrentRecipe(pPlayer,pLevel);
         if(!recipe.isEmpty()){
             craft(pLevel,pPlayer,recipe);
+            return InteractionResultHolder.success(pPlayer.getMainHandItem());
         }else{
             return super.use(pLevel, pPlayer, pUsedHand);
         }
-        return super.use(pLevel, pPlayer, pUsedHand);
     }
     public void craft(Level level, Player player, Optional<ChangeStoneRecipe> recipe){
         this.i = 0;
