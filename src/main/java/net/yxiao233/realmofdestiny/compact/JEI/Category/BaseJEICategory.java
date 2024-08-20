@@ -26,7 +26,7 @@ public abstract class BaseJEICategory<T extends Recipe<?>> implements IRecipeCat
     public final IDrawable icon;
 
     public BaseJEICategory(IGuiHelper helper, RecipeType<T> type, Component title, Item icon, int width, int height) {
-        ResourceLocation TEXTURE = new ResourceLocation(RealmOfDestiny.MODID,"textures/gui/empty.png");
+        ResourceLocation TEXTURE = new ResourceLocation(RealmOfDestiny.MODID,"textures/jei/empty.png");
         this.type = type;
         this.title = title;
         this.background = helper.createDrawable(TEXTURE,0,0,width,height);
@@ -95,5 +95,4 @@ public abstract class BaseJEICategory<T extends Recipe<?>> implements IRecipeCat
             tooltip.add(1,Component.translatable("recipe.realmofdestiny.changestone.chance", (chance >= 0.01 ? (int) (chance * 100) : "< 1") + "%").withStyle(ChatFormatting.GOLD));
         };
     }
-
 }

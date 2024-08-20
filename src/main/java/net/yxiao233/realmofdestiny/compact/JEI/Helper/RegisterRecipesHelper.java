@@ -18,7 +18,7 @@ public class RegisterRecipesHelper {
     public IRecipeRegistration registration(){
         return this.registration;
     }
-    public  <C extends Container, T extends Recipe<C>> List<T> recipes(RecipeType<T> pRecipeType){
+    public <C extends Container, T extends Recipe<C>> List<T> recipes(RecipeType<T> pRecipeType){
         return this.recipeManager.getAllRecipesFor(pRecipeType);
     }
 
