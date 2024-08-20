@@ -15,17 +15,17 @@ import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.yxiao233.realmofdestiny.Entities.PedestalBlockEntity;
 import org.jetbrains.annotations.Nullable;
 
 public class PedestalBlock extends BaseEntityBlock {
-    public static final VoxelShape SHAPE = Block.box(0,0,0,16,16,16);
     public PedestalBlock(Properties pProperties) {
         super(pProperties);
     }
-
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
@@ -40,7 +40,15 @@ public class PedestalBlock extends BaseEntityBlock {
     @SuppressWarnings("deprecation")
     @Override
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
-        return SHAPE;
+        VoxelShape base = Block.box(4,0,4,12,2,12);
+        VoxelShape substrate = Block.box(6,2,6,10,9,10);
+
+        VoxelShape up = Block.box(5,9,5,11,11,11);
+        VoxelShape glass = Block.box(6,10,6,10,14,10);
+
+        VoxelShape base_substrate = Shapes.join(base,substrate, BooleanOp.OR);
+        VoxelShape up_glass = Shapes.join(up,glass,BooleanOp.OR);
+        return Shapes.join(base_substrate,up_glass,BooleanOp.OR);
     }
 
     @SuppressWarnings("deprecation")

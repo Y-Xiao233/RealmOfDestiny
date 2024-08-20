@@ -1,5 +1,7 @@
 {
 	"credit": "Made with Blockbench",
+	"parent": "minecraft:block/block",
+	"renderType": "translucent",
 	"textures": {
 		"0": "realmofdestiny:block/pedestal",
 		"particle": "realmofdestiny:block/pedestal"
