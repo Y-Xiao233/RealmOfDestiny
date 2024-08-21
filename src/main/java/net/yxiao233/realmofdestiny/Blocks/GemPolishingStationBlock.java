@@ -58,6 +58,7 @@ public class GemPolishingStationBlock extends BaseEntityBlock {
             BlockEntity entity = pLevel.getBlockEntity(pPos);
             if(entity instanceof GemPolishingStationBlockEntity){
                 NetworkHooks.openScreen(((ServerPlayer) pPlayer),(GemPolishingStationBlockEntity)entity,pPos);
+                return InteractionResult.SUCCESS;
             }else{
                 throw new IllegalStateException("Our Container provider is missing");
             }

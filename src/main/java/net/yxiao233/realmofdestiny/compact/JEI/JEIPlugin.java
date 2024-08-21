@@ -14,10 +14,12 @@ import net.yxiao233.realmofdestiny.ModRegistry.ModItems;
 import net.yxiao233.realmofdestiny.RealmOfDestiny;
 import net.yxiao233.realmofdestiny.compact.JEI.Category.ChangeStoneCategory;
 import net.yxiao233.realmofdestiny.compact.JEI.Category.GemPolishingStationCategory;
-import net.yxiao233.realmofdestiny.compact.JEI.Helper.RegisterRecipeCatalystHelper;
-import net.yxiao233.realmofdestiny.compact.JEI.Helper.RegisterRecipesHelper;
+import net.yxiao233.realmofdestiny.compact.JEI.Category.PedestalGeneratorCategory;
+import net.yxiao233.realmofdestiny.helper.jei.RegisterRecipeCatalystHelper;
+import net.yxiao233.realmofdestiny.helper.jei.RegisterRecipesHelper;
 import net.yxiao233.realmofdestiny.recipes.ChangeStoneRecipe;
 import net.yxiao233.realmofdestiny.recipes.GemPolishingRecipe;
+import net.yxiao233.realmofdestiny.recipes.PedestalGeneratorRecipe;
 import net.yxiao233.realmofdestiny.screen.GemPolishingStationScreen;
 
 @JeiPlugin
@@ -33,7 +35,8 @@ public class JEIPlugin implements IModPlugin {
 
         IRecipeCategory<?>[] list = {
                 new GemPolishingStationCategory(helper),
-                new ChangeStoneCategory(helper)
+                new ChangeStoneCategory(helper),
+                new PedestalGeneratorCategory(helper)
         };
 
         registration.addRecipeCategories(list);
@@ -45,6 +48,7 @@ public class JEIPlugin implements IModPlugin {
 
         helper.addRecipes(GemPolishingStationCategory.GEM_POLISHING_TYPE,helper.recipes(GemPolishingRecipe.Type.INSTANCE));
         helper.addRecipes(ChangeStoneCategory.BLOCK_CHANGE_TYPE,helper.recipes(ChangeStoneRecipe.Type.INSTANCE));
+        helper.addRecipes(PedestalGeneratorCategory.PEDESTAL_GENERATOR_TYPE,helper.recipes(PedestalGeneratorRecipe.Type.INSTANCE));
     }
 
     @Override
@@ -60,5 +64,6 @@ public class JEIPlugin implements IModPlugin {
 
         helper.addRecipeCatalyst(ModItems.GEM_POLISHING_STATION_ITEM.get(),GemPolishingStationCategory.GEM_POLISHING_TYPE);
         helper.addRecipeCatalyst(ModItems.CHANGE_STONE.get(),ChangeStoneCategory.BLOCK_CHANGE_TYPE);
+        helper.addRecipeCatalyst(ModItems.PEDESTAL_ITEM.get(),PedestalGeneratorCategory.PEDESTAL_GENERATOR_TYPE);
     }
 }

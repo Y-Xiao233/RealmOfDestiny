@@ -11,5 +11,6 @@
 
 
   "recipe.realmofdestiny.changestone.chance": "chance: %d",
-  "recipe.realmofdestiny.changestone.failed": "Change Failed"
+  "recipe.realmofdestiny.changestone.failed": "Change Failed",
+  "recipe.realmofdestiny.pedestal_generator.in_pedestal": "Put this item on Pedestal"
 }

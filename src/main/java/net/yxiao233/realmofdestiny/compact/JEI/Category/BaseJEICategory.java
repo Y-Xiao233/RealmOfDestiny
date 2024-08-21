@@ -95,4 +95,31 @@ public abstract class BaseJEICategory<T extends Recipe<?>> implements IRecipeCat
             tooltip.add(1,Component.translatable("recipe.realmofdestiny.changestone.chance", (chance >= 0.01 ? (int) (chance * 100) : "< 1") + "%").withStyle(ChatFormatting.GOLD));
         };
     }
+    public IRecipeSlotTooltipCallback addText(String tranklatableKey){
+        return (view, tooltip) ->{
+          tooltip.add(1,Component.translatable(tranklatableKey).withStyle(ChatFormatting.GOLD));
+        };
+    }
+
+    public IRecipeSlotTooltipCallback addText(String tranklatableKey, ChatFormatting style){
+        return (view, tooltip) ->{
+            tooltip.add(1,Component.translatable(tranklatableKey).withStyle(style));
+        };
+    }
+
+    public IRecipeSlotTooltipCallback addText(String... tranklatableKey){
+        return (view, tooltip) ->{
+            for (int i = 0; i < tranklatableKey.length; i++) {
+                tooltip.add(1,Component.translatable(tranklatableKey[i]).withStyle(ChatFormatting.GOLD));
+            }
+        };
+    }
+
+    public void drawDownArrow(GuiGraphics guiGraphics,int x, int y){
+        AllJEITextures.DOWN_ARROW.render(guiGraphics,x,y);
+    }
+
+    public void drawUpArrow(GuiGraphics guiGraphics,int x, int y){
+        AllJEITextures.UP_ARROW.render(guiGraphics,x,y);
+    }
 }

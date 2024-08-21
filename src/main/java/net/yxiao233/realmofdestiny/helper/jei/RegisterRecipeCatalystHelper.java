@@ -1,4 +1,4 @@
-package net.yxiao233.realmofdestiny.compact.JEI.Helper;
+package net.yxiao233.realmofdestiny.helper.jei;
 
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import net.minecraft.world.item.Item;

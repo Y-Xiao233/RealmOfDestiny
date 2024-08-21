@@ -88,7 +88,7 @@ public class ChangeStoneRecipe implements Recipe<EmptyContainer> {
     }
 
     public static class Type implements RecipeType<ChangeStoneRecipe>{
-        public static final ChangeStoneRecipe.Type INSTANCE = new ChangeStoneRecipe.Type();
+        public static final Type INSTANCE = new Type();
         public static final String ID = "block_change";
     }
 

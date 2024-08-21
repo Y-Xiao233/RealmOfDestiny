@@ -13,17 +13,20 @@ import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.yxiao233.realmofdestiny.Entities.PedestalBlockEntity;
+import net.yxiao233.realmofdestiny.ModRegistry.ModBlockEntities;
+import net.yxiao233.realmofdestiny.helper.blockBox.BlockBoxHelper;
 import org.jetbrains.annotations.Nullable;
 
 public class PedestalBlock extends BaseEntityBlock {
     public PedestalBlock(Properties pProperties) {
+
         super(pProperties);
     }
     @Nullable
@@ -40,15 +43,19 @@ public class PedestalBlock extends BaseEntityBlock {
     @SuppressWarnings("deprecation")
     @Override
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
-        VoxelShape base = Block.box(4,0,4,12,2,12);
-        VoxelShape substrate = Block.box(6,2,6,10,9,10);
+        return new BlockBoxHelper("pedestal").getVoxelShapes();
+    }
 
-        VoxelShape up = Block.box(5,9,5,11,11,11);
-        VoxelShape glass = Block.box(6,10,6,10,14,10);
-
-        VoxelShape base_substrate = Shapes.join(base,substrate, BooleanOp.OR);
-        VoxelShape up_glass = Shapes.join(up,glass,BooleanOp.OR);
-        return Shapes.join(base_substrate,up_glass,BooleanOp.OR);
+    @SuppressWarnings("deprecation")
+    @Override
+    public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pMovedByPiston) {
+        if(pState.getBlock() != pNewState.getBlock()){
+            BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
+            if(blockEntity instanceof PedestalBlockEntity){
+                ((PedestalBlockEntity) blockEntity).drops();
+            }
+        }
+        super.onRemove(pState, pLevel, pPos, pNewState, pMovedByPiston);
     }
 
     @SuppressWarnings("deprecation")
@@ -81,15 +88,26 @@ public class PedestalBlock extends BaseEntityBlock {
     }
 
     public void put(PedestalBlockEntity blockEntity, Player player,int handlerCount,InteractionHand hand){
-        ItemStack mainHand = player.getMainHandItem();
-        int maxStack = mainHand.getMaxStackSize();
-        int putCount = mainHand.getCount() + handlerCount <= maxStack ? mainHand.getCount() + handlerCount : maxStack - handlerCount;
+        ItemStack handItemStack = hand == InteractionHand.MAIN_HAND ? player.getMainHandItem() : player.getOffhandItem();
+        int maxStack = handItemStack.getMaxStackSize();
+        int putCount = handItemStack.getCount() + handlerCount <= maxStack ? handItemStack.getCount() + handlerCount : maxStack - handlerCount;
 
-        blockEntity.itemHandler.setStackInSlot(0,new ItemStack(mainHand.getItem(),putCount));
-        if(putCount != mainHand.getCount()){
-            player.setItemInHand(hand,new ItemStack(mainHand.getItem(),mainHand.getCount() - putCount));
+        blockEntity.itemHandler.setStackInSlot(0,new ItemStack(handItemStack.getItem(),putCount));
+        if(putCount != handItemStack.getCount()){
+            player.setItemInHand(hand,new ItemStack(handItemStack.getItem(),handItemStack.getCount() - putCount));
         }else{
             player.setItemInHand(hand,Items.AIR.getDefaultInstance());
         }
+    }
+
+    @Nullable
+    @Override
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
+        if(pLevel.isClientSide()){
+            return null;
+        }
+
+        return createTickerHelper(pBlockEntityType, ModBlockEntities.PEDESTAL_BE.get(),
+                (level, blockPos, blockState, blockEntity) -> blockEntity.tick(level,blockPos,blockState));
     }
 }

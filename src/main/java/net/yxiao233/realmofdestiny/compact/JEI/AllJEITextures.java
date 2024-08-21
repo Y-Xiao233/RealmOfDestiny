@@ -7,7 +7,8 @@ import net.yxiao233.realmofdestiny.RealmOfDestiny;
 public enum AllJEITextures implements ScreenElement {
     CHANCE_SLOT("widgets",20, 156, 18, 18),
     BASIC_SLOT("widgets",0,0,18,18),
-    DOWN_ARROW("down_arrow",0, 0, 6, 25);
+    DOWN_ARROW("arrow",0, 0, 6, 25),
+    UP_ARROW("arrow",0, 230, 6, 25);
     public final ResourceLocation location;
     public int width, height;
     public int startX, startY;

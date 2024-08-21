@@ -1,0 +1,31 @@
+{
+  "type": "realmofdestiny:pedestal_generator",
+  "pedestal_item": {
+    "item": "minecraft:raw_gold_block"
+  },
+  "pattern": [
+    [
+      "   ",
+      " P ",
+      "   "
+    ],[
+      "SSS",
+      "SGS",
+      "SSS"
+    ]
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:stone"
+    },
+    "G": {
+      "item": "minecraft:gold_block"
+    }
+  },
+  "output": [
+    {
+      "item": "minecraft:gold_ore",
+      "chance": 0.8
+    }
+  ]
+}

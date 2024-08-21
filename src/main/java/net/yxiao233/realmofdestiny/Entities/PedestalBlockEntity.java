@@ -2,22 +2,40 @@ package net.yxiao233.realmofdestiny.Entities;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.world.Container;
+import net.minecraft.world.Containers;
+import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.ItemStackHandler;
+import net.yxiao233.realmofdestiny.Items.ChanceList;
 import net.yxiao233.realmofdestiny.ModRegistry.ModBlockEntities;
+import net.yxiao233.realmofdestiny.helper.recipe.KeyToItemStackHelper;
+import net.yxiao233.realmofdestiny.recipes.PedestalGeneratorRecipe;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.ArrayList;
+import java.util.Optional;
+import java.util.Random;
 
 public class PedestalBlockEntity extends BlockEntity {
     public ItemStackHandler itemHandler = new ItemStackHandler(1){
@@ -29,9 +47,38 @@ public class PedestalBlockEntity extends BlockEntity {
             }
         }
     };
+
+    protected final ContainerData data;
+    private int progress = 0;
+    private int maxProgress = 20;
+    private BlockPos containerBlockPos;
     private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
     public PedestalBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(ModBlockEntities.PEDESTAL_BE.get(), pPos, pBlockState);
+
+        this.data = new ContainerData() {
+            @Override
+            public int get(int i) {
+                return switch (i){
+                    case 0 -> PedestalBlockEntity.this.progress;
+                    case 1 -> PedestalBlockEntity.this.maxProgress;
+                    default -> 0;
+                };
+            }
+
+            @Override
+            public void set(int i, int value) {
+                switch (i){
+                    case 0 -> PedestalBlockEntity.this.progress = value;
+                    case 1 -> PedestalBlockEntity.this.maxProgress = value;
+                }
+            }
+
+            @Override
+            public int getCount() {
+                return 2;
+            }
+        };
     }
 
     @Override
@@ -57,14 +104,25 @@ public class PedestalBlockEntity extends BlockEntity {
     @Override
     protected void saveAdditional(CompoundTag pTag) {
         pTag.put("inventory",itemHandler.serializeNBT());
+        pTag.putInt("pedestal.progress",progress);
         super.saveAdditional(pTag);
     }
 
     @Override
     public void load(CompoundTag pTag) {
         super.load(pTag);
+        this.progress = pTag.getInt("pedestal.progress");
         itemHandler.deserializeNBT(pTag.getCompound("inventory"));
     }
+
+    public void drops(){
+        SimpleContainer inventory = new SimpleContainer(itemHandler.getSlots());
+        for (int i = 0; i < itemHandler.getSlots(); i++) {
+            inventory.setItem(i, itemHandler.getStackInSlot(i));
+        }
+        Containers.dropContents(this.level,this.worldPosition,inventory);
+    }
+
     public ItemStack getRenderStack(){
         return itemHandler.getStackInSlot(0).isEmpty() ? new ItemStack(Items.AIR) : itemHandler.getStackInSlot(0);
     }
@@ -78,5 +136,139 @@ public class PedestalBlockEntity extends BlockEntity {
     @Override
     public CompoundTag getUpdateTag() {
         return saveWithoutMetadata();
+    }
+
+    public void tick(Level level, BlockPos blockPos, BlockState blockState) {
+        boolean hasContainerNearby = false;
+        BlockPos[] nearbyBlockPosList = {
+                blockPos.offset(0,0,-1),
+                blockPos.offset(0,0,1),
+                blockPos.offset(1,0,0),
+                blockPos.offset(-1,0,0),
+                blockPos.offset(0,1,0),
+                blockPos.offset(0,-1,0)
+        };
+        for (int i = 0; i < nearbyBlockPosList.length; i++) {
+            hasContainerNearby = level.getBlockEntity(nearbyBlockPosList[i]) instanceof Container;
+            if(hasContainerNearby){
+                this.containerBlockPos = nearbyBlockPosList[i];
+                break;
+            }
+        }
+
+        if(hasContainerNearby){
+            Optional<PedestalGeneratorRecipe> recipe = getCurrentRecipe();
+            if(hasRecipe(recipe,blockPos)){
+                increasrCraftingProgress();
+                setChanged(level,blockPos,blockState);
+
+                if(hasProgressFinished()){
+                    craftItem(recipe);
+                    resetProgress();
+                }
+            }else{
+                resetProgress();
+            }
+        }
+    }
+
+    private boolean hasRecipe(Optional<PedestalGeneratorRecipe> recipe,BlockPos pedestalBlockPos) {
+        if(!recipe.isEmpty()){
+            return checkBlock(recipe.get().getKeyItemStack(),recipe.get().getPatternsList(),pedestalBlockPos);
+        }
+        return false;
+    }
+    private boolean checkBlock(KeyToItemStackHelper helper, char[][][] patternsList, BlockPos blockPos){
+        int[] pbp = findPedestal(helper,patternsList);
+        int right = 0;
+        BlockPos rightBlockPos = blockPos.offset(pbp[0],pbp[1],pbp[2]);
+        for (int y = 0; y < patternsList.length; y++) {
+            int offsetY = -y;
+            for (int x = 0; x < patternsList[y].length; x++) {
+                int offsetX = -x;
+                for (int z = 0; z < patternsList[y][x].length; z++) {
+                    int offsetZ = -z;
+                    BlockPos newPos = rightBlockPos.offset(offsetX,offsetY,offsetZ);
+                    if(increaseRight(helper,newPos,patternsList[y][x][z])){
+                        right ++;
+                    }
+                }
+            }
+        }
+        return patternsList.length * patternsList[0].length * patternsList[0][0].length == right;
+    }
+
+    private boolean increaseRight(KeyToItemStackHelper helper, BlockPos newPos, char c){
+        String key = String.valueOf(c);
+        if(key.equals(" ") || key.equals("P")){
+            return true;
+        }else{
+            ItemStack recipeBlock = helper.getCurrentItemStack(key);
+            Item worldBlock = level.getBlockState(newPos).getBlock().asItem();
+            return recipeBlock.is(worldBlock);
+        }
+    }
+    private int[] findPedestal(KeyToItemStackHelper helper, char[][][] patternsList) {
+        for (int y = 0; y < patternsList.length; y++) {
+            for (int x = 0; x < patternsList[y].length; x++) {
+                for (int z = 0; z < patternsList[y][x].length; z++) {
+                    if(String.valueOf(patternsList[y][x][z]).equals("P")){
+                        return new int[]{x,y,z};
+                    }
+                }
+            }
+        }
+        return new int[]{0,0,0};
+    }
+
+    private void craftItem(Optional<PedestalGeneratorRecipe> recipe) {
+        ChanceList chanceList =  initChanceList(recipe.get().getIngredients(),recipe.get().getChanceList(),recipe.get().getCountList());
+        BlockEntity containerEntity =  level.getBlockEntity(this.containerBlockPos);
+        containerEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent((inventory -> {
+            ItemStack itemStack = getChanceItemStack(chanceList);
+            ItemHandlerHelper.insertItem(inventory,itemStack,false);
+        }));
+    }
+    private void increasrCraftingProgress() {
+        this.progress ++;
+    }
+    private boolean hasProgressFinished() {
+        return this.progress >= this.maxProgress;
+    }
+
+    private void resetProgress() {
+        this.progress = 0;
+    }
+
+    private Optional<PedestalGeneratorRecipe> getCurrentRecipe() {
+        SimpleContainer inventory = new SimpleContainer(this.itemHandler.getSlots());
+        inventory.setItem(0,this.itemHandler.getStackInSlot(0));
+
+        return this.level.getRecipeManager().getRecipeFor(PedestalGeneratorRecipe.Type.INSTANCE, inventory, level);
+    }
+
+    public ItemStack getChanceItemStack(ChanceList list){
+        Random random = new Random();
+        double chance = random.nextDouble(0,1);
+        double totalChance = 0;
+        ItemStack itemStack = null;
+        for (int i = 0; i < list.getChanceList().size(); i++) {
+            double currentChance = list.getChanceList().get(i);
+            totalChance += currentChance;
+            if(chance <= totalChance){
+                itemStack = new ItemStack(list.getBlockStateList().get(i).getBlock().asItem(),list.getCountList().get(i));
+                break;
+            }
+        }
+        return itemStack == null ? Items.AIR.getDefaultInstance() : itemStack;
+    }
+    public ChanceList initChanceList(NonNullList<Ingredient> ingredients, ArrayList<Double> chanceList,int[] countList){
+        ChanceList list = new ChanceList();
+        for (int i = 0; i < ingredients.size(); i++) {
+            BlockState blockState1 = Block.byItem(ingredients.get(i).getItems()[0].getItem()).defaultBlockState();
+            double chance1 = chanceList.get(i);
+            list.add(blockState1,chance1,countList[i]);
+        }
+        return list;
     }
 }
