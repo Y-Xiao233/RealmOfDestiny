@@ -29,19 +29,19 @@ public class PedestalGeneratorCategory extends BaseJEICategory<PedestalGenerator
 
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, PedestalGeneratorRecipe recipe, IFocusGroup focusGroup) {
-        builder.addSlot(RecipeIngredientRole.INPUT,80,105)
+        builder.addSlot(RecipeIngredientRole.INPUT,80,110)
                 .addTooltipCallback(addText("recipe.realmofdestiny.pedestal_generator.in_pedestal",ChatFormatting.RED))
                 .addItemStack(recipe.getPedestalItemStack());
 
         int size = recipe.getOutputItemStack().length;
         int y = 49;
         int x = size>= 3 ? 34 : 45;
-        if(size == 1) x = 56;
+        if(size == 1) x = 58;
         for (int i = 0; i < size; i++) {
             x += 23;
             if(i % 3 == 0 && i != 0){
                 y -= 23;
-                x = 56;
+                x = 58;
             }
             ItemStack stack = recipe.getOutputItemStack()[i];
             double chance = recipe.getChanceList().get(i);
@@ -61,5 +61,6 @@ public class PedestalGeneratorCategory extends BaseJEICategory<PedestalGenerator
     @Override
     public void draw(PedestalGeneratorRecipe recipe, IRecipeSlotsView slotsView, GuiGraphics gui, double mouseX, double mouseY) {
         drawUpArrow(gui,85,80);
+        gui.renderFakeItem(ModItems.PEDESTAL_ITEM.get().getDefaultInstance(),80,125);
     }
 }
