@@ -56,6 +56,6 @@ public class ChangeStoneCategory extends BaseJEICategory<ChangeStoneRecipe> {
 
     @Override
     public void draw(ChangeStoneRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
-        AllJEITextures.DOWN_ARROW.render(guiGraphics,85,30);
+        drawDownArrow(guiGraphics,85,30);
     }
 }

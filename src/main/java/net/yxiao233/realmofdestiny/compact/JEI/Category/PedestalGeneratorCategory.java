@@ -19,7 +19,7 @@ import net.yxiao233.realmofdestiny.compact.JEI.AllJEITextures;
 import net.yxiao233.realmofdestiny.recipes.ChangeStoneRecipe;
 import net.yxiao233.realmofdestiny.recipes.PedestalGeneratorRecipe;
 
-public class PedestalGeneratorCategory extends BaseJEICategory<PedestalGeneratorRecipe> {
+public class PedestalGeneratorCategory extends BaseJEICategory<PedestalGeneratorRecipe> implements IBaseJEICategory<PedestalGeneratorRecipe>{
     public static final ResourceLocation UID = new ResourceLocation(RealmOfDestiny.MODID,"pedestal_generator");
     public static final RecipeType<PedestalGeneratorRecipe> PEDESTAL_GENERATOR_TYPE = new RecipeType<>(UID, PedestalGeneratorRecipe.class);
     public static final Component TITLE = Component.translatable("block.realmofdestiny.pedestal");
@@ -59,8 +59,8 @@ public class PedestalGeneratorCategory extends BaseJEICategory<PedestalGenerator
     }
 
     @Override
-    public void draw(PedestalGeneratorRecipe recipe, IRecipeSlotsView slotsView, GuiGraphics gui, double mouseX, double mouseY) {
-        drawUpArrow(gui,85,80);
-        gui.renderFakeItem(ModItems.PEDESTAL_ITEM.get().getDefaultInstance(),80,125);
+    public void draw(PedestalGeneratorRecipe recipe, IRecipeSlotsView slotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
+        drawUpArrow(guiGraphics,85,80);
+        guiGraphics.renderFakeItem(ModItems.PEDESTAL_ITEM.get().getDefaultInstance(),80,125);
     }
 }
