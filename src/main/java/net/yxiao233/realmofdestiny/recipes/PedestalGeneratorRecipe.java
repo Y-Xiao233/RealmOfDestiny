@@ -192,14 +192,40 @@ public class PedestalGeneratorRecipe implements Recipe<SimpleContainer> {
             }
 
             ItemStack pedestalItemStack = buffer.readItem();
-            return new PedestalGeneratorRecipe(resourceLocation,pedestalItemStack,outputs,null , null, null, null);
+
+            ItemStack[] outputItemStack = new ItemStack[buffer.readInt()];
+            for (int i = 0; i < outputItemStack.length; i++) {
+                outputItemStack[i] = buffer.readItem();
+            }
+
+            ArrayList<Double> chaceList = new ArrayList<>();
+            int chanceListLength = buffer.readInt();
+            for (int i = 0; i < chanceListLength; i++) {
+                chaceList.add(buffer.readDouble());
+            }
+            return new PedestalGeneratorRecipe(resourceLocation,pedestalItemStack,outputs,outputItemStack , chaceList, null, null);
         }
 
         @Override
-        public void toNetwork(FriendlyByteBuf buffer, PedestalGeneratorRecipe pedestalGeneratorRecipe) {
-            buffer.writeInt(pedestalGeneratorRecipe.generateItems.size());
+        public void toNetwork(FriendlyByteBuf buffer, PedestalGeneratorRecipe recipe) {
+            buffer.writeInt(recipe.generateItems.size());
 
-            buffer.writeItemStack(pedestalGeneratorRecipe.pedestalItemStack,false);
+            for (Ingredient ingredient : recipe.getIngredients()) {
+                ingredient.toNetwork(buffer);
+            }
+
+            buffer.writeItemStack(recipe.pedestalItemStack,false);
+
+            ItemStack[] outputItemStack = recipe.outputItemStack;
+            buffer.writeInt(outputItemStack.length);
+            for (int i = 0; i < outputItemStack.length; i++) {
+                buffer.writeItem(outputItemStack[i]);
+            }
+
+            buffer.writeInt(recipe.getChanceList().size());
+            for (int i = 0; i < recipe.getChanceList().size(); i++) {
+                buffer.writeDouble(recipe.getChanceList().get(i));
+            }
         }
     }
 }

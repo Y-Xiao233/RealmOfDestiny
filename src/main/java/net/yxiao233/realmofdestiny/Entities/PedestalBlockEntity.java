@@ -23,6 +23,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.common.util.NonNullConsumer;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.ItemStackHandler;
@@ -33,6 +34,7 @@ import net.yxiao233.realmofdestiny.recipes.PedestalGeneratorRecipe;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import javax.swing.plaf.basic.BasicComboBoxUI;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.Random;
@@ -179,7 +181,7 @@ public class PedestalBlockEntity extends BlockEntity {
         return false;
     }
     private boolean checkBlock(KeyToItemStackHelper helper, char[][][] patternsList, BlockPos blockPos){
-        int[] pbp = findPedestal(helper,patternsList);
+        int[] pbp = findPedestal(patternsList);
         int right = 0;
         BlockPos rightBlockPos = blockPos.offset(pbp[0],pbp[1],pbp[2]);
         for (int y = 0; y < patternsList.length; y++) {
@@ -208,7 +210,7 @@ public class PedestalBlockEntity extends BlockEntity {
             return recipeBlock.is(worldBlock);
         }
     }
-    private int[] findPedestal(KeyToItemStackHelper helper, char[][][] patternsList) {
+    private int[] findPedestal(char[][][] patternsList) {
         for (int y = 0; y < patternsList.length; y++) {
             for (int x = 0; x < patternsList[y].length; x++) {
                 for (int z = 0; z < patternsList[y][x].length; z++) {
@@ -225,8 +227,10 @@ public class PedestalBlockEntity extends BlockEntity {
         ChanceList chanceList =  initChanceList(recipe.get().getIngredients(),recipe.get().getChanceList(),recipe.get().getCountList());
         BlockEntity containerEntity =  level.getBlockEntity(this.containerBlockPos);
         containerEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent((inventory -> {
-            ItemStack itemStack = getChanceItemStack(chanceList);
-            ItemHandlerHelper.insertItem(inventory,itemStack,false);
+            if(inventory instanceof IItemHandler){
+                ItemStack itemStack = getChanceItemStack(chanceList);
+                ItemHandlerHelper.insertItem(inventory,itemStack,false);
+            }
         }));
     }
     private void increasrCraftingProgress() {
