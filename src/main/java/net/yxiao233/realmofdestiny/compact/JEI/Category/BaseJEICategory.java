@@ -9,6 +9,8 @@ import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -121,5 +123,14 @@ public abstract class BaseJEICategory<T extends Recipe<?>> implements IRecipeCat
 
     public void drawUpArrow(GuiGraphics guiGraphics,int x, int y){
         AllJEITextures.UP_ARROW.render(guiGraphics,x,y);
+    }
+
+    public void drawTextureWithTooltip(GuiGraphics guiGraphics,AllJEITextures allJEITextures,Component component,int x, int y ,double mouseX, double mouseY){
+        Font font = Minecraft.getInstance().font;
+
+        allJEITextures.render(guiGraphics,x,y);
+
+        if(mouseX >= x && mouseY >= y && mouseX <= allJEITextures.width + x && mouseY <= allJEITextures.height + y)
+            guiGraphics.renderTooltip(font,component,(int) mouseX,(int) mouseY);
     }
 }

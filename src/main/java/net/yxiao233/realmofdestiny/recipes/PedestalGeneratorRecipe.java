@@ -30,8 +30,10 @@ public class PedestalGeneratorRecipe implements Recipe<SimpleContainer> {
     private final ArrayList<Double> chanceList;
     private final char[][][] patternsList;
     private final KeyToItemStackHelper keyItemStack;
+    private final int energy;
+    private final int time;
 
-    public PedestalGeneratorRecipe(ResourceLocation id, ItemStack pedestalItemStack, NonNullList<Ingredient> generateItem, ItemStack[] outputItemStack, ArrayList<Double> chanceList, char[][][] patternsList, KeyToItemStackHelper keyItemStack) {
+    public PedestalGeneratorRecipe(ResourceLocation id, ItemStack pedestalItemStack, NonNullList<Ingredient> generateItem, ItemStack[] outputItemStack, ArrayList<Double> chanceList, char[][][] patternsList, KeyToItemStackHelper keyItemStack, int energy, int time) {
         this.id = id;
         this.pedestalItemStack = pedestalItemStack;
         this.generateItems = generateItem;
@@ -39,6 +41,8 @@ public class PedestalGeneratorRecipe implements Recipe<SimpleContainer> {
         this.chanceList = chanceList;
         this.patternsList = patternsList;
         this.keyItemStack = keyItemStack;
+        this.energy = energy;
+        this.time = time;
     }
 
     @Override
@@ -93,6 +97,14 @@ public class PedestalGeneratorRecipe implements Recipe<SimpleContainer> {
             countlist[i] = outputItemStack[i].getCount();
         }
         return countlist;
+    }
+
+    public int getNeededEnergy(){
+        return energy;
+    }
+
+    public int getTime(){
+        return time;
     }
 
     @Override
@@ -179,8 +191,14 @@ public class PedestalGeneratorRecipe implements Recipe<SimpleContainer> {
             }
             KeyToItemStackHelper toHelper = new KeyToItemStackHelper(helper.getKeysMap(),itemStacks);
 
+            //energy
+            int energy = Integer.valueOf(String.valueOf(jsonObject.get("energy"))).intValue();
 
-            return new PedestalGeneratorRecipe(resourceLocation,pedestalItemStack,outputIngredient,outputItemStacks,chanceList,patterns,toHelper);
+            //time
+            int time = Integer.valueOf(String.valueOf(jsonObject.get("time"))).intValue();
+
+
+            return new PedestalGeneratorRecipe(resourceLocation,pedestalItemStack,outputIngredient,outputItemStacks,chanceList,patterns,toHelper,energy,time);
         }
 
         @Override
@@ -203,7 +221,11 @@ public class PedestalGeneratorRecipe implements Recipe<SimpleContainer> {
             for (int i = 0; i < chanceListLength; i++) {
                 chaceList.add(buffer.readDouble());
             }
-            return new PedestalGeneratorRecipe(resourceLocation,pedestalItemStack,outputs,outputItemStack , chaceList, null, null);
+
+            int energy = buffer.readInt();
+
+            int time = buffer.readInt();
+            return new PedestalGeneratorRecipe(resourceLocation,pedestalItemStack,outputs,outputItemStack , chaceList, null, null,energy,time);
         }
 
         @Override
@@ -226,6 +248,10 @@ public class PedestalGeneratorRecipe implements Recipe<SimpleContainer> {
             for (int i = 0; i < recipe.getChanceList().size(); i++) {
                 buffer.writeDouble(recipe.getChanceList().get(i));
             }
+
+            buffer.writeInt(recipe.getNeededEnergy());
+
+            buffer.writeInt(recipe.getTime());
         }
     }
 }

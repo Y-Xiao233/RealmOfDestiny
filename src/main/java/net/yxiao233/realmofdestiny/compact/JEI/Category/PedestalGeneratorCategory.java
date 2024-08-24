@@ -8,16 +8,22 @@ import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.client.event.RenderTooltipEvent;
+import net.minecraftforge.client.extensions.IForgeGuiGraphics;
 import net.yxiao233.realmofdestiny.ModRegistry.ModItems;
 import net.yxiao233.realmofdestiny.RealmOfDestiny;
 import net.yxiao233.realmofdestiny.compact.JEI.AllJEITextures;
 import net.yxiao233.realmofdestiny.recipes.ChangeStoneRecipe;
 import net.yxiao233.realmofdestiny.recipes.PedestalGeneratorRecipe;
+
+import java.awt.*;
 
 public class PedestalGeneratorCategory extends BaseJEICategory<PedestalGeneratorRecipe> implements IBaseJEICategory<PedestalGeneratorRecipe>{
     public static final ResourceLocation UID = new ResourceLocation(RealmOfDestiny.MODID,"pedestal_generator");
@@ -36,7 +42,7 @@ public class PedestalGeneratorCategory extends BaseJEICategory<PedestalGenerator
         int size = recipe.getOutputItemStack().length;
         int y = 49;
         int x = size>= 3 ? 34 : 45;
-        if(size == 1) x = 58;
+        if(size == 1) x = 57;
         for (int i = 0; i < size; i++) {
             x += 23;
             if(i % 3 == 0 && i != 0){
@@ -53,14 +59,26 @@ public class PedestalGeneratorCategory extends BaseJEICategory<PedestalGenerator
             }else{
                 builder.addSlot(RecipeIngredientRole.OUTPUT,x,y)
                         .addItemStack(stack)
-                        .setBackground(drawBasiceSlot(AllJEITextures.BASIC_SLOT),-1,-1);;
+                        .setBackground(drawBasiceSlot(AllJEITextures.BASIC_SLOT),-1,-1);
             }
         }
     }
 
     @Override
     public void draw(PedestalGeneratorRecipe recipe, IRecipeSlotsView slotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
-        drawUpArrow(guiGraphics,85,80);
         guiGraphics.renderFakeItem(ModItems.PEDESTAL_ITEM.get().getDefaultInstance(),80,125);
+        int redColor = (255 << 24) | (255 << 16) | (0 << 8) | 0;
+        guiGraphics.drawString(Minecraft.getInstance().font,Component.translatable("recipe.realmofdestiny.pedestal_generator.need_structure"),60,10,redColor);
+
+        drawTextureWithTooltip(guiGraphics,
+                AllJEITextures.ENERGY_FILLED,
+                Component.translatable("recipe.realmofdestiny.pedestal_generator.energy",recipe.getNeededEnergy()),
+                30,65,mouseX,mouseY);
+
+        drawTextureWithTooltip(guiGraphics,
+                AllJEITextures.UP_ARROW,
+                Component.translatable("recipe.realmofdestiny.pedestal_generator.progress",recipe.getTime()),
+                85,78,mouseX,mouseY);
     }
+
 }

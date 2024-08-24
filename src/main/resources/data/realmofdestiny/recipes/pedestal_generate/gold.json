@@ -3,6 +3,8 @@
   "pedestal_item": {
     "item": "minecraft:raw_gold_block"
   },
+  "time": 40,
+  "energy": 2000,
   "pattern": [
     [
       "   ",

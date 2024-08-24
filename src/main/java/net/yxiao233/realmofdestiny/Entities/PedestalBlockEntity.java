@@ -4,6 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
@@ -24,6 +25,8 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.common.util.NonNullConsumer;
+import net.minecraftforge.energy.EnergyStorage;
+import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.ItemStackHandler;
@@ -49,11 +52,14 @@ public class PedestalBlockEntity extends BlockEntity {
             }
         }
     };
+    public EnergyStorage energyStorage = new EnergyStorage(100000);
+
 
     protected final ContainerData data;
     private int progress = 0;
     private int maxProgress = 20;
     private BlockPos containerBlockPos;
+    private LazyOptional<IEnergyStorage> lazyEnergyStorage = LazyOptional.empty();
     private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
     public PedestalBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(ModBlockEntities.PEDESTAL_BE.get(), pPos, pBlockState);
@@ -87,6 +93,8 @@ public class PedestalBlockEntity extends BlockEntity {
     public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
         if(cap == ForgeCapabilities.ITEM_HANDLER){
             return lazyItemHandler.cast();
+        } else if (cap == ForgeCapabilities.ENERGY) {
+            return lazyEnergyStorage.cast();
         }
         return super.getCapability(cap, side);
     }
@@ -95,17 +103,20 @@ public class PedestalBlockEntity extends BlockEntity {
     public void onLoad() {
         super.onLoad();
         lazyItemHandler = LazyOptional.of(() -> itemHandler);
+        lazyEnergyStorage = LazyOptional.of(() -> energyStorage);
     }
 
     @Override
     public void invalidateCaps() {
         super.invalidateCaps();
         lazyItemHandler.invalidate();
+        lazyEnergyStorage.invalidate();
     }
 
     @Override
     protected void saveAdditional(CompoundTag pTag) {
         pTag.put("inventory",itemHandler.serializeNBT());
+        pTag.put("energy",energyStorage.serializeNBT());
         pTag.putInt("pedestal.progress",progress);
         super.saveAdditional(pTag);
     }
@@ -114,6 +125,7 @@ public class PedestalBlockEntity extends BlockEntity {
     public void load(CompoundTag pTag) {
         super.load(pTag);
         this.progress = pTag.getInt("pedestal.progress");
+        energyStorage.deserializeNBT(pTag.get("energy"));
         itemHandler.deserializeNBT(pTag.getCompound("inventory"));
     }
 
@@ -151,7 +163,8 @@ public class PedestalBlockEntity extends BlockEntity {
                 blockPos.offset(0,-1,0)
         };
         for (int i = 0; i < nearbyBlockPosList.length; i++) {
-            hasContainerNearby = level.getBlockEntity(nearbyBlockPosList[i]) instanceof Container;
+            BlockEntity blockEntity = level.getBlockEntity(nearbyBlockPosList[i]);
+            hasContainerNearby = blockEntity != null ? blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).isPresent() : false;
             if(hasContainerNearby){
                 this.containerBlockPos = nearbyBlockPosList[i];
                 break;
@@ -160,7 +173,8 @@ public class PedestalBlockEntity extends BlockEntity {
 
         if(hasContainerNearby){
             Optional<PedestalGeneratorRecipe> recipe = getCurrentRecipe();
-            if(hasRecipe(recipe,blockPos)){
+            if(hasRecipe(recipe,blockPos) && hasEnoughEnergy(recipe)){
+                this.maxProgress = recipe.get().getTime();
                 increasrCraftingProgress();
                 setChanged(level,blockPos,blockState);
 
@@ -179,6 +193,10 @@ public class PedestalBlockEntity extends BlockEntity {
             return checkBlock(recipe.get().getKeyItemStack(),recipe.get().getPatternsList(),pedestalBlockPos);
         }
         return false;
+    }
+
+    private boolean hasEnoughEnergy(Optional<PedestalGeneratorRecipe> recipe){
+        return energyStorage.getEnergyStored() >= recipe.get().getNeededEnergy();
     }
     private boolean checkBlock(KeyToItemStackHelper helper, char[][][] patternsList, BlockPos blockPos){
         int[] pbp = findPedestal(patternsList);
@@ -230,6 +248,7 @@ public class PedestalBlockEntity extends BlockEntity {
             if(inventory instanceof IItemHandler){
                 ItemStack itemStack = getChanceItemStack(chanceList);
                 ItemHandlerHelper.insertItem(inventory,itemStack,false);
+                energyStorage.extractEnergy(recipe.get().getNeededEnergy(),false);
             }
         }));
     }

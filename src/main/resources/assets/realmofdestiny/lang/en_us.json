@@ -12,5 +12,8 @@
 
   "recipe.realmofdestiny.changestone.chance": "chance: %d",
   "recipe.realmofdestiny.changestone.failed": "Change Failed",
-  "recipe.realmofdestiny.pedestal_generator.in_pedestal": "Put this item on Pedestal"
+  "recipe.realmofdestiny.pedestal_generator.in_pedestal": "Put this item on Pedestal",
+  "recipe.realmofdestiny.pedestal_generator.progress": "Time: %d tick",
+  "recipe.realmofdestiny.pedestal_generator.energy": "Energy: %d FE",
+  "recipe.realmofdestiny.pedestal_generator.need_structure": "Need Structure"
 }

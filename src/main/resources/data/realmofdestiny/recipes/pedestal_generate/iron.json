@@ -3,6 +3,8 @@
   "pedestal_item": {
     "item": "minecraft:iron_ore"
   },
+  "time": 20,
+  "energy": 1000,
   "pattern": [
     [
       "   ",

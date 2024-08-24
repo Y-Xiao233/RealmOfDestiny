@@ -3,6 +3,8 @@
   "pedestal_item": {
     "item": "minecraft:diamond_ore"
   },
+  "time": 60,
+  "energy": 4000,
   "pattern": [
     [
       "   ",
