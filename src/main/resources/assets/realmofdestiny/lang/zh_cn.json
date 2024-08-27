@@ -1,0 +1,19 @@
+{
+  "itemGroup.realmofdestiny": "生命之境",
+
+
+  "item.realmofdestiny.change_stone": "转换石",
+
+
+  "block.realmofdestiny.gem_polishing_station": "宝石加工站",
+  "block.realmofdestiny.pedestal": "基座",
+
+
+
+  "recipe.realmofdestiny.changestone.chance": "概率: %d",
+  "recipe.realmofdestiny.changestone.failed": "转化失败",
+  "recipe.realmofdestiny.pedestal_generator.in_pedestal": "将这个物品放在基座上",
+  "recipe.realmofdestiny.pedestal_generator.progress": "时间: %d tick",
+  "recipe.realmofdestiny.pedestal_generator.energy": "能量: %d FE",
+  "recipe.realmofdestiny.pedestal_generator.need_structure": "需要结构"
+}
