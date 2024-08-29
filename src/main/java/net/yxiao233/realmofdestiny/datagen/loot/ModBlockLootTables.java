@@ -19,6 +19,11 @@ public class ModBlockLootTables extends BlockLootSubProvider {
     protected void generate() {
         this.dropSelf(ModBlocks.GEM_POLISHING_STATION.get());
         this.dropSelf(ModBlocks.PEDESTAL.get());
+        this.dropSelf(ModBlocks.BOLT_LOG.get());
+        this.dropSelf(ModBlocks.BOLT_SAPLING.get());
+        this.dropSelf(ModBlocks.STRIPPED_BOLT_LOG.get());
+        this.add(ModBlocks.BOLT_LEAVES.get(), block ->
+                createLeavesDrops(block,ModBlocks.BOLT_SAPLING.get(),NORMAL_LEAVES_SAPLING_CHANCES));
     }
 
     @Override

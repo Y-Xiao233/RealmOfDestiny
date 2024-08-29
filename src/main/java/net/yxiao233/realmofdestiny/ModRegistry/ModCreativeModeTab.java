@@ -15,6 +15,10 @@ public class ModCreativeModeTab {
                 output.accept(ModItems.CHANGE_STONE.get());
                 output.accept(ModItems.GEM_POLISHING_STATION_ITEM.get());
                 output.accept(ModItems.PEDESTAL_ITEM.get());
+                output.accept(ModItems.BOLT_LOG_ITEM.get());
+                output.accept(ModItems.BOLT_LEAVES_ITEM.get());
+                output.accept(ModItems.BOLT_SAPLING_ITEM.get());
+                output.accept(ModItems.STRIPPED_BOLT_LOG_ITEM.get());
             })
             .title(Component.translatable("itemGroup.realmofdestiny"))
             .build()

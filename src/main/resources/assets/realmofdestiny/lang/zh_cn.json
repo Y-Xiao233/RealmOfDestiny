@@ -7,7 +7,10 @@
 
   "block.realmofdestiny.gem_polishing_station": "宝石加工站",
   "block.realmofdestiny.pedestal": "基座",
-
+  "block.realmofdestiny.bolt_log": "电光原木",
+  "block.realmofdestiny.bolt_leaves": "电光树树叶",
+  "block.realmofdestiny.stripped_bolt_log": "去皮电光木原木",
+  "block.realmofdestiny.bolt_sapling": "电光树树苗",
 
 
   "recipe.realmofdestiny.changestone.chance": "概率: %d",

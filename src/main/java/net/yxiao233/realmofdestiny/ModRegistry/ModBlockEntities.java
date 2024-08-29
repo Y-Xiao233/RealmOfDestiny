@@ -6,7 +6,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.yxiao233.realmofdestiny.Entities.GemPolishingStationBlockEntity;
 import net.yxiao233.realmofdestiny.Entities.PedestalBlockEntity;
-import net.yxiao233.realmofdestiny.ModRegistry.ModBlocks;
 import net.yxiao233.realmofdestiny.RealmOfDestiny;
 
 public class ModBlockEntities {

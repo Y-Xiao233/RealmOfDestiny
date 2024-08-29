@@ -7,7 +7,10 @@
 
   "block.realmofdestiny.gem_polishing_station": "Gem Polishing Station",
   "block.realmofdestiny.pedestal": "Pedestal",
-
+  "block.realmofdestiny.bolt_log": "Bolt Log",
+  "block.realmofdestiny.bolt_leaves": "Bolt Leaves",
+  "block.realmofdestiny.stripped_bolt_log": "Strippeed Bolt Log",
+  "block.realmofdestiny.bolt_sapling": "Bolt Sapling",
 
 
   "recipe.realmofdestiny.changestone.chance": "chance: %d",
@@ -16,6 +19,7 @@
   "recipe.realmofdestiny.pedestal_generator.progress": "Time: %d tick",
   "recipe.realmofdestiny.pedestal_generator.energy": "Energy: %d FE",
   "recipe.realmofdestiny.pedestal_generator.need_structure": "Need Structure",
+
 
   "book.realmofdestiny.name": "Realm of Destiny",
   "book.realmofdestiny.landing_text": "Welcome to the Realm of Destiny! Here, you can find various information that can help you on your journey.",

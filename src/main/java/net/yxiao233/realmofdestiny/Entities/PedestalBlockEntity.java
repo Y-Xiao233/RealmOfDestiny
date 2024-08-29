@@ -6,6 +6,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.Containers;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.inventory.ContainerData;
@@ -143,6 +144,10 @@ public class PedestalBlockEntity extends BlockEntity {
     }
 
     public void tick(Level level, BlockPos blockPos, BlockState blockState) {
+        pedestalGeneratorRecipes(blockPos,blockState);
+    }
+
+    private void pedestalGeneratorRecipes(BlockPos blockPos, BlockState blockState){
         boolean hasContainerNearby = false;
         BlockPos[] nearbyBlockPosList = {
                 blockPos.offset(0,0,-1),
@@ -177,7 +182,6 @@ public class PedestalBlockEntity extends BlockEntity {
             }
         }
     }
-
     private boolean hasRecipe(Optional<PedestalGeneratorRecipe> recipe,BlockPos pedestalBlockPos) {
         if(!recipe.isEmpty()){
             return checkBlock(recipe.get().getKeyItemStack(),recipe.get().getPatternsList(),pedestalBlockPos);

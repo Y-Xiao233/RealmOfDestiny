@@ -13,7 +13,9 @@
 
 ### v1.0.3
 - 修复了转化石"转化失败"信息提示错误的bug
-- 将Patchouli添加为依赖
+- 将Patchouli添加为必须的依赖
+- 添加了电光树
+- TODO 添加电基座的配方
 
 ## en_us
 ### v1.0.0
@@ -28,4 +30,5 @@
 
 ### v1.0.3
 - Fixed the bug where the change stone displayed an error message indicating "change failed"
-- Add Patchouli as a dependency
+- Add Patchouli as a mandatory dependency
+- Add Bolt Sapling

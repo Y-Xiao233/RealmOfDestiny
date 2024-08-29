@@ -19,4 +19,16 @@ public class ModItems {
             new BlockItem(ModBlocks.GEM_POLISHING_STATION.get(),new Item.Properties()));
     public static final RegistryObject<Item> PEDESTAL_ITEM = ITEMS.register("pedestal", () ->
             new BlockItem(ModBlocks.PEDESTAL.get(),new Item.Properties()));
+
+    public static final RegistryObject<Item> BOLT_LOG_ITEM = ITEMS.register("bolt_log", () ->
+            new BlockItem(ModBlocks.BOLT_LOG.get(),new Item.Properties()));
+
+    public static final RegistryObject<Item> STRIPPED_BOLT_LOG_ITEM = ITEMS.register("stripped_bolt_log", () ->
+            new BlockItem(ModBlocks.STRIPPED_BOLT_LOG.get(),new Item.Properties()));
+
+    public static final RegistryObject<Item> BOLT_LEAVES_ITEM = ITEMS.register("bolt_leaves", () ->
+            new BlockItem(ModBlocks.BOLT_LEAVES.get(),new Item.Properties()));
+
+    public static final RegistryObject<Item> BOLT_SAPLING_ITEM = ITEMS.register("bolt_sapling", () ->
+            new BlockItem(ModBlocks.BOLT_SAPLING.get(),new Item.Properties()));
 }
