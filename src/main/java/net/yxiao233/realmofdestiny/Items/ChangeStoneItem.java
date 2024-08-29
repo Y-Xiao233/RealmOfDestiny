@@ -26,6 +26,7 @@ import java.util.*;
 
 public class ChangeStoneItem extends Item {
     public int i;
+    public int total;
 
     public ChangeStoneItem(Properties properties) {
         super(properties);
@@ -47,6 +48,7 @@ public class ChangeStoneItem extends Item {
     }
     public void craft(Level level, Player player, Optional<ChangeStoneRecipe> recipe){
         this.i = 0;
+        this.total = 0;
         BlockPos blockPos = getTarget(player);
         ItemStack checkBlockItemStack = recipe.get().getCheckBlockItem();
 
@@ -56,12 +58,15 @@ public class ChangeStoneItem extends Item {
 
         replaceBlock(level,blockPos,player,list);
         replaceNearbyBlock(level,blockPos,player,checkBlockItemStack,list);
+
+        if(this.i == this.total){
+            player.sendSystemMessage(Component.translatable("recipe.realmofdestiny.changestone.failed"));
+        }
     }
     public boolean replaceBlock(Level level, BlockPos blockPos, Player player, ChanceList list){
         BlockState blockState = getChanceBlockState(list);
-        if(blockState == Blocks.AIR.defaultBlockState() && this.i == 0){
-            this.i = 1;
-            player.sendSystemMessage(Component.translatable("recipe.realmofdestiny.changestone.failed"));
+        if(blockState == Blocks.AIR.defaultBlockState()){
+            this.i ++;
         }
         return level.setBlock(blockPos,blockState,3);
     }
@@ -77,6 +82,7 @@ public class ChangeStoneItem extends Item {
         for(BlockPos pos : nearbyBlockPosList){
             Block checkBlock = Block.byItem(checkBlockItemStack.getItem());
             if(level.getBlockState(pos).getBlock() == checkBlock){
+                this.total ++;
                 replaceBlock(level,pos,player,list);
                 replaceNearbyBlock(level,pos,player,checkBlockItemStack,list);
             }

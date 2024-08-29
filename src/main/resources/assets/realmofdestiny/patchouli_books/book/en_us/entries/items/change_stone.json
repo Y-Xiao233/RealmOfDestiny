@@ -1,0 +1,11 @@
+{
+  "name": "book.realmofdestiny.items.change_stone.name",
+  "icon": "realmofdestiny:change_stone",
+  "category": "realmofdestiny:items",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "book.realmofdestiny.items.change_stone.text0"
+    }
+  ]
+}

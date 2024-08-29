@@ -1,0 +1,15 @@
+{
+  "name": "book.realmofdestiny.items.pedestale.name",
+  "icon": "realmofdestiny:pedestal",
+  "category": "realmofdestiny:items",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "book.realmofdestiny.items.pedestal.text0"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "book.realmofdestiny.items.pedestal.text1"
+    }
+  ]
+}

@@ -15,5 +15,24 @@
   "recipe.realmofdestiny.pedestal_generator.in_pedestal": "Put this item on Pedestal",
   "recipe.realmofdestiny.pedestal_generator.progress": "Time: %d tick",
   "recipe.realmofdestiny.pedestal_generator.energy": "Energy: %d FE",
-  "recipe.realmofdestiny.pedestal_generator.need_structure": "Need Structure"
+  "recipe.realmofdestiny.pedestal_generator.need_structure": "Need Structure",
+
+  "book.realmofdestiny.name": "Realm of Destiny",
+  "book.realmofdestiny.landing_text": "Welcome to the Realm of Destiny! Here, you can find various information that can help you on your journey.",
+
+  "book.realmofdestiny.multiblock.iron_ore.text": "Please refer to JEI for other requirements",
+
+  "book.realmofdestiny.pedestal.name": "Pedestal Generator Multiblock",
+  "book.realmofdestiny.pedestal.desc": "This multiblock structure allows the pedestal to produce items with corresponding recipes.",
+  "book.realmofdestiny.pedestal.iron_ore.name": "Iron Ore",
+  "book.realmofdestiny.pedestal.iron_ore.text": "Generates iron ore.",
+
+  "book.realmofdestiny.items.name": "Items",
+  "book.realmofdestiny.items.desc": "Understand the purpose of the item",
+  "book.realmofdestiny.items.pedestale.name": "Pedestal",
+  "book.realmofdestiny.items.pedestal.text0": "Produce items in container adjacent to the pedestal$(br2)1. The correct structure is required$(br2)2. Corresponding items are required (not consumed)$(br2)3. Consume FE",
+  "book.realmofdestiny.items.pedestal.text1": "The main/off hand with the item and right-click on the pedestal to place the item on it$(br2)shift + right-click on the pedestal to remove items from it$(br2)Tip: When both the main and off hand have something, prioritize judging the main hand",
+
+  "book.realmofdestiny.items.change_stone.name": "Change Stone",
+  "book.realmofdestiny.items.change_stone.text0": "By holding this stone and right clicking on the block that can be changed, it can be changed into the corresponding new block$(br2)Please refer to JEI for detailed recipes and chance"
 }

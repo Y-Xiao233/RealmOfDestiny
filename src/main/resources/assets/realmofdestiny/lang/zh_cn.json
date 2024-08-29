@@ -15,5 +15,25 @@
   "recipe.realmofdestiny.pedestal_generator.in_pedestal": "将这个物品放在基座上",
   "recipe.realmofdestiny.pedestal_generator.progress": "时间: %d tick",
   "recipe.realmofdestiny.pedestal_generator.energy": "能量: %d FE",
-  "recipe.realmofdestiny.pedestal_generator.need_structure": "需要结构"
+  "recipe.realmofdestiny.pedestal_generator.need_structure": "需要结构",
+
+
+  "book.realmofdestiny.name": "生命之境",
+  "book.realmofdestiny.landing_text": "欢迎游玩生命之境mod!你可以在这里找到各种能在旅途中帮助到你的信息。",
+
+  "book.realmofdestiny.multiblock.iron_ore.text": "请在jei中查看更多需求",
+
+  "book.realmofdestiny.pedestal.name": "基座生产所需的多方块",
+  "book.realmofdestiny.pedestal.desc": "这个多方块结构允许基座生产对应物品。",
+  "book.realmofdestiny.pedestal.iron_ore.name": "铁矿",
+  "book.realmofdestiny.pedestal.iron_ore.text": "生产铁矿",
+
+  "book.realmofdestiny.items.name": "物品",
+  "book.realmofdestiny.items.desc": "了解物品用途",
+  "book.realmofdestiny.items.pedestale.name": "基座",
+  "book.realmofdestiny.items.pedestal.text0": "在与基座相邻的容器内生产物品$(br2)1.需要对应结构$(br2)2.基座上要有对应物品(不消耗)$(br2)3.消耗电量",
+  "book.realmofdestiny.items.pedestal.text1": "主手/副手拿着物品对基座右键,可以将手上的物品放到基座上$(br2)空手shift右键基座可以将基座上的物品取下来$(br2)提示:当主副手都有东西时,优先判断主手",
+
+  "book.realmofdestiny.items.change_stone.name": "转化石",
+  "book.realmofdestiny.items.change_stone.text0": "拿着这个石头右键可被转化的方块,方块会被转化成对应的新方块(有一定概率)$(br2)请查看jei获取转化配方以及概率"
 }
