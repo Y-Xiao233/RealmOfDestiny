@@ -154,7 +154,7 @@ public class PedestalBlockEntity extends BlockEntity {
         };
         for (int i = 0; i < nearbyBlockPosList.length; i++) {
             BlockEntity blockEntity = level.getBlockEntity(nearbyBlockPosList[i]);
-            hasContainerNearby = blockEntity != null ? blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).isPresent() : false;
+            hasContainerNearby = blockEntity != null && blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).isPresent();
             if(hasContainerNearby){
                 this.containerBlockPos = nearbyBlockPosList[i];
                 break;

@@ -72,7 +72,7 @@ public class ChanceList {
         }
     }
     public boolean isOnly(){
-        return this.rawChanceList.size() == 1 ? true : false;
+        return this.rawChanceList.size() == 1;
     }
 
 
