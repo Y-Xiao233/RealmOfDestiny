@@ -13,6 +13,7 @@
 
 ### v1.0.3
 - 修复了转化石"转化失败"信息提示错误的bug
+- 将Patchouli添加为依赖
 
 ## en_us
 ### v1.0.0
@@ -27,3 +28,4 @@
 
 ### v1.0.3
 - Fixed the bug where the change stone displayed an error message indicating "change failed"
+- Add Patchouli as a dependency
