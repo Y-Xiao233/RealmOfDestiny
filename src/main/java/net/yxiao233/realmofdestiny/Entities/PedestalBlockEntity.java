@@ -242,11 +242,12 @@ public class PedestalBlockEntity extends BlockEntity {
     }
 
     private void craftItem(Optional<PedestalGeneratorRecipe> recipe) {
-        ChanceList chanceList =  initChanceList(recipe.get().getIngredients(),recipe.get().getChanceList(),recipe.get().getCountList());
+        ChanceList chanceList = new ChanceList(recipe.get().getIngredients(),recipe.get().getChanceList(),recipe.get().getCountList());
         BlockEntity containerEntity =  level.getBlockEntity(this.containerBlockPos);
+
         containerEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent((inventory -> {
             if(inventory instanceof IItemHandler){
-                ItemStack itemStack = getChanceItemStack(chanceList);
+                ItemStack itemStack = chanceList.getChanceItemStack();
                 ItemHandlerHelper.insertItem(inventory,itemStack,false);
                 energyStorage.extractEnergy(recipe.get().getNeededEnergy(),false);
             }
@@ -268,30 +269,5 @@ public class PedestalBlockEntity extends BlockEntity {
         inventory.setItem(0,this.itemHandler.getStackInSlot(0));
 
         return this.level.getRecipeManager().getRecipeFor(PedestalGeneratorRecipe.Type.INSTANCE, inventory, level);
-    }
-
-    public ItemStack getChanceItemStack(ChanceList list){
-        Random random = new Random();
-        double chance = random.nextDouble(0,1);
-        double totalChance = 0;
-        ItemStack itemStack = null;
-        for (int i = 0; i < list.getChanceList().size(); i++) {
-            double currentChance = list.getChanceList().get(i);
-            totalChance += currentChance;
-            if(chance <= totalChance){
-                itemStack = new ItemStack(list.getBlockStateList().get(i).getBlock().asItem(),list.getCountList().get(i));
-                break;
-            }
-        }
-        return itemStack == null ? Items.AIR.getDefaultInstance() : itemStack;
-    }
-    public ChanceList initChanceList(NonNullList<Ingredient> ingredients, ArrayList<Double> chanceList,int[] countList){
-        ChanceList list = new ChanceList();
-        for (int i = 0; i < ingredients.size(); i++) {
-            BlockState blockState1 = Block.byItem(ingredients.get(i).getItems()[0].getItem()).defaultBlockState();
-            double chance1 = chanceList.get(i);
-            list.add(blockState1,chance1,countList[i]);
-        }
-        return list;
     }
 }

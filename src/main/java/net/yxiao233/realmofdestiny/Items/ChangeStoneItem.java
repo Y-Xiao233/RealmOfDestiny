@@ -25,7 +25,7 @@ import net.yxiao233.realmofdestiny.recipes.container.EmptyContainer;
 import java.util.*;
 
 public class ChangeStoneItem extends Item {
-    public int i;
+    public int failed;
     public int total;
 
     public ChangeStoneItem(Properties properties) {
@@ -47,30 +47,26 @@ public class ChangeStoneItem extends Item {
         }
     }
     public void craft(Level level, Player player, Optional<ChangeStoneRecipe> recipe){
-        this.i = 0;
+        this.failed = 0;
         this.total = 0;
         BlockPos blockPos = getTarget(player);
         ItemStack checkBlockItemStack = recipe.get().getCheckBlockItem();
 
-        NonNullList<Ingredient> ingredients = recipe.get().getIngredients();
-        ArrayList<Double> chanceList = recipe.get().getChanceList();
-        ChanceList list = initChanceList(ingredients,chanceList);
+        ChanceList list = new ChanceList(recipe.get().getIngredients(),recipe.get().getChanceList());
 
         replaceBlock(level,blockPos,player,list);
         replaceNearbyBlock(level,blockPos,player,checkBlockItemStack,list);
 
-        System.out.println("i: "+i);
-        System.out.println("total: "+total);
-
-        if(this.i == this.total){
+        if(this.failed == this.total){
             player.sendSystemMessage(Component.translatable("recipe.realmofdestiny.changestone.failed"));
         }
     }
     public boolean replaceBlock(Level level, BlockPos blockPos, Player player, ChanceList list){
-        BlockState blockState = getChanceBlockState(list);
+        BlockState blockState = list.getChanceBlockState();
         if(blockState.isAir()){
-            this.i ++;
+            this.failed ++;
         }
+        this.total ++;
         return level.setBlock(blockPos,blockState,3);
     }
     public void replaceNearbyBlock(Level level, BlockPos blockPos, Player player, ItemStack checkBlockItemStack, ChanceList list){
@@ -85,7 +81,6 @@ public class ChangeStoneItem extends Item {
         for(BlockPos pos : nearbyBlockPosList){
             Block checkBlock = Block.byItem(checkBlockItemStack.getItem());
             if(level.getBlockState(pos).getBlock() == checkBlock){
-                this.total ++;
                 replaceBlock(level,pos,player,list);
                 replaceNearbyBlock(level,pos,player,checkBlockItemStack,list);
             }
@@ -103,29 +98,5 @@ public class ChangeStoneItem extends Item {
     private Optional<ChangeStoneRecipe> getCurrentRecipe(Player player, Level level) {
         EmptyContainer emptyContainer = new EmptyContainer(player);
         return level.getRecipeManager().getRecipeFor(ChangeStoneRecipe.Type.INSTANCE, emptyContainer, level);
-    }
-    public BlockState getChanceBlockState(ChanceList list){
-        Random random = new Random();
-        double chance = random.nextDouble(0,1);
-        double totalChance = 0;
-        BlockState blockState = null;
-        for (int i = 0; i < list.getChanceList().size(); i++) {
-            double currentChance = list.getChanceList().get(i);
-            totalChance += currentChance;
-            if(chance <= totalChance){
-                blockState = list.getBlockStateList().get(i);
-                break;
-            }
-        }
-        return blockState == null ? Blocks.AIR.defaultBlockState() : blockState;
-    }
-    public ChanceList initChanceList(NonNullList<Ingredient> ingredients, ArrayList<Double> chanceList){
-        ChanceList list = new ChanceList();
-        for (int i = 0; i < ingredients.size(); i++) {
-            BlockState blockState1 = Block.byItem(ingredients.get(i).getItems()[0].getItem()).defaultBlockState();
-            double chance1 = chanceList.get(i);
-            list.add(blockState1,chance1);
-        }
-        return list;
     }
 }
