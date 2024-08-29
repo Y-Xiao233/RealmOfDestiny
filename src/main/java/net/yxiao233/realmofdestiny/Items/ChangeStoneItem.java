@@ -59,13 +59,16 @@ public class ChangeStoneItem extends Item {
         replaceBlock(level,blockPos,player,list);
         replaceNearbyBlock(level,blockPos,player,checkBlockItemStack,list);
 
+        System.out.println("i: "+i);
+        System.out.println("total: "+total);
+
         if(this.i == this.total){
             player.sendSystemMessage(Component.translatable("recipe.realmofdestiny.changestone.failed"));
         }
     }
     public boolean replaceBlock(Level level, BlockPos blockPos, Player player, ChanceList list){
         BlockState blockState = getChanceBlockState(list);
-        if(blockState == Blocks.AIR.defaultBlockState()){
+        if(blockState.isAir()){
             this.i ++;
         }
         return level.setBlock(blockPos,blockState,3);
