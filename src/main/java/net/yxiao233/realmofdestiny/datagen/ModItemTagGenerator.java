@@ -21,5 +21,8 @@ public class ModItemTagGenerator extends ItemTagsProvider {
         this.tag(ItemTags.LOGS_THAT_BURN)
                 .add(ModItems.BOLT_LOG_ITEM.get())
                 .add(ModItems.STRIPPED_BOLT_LOG_ITEM.get());
+
+        this.tag(ItemTags.PLANKS)
+                .add(ModItems.BOLT_PLANKS_ITEM.get());
     }
 }

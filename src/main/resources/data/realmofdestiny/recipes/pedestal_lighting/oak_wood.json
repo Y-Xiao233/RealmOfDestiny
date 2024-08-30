@@ -1,0 +1,12 @@
+{
+  "type": "realmofdestiny:pedestal_lighting",
+  "pedestal_item": {
+    "item": "minecraft:oak_log"
+  },
+  "output": {
+    "item": "minecraft:oak_wood"
+  },
+  "time": 50,
+  "energy": 0,
+  "chance": 1
+}

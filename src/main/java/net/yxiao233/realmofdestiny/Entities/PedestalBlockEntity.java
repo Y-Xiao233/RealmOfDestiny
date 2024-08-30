@@ -1,7 +1,13 @@
 package net.yxiao233.realmofdestiny.Entities;
 
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.minecraft.client.Camera;
+import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.client.particle.Particle;
+import net.minecraft.client.particle.ParticleRenderType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
@@ -9,11 +15,14 @@ import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.Containers;
 import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LightningBolt;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
@@ -26,12 +35,15 @@ import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.ItemStackHandler;
 import net.yxiao233.realmofdestiny.Items.ChanceList;
 import net.yxiao233.realmofdestiny.ModRegistry.ModBlockEntities;
+import net.yxiao233.realmofdestiny.ModRegistry.ModBlocks;
 import net.yxiao233.realmofdestiny.helper.recipe.KeyToItemStackHelper;
 import net.yxiao233.realmofdestiny.recipes.PedestalGeneratorRecipe;
+import net.yxiao233.realmofdestiny.recipes.PedestalLightingRecipe;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
+import java.util.Random;
 
 public class PedestalBlockEntity extends BlockEntity {
     public ItemStackHandler itemHandler = new ItemStackHandler(1){
@@ -47,8 +59,10 @@ public class PedestalBlockEntity extends BlockEntity {
 
 
     protected final ContainerData data;
-    private int progress = 0;
-    private int maxProgress = 20;
+    private int generatorProgress = 0;
+    private int lightingProgress = 0;
+    private int generatorMaxProgress = 20;
+    private int lightingMaxProgress = 20;
     private BlockPos containerBlockPos;
     private LazyOptional<IEnergyStorage> lazyEnergyStorage = LazyOptional.empty();
     private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
@@ -59,8 +73,10 @@ public class PedestalBlockEntity extends BlockEntity {
             @Override
             public int get(int i) {
                 return switch (i){
-                    case 0 -> PedestalBlockEntity.this.progress;
-                    case 1 -> PedestalBlockEntity.this.maxProgress;
+                    case 0 -> PedestalBlockEntity.this.generatorProgress;
+                    case 1 -> PedestalBlockEntity.this.generatorMaxProgress;
+                    case 2 -> PedestalBlockEntity.this.lightingProgress;
+                    case 3 -> PedestalBlockEntity.this.lightingMaxProgress;
                     default -> 0;
                 };
             }
@@ -68,14 +84,16 @@ public class PedestalBlockEntity extends BlockEntity {
             @Override
             public void set(int i, int value) {
                 switch (i){
-                    case 0 -> PedestalBlockEntity.this.progress = value;
-                    case 1 -> PedestalBlockEntity.this.maxProgress = value;
+                    case 0 -> PedestalBlockEntity.this.generatorProgress = value;
+                    case 1 -> PedestalBlockEntity.this.generatorMaxProgress = value;
+                    case 2 -> PedestalBlockEntity.this.lightingProgress = value;
+                    case 3 -> PedestalBlockEntity.this.lightingMaxProgress = value;
                 }
             }
 
             @Override
             public int getCount() {
-                return 2;
+                return 4;
             }
         };
     }
@@ -108,14 +126,16 @@ public class PedestalBlockEntity extends BlockEntity {
     protected void saveAdditional(CompoundTag pTag) {
         pTag.put("inventory",itemHandler.serializeNBT());
         pTag.put("energy",energyStorage.serializeNBT());
-        pTag.putInt("pedestal.progress",progress);
+        pTag.putInt("pedestal_generator.progress",generatorProgress);
+        pTag.putInt("pedestal_lighting.progress",lightingProgress);
         super.saveAdditional(pTag);
     }
 
     @Override
     public void load(CompoundTag pTag) {
         super.load(pTag);
-        this.progress = pTag.getInt("pedestal.progress");
+        this.generatorProgress = pTag.getInt("pedestal_generator.progress");
+        this.lightingProgress = pTag.getInt("pedestal_lighting.progress");
         energyStorage.deserializeNBT(pTag.get("energy"));
         itemHandler.deserializeNBT(pTag.getCompound("inventory"));
     }
@@ -145,8 +165,11 @@ public class PedestalBlockEntity extends BlockEntity {
 
     public void tick(Level level, BlockPos blockPos, BlockState blockState) {
         pedestalGeneratorRecipes(blockPos,blockState);
+
+        pedestalLightingRecipes(blockPos,blockState);
     }
 
+    //Pedestal Generator
     private void pedestalGeneratorRecipes(BlockPos blockPos, BlockState blockState){
         boolean hasContainerNearby = false;
         BlockPos[] nearbyBlockPosList = {
@@ -167,29 +190,29 @@ public class PedestalBlockEntity extends BlockEntity {
         }
 
         if(hasContainerNearby){
-            Optional<PedestalGeneratorRecipe> recipe = getCurrentRecipe();
-            if(hasRecipe(recipe,blockPos) && hasEnoughEnergy(recipe)){
-                this.maxProgress = recipe.get().getTime();
-                increasrCraftingProgress();
+            Optional<PedestalGeneratorRecipe> recipe = getGeneratorRecipe();
+            if(hasGeneratorRecipe(recipe,blockPos) && hasGeneratorEnoughEnergy(recipe)){
+                this.generatorMaxProgress = recipe.get().getTime();
+                increasrGeneratorProgress();
                 setChanged(level,blockPos,blockState);
 
-                if(hasProgressFinished()){
+                if(hasGeneratorProgressFinished()){
                     craftItem(recipe);
-                    resetProgress();
+                    resetGeneratorProgress();
                 }
             }else{
-                resetProgress();
+                resetGeneratorProgress();
             }
         }
     }
-    private boolean hasRecipe(Optional<PedestalGeneratorRecipe> recipe,BlockPos pedestalBlockPos) {
+    private boolean hasGeneratorRecipe(Optional<PedestalGeneratorRecipe> recipe,BlockPos pedestalBlockPos) {
         if(!recipe.isEmpty()){
             return checkBlock(recipe.get().getKeyItemStack(),recipe.get().getPatternsList(),pedestalBlockPos);
         }
         return false;
     }
 
-    private boolean hasEnoughEnergy(Optional<PedestalGeneratorRecipe> recipe){
+    private boolean hasGeneratorEnoughEnergy(Optional<PedestalGeneratorRecipe> recipe){
         return energyStorage.getEnergyStored() >= recipe.get().getNeededEnergy();
     }
     private boolean checkBlock(KeyToItemStackHelper helper, char[][][] patternsList, BlockPos blockPos){
@@ -247,21 +270,103 @@ public class PedestalBlockEntity extends BlockEntity {
             }
         }));
     }
-    private void increasrCraftingProgress() {
-        this.progress ++;
+    private void increasrGeneratorProgress() {
+        this.generatorProgress ++;
     }
-    private boolean hasProgressFinished() {
-        return this.progress >= this.maxProgress;
-    }
-
-    private void resetProgress() {
-        this.progress = 0;
+    private boolean hasGeneratorProgressFinished() {
+        return this.generatorProgress >= this.generatorMaxProgress;
     }
 
-    private Optional<PedestalGeneratorRecipe> getCurrentRecipe() {
+    private void resetGeneratorProgress() {
+        this.generatorProgress = 0;
+    }
+
+    private Optional<PedestalGeneratorRecipe> getGeneratorRecipe() {
         SimpleContainer inventory = new SimpleContainer(this.itemHandler.getSlots());
         inventory.setItem(0,this.itemHandler.getStackInSlot(0));
 
         return this.level.getRecipeManager().getRecipeFor(PedestalGeneratorRecipe.Type.INSTANCE, inventory, level);
+    }
+
+    //Pedestal Lighting
+    private void pedestalLightingRecipes(BlockPos blockPos, BlockState blockState){
+        Optional<PedestalLightingRecipe> recipe = getLightingRecipe();
+        if(hasLightingRecipe(recipe,blockPos) && hasLightingEnoughEnergy(recipe)){
+            this.lightingMaxProgress = recipe.get().getTime();
+            increasrLightingProgress();
+            addParticle(blockPos);
+            setChanged(level,blockPos,blockState);
+
+            if(hasLightingProgressFinished()){
+                craftItem(recipe,blockPos);
+                resetLightingProgress();
+            }
+        }else{
+            resetLightingProgress();
+        }
+    }
+
+    private boolean hasLightingRecipe(Optional<PedestalLightingRecipe> recipe, BlockPos blockPos){
+        if(!recipe.isEmpty()){
+            for (int i = 1; i < level.getHeight() - blockPos.getY(); i++) {
+                BlockPos pos = blockPos.offset(0,i,0);
+                BlockState state = level.getBlockState(pos);
+                if(state.is(ModBlocks.BOLT_LEAVES.get())){
+                    return true;
+                }else if(state.is(Blocks.AIR)){
+                    continue;
+                }else{
+                    return false;
+                }
+            }
+        }
+        return false;
+    }
+
+    private boolean hasLightingEnoughEnergy(Optional<PedestalLightingRecipe> recipe){
+        return energyStorage.getEnergyStored() >= recipe.get().getEnergy();
+    }
+
+    private void increasrLightingProgress(){
+        this.lightingProgress ++;
+    }
+
+    private boolean hasLightingProgressFinished(){
+        return this.lightingProgress >= this.lightingMaxProgress;
+    }
+
+    private void  resetLightingProgress(){
+        this.lightingProgress = 0;
+    }
+
+    private void addParticle(BlockPos blockPos){
+        ServerLevel serverLevel = (ServerLevel) level;
+            serverLevel.sendParticles(ParticleTypes.AMBIENT_ENTITY_EFFECT,blockPos.getX() + 0.5,blockPos.getY() + 0.5,blockPos.getZ() + 0.5,4,0,0,0,0.05);
+    }
+
+    private void craftItem(Optional<PedestalLightingRecipe> recipe, BlockPos blockPos){
+        LightningBolt lightningBolt = new LightningBolt(EntityType.LIGHTNING_BOLT,level);
+        lightningBolt.setPos(blockPos.getX() + 0.5,blockPos.getY() + 0.5,blockPos.getZ() + 0.5);
+
+
+        int count =  itemHandler.getStackInSlot(0).getCount();
+        ItemStack itemStack = new ItemStack(recipe.get().getOutput().getItem(),count);
+
+        level.addFreshEntity(lightningBolt);
+
+        itemHandler.extractItem(0,count,false);
+        energyStorage.extractEnergy(recipe.get().getEnergy(),false);
+
+        Random random = new Random();
+        if(random.nextDouble(0,1) <= recipe.get().getChance()){
+            itemHandler.insertItem(0,itemStack,false);
+        }
+    }
+
+    private Optional<PedestalLightingRecipe> getLightingRecipe(){
+        SimpleContainer inventory = new SimpleContainer(this.itemHandler.getSlots());
+        inventory.setItem(0,this.itemHandler.getStackInSlot(0));
+
+        return this.level.getRecipeManager().getRecipeFor(PedestalLightingRecipe.Type.INSTANCE, inventory, level);
     }
 }

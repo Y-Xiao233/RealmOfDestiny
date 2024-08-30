@@ -15,7 +15,8 @@
 - 修复了转化石"转化失败"信息提示错误的bug
 - 将Patchouli添加为必须的依赖
 - 添加了电光树
-- TODO 添加电基座的配方
+- 添加了雷击基座的配方
+- 添加了部分模组物品的配方
 
 ## en_us
 ### v1.0.0
@@ -26,9 +27,11 @@
 - Support viewing required energy and time on the JEI interface
 
 ### v1.0.2
-- Add mod tutorial book (made using Patchouli)
+- Added mod tutorial book (made using Patchouli)
 
 ### v1.0.3
 - Fixed the bug where the change stone displayed an error message indicating "change failed"
-- Add Patchouli as a mandatory dependency
-- Add Bolt Sapling
+- Added Patchouli as a mandatory dependency
+- Added Bolt Sapling
+- Added Pedestal Lighting recipe type
+- Added recipes for some mod items

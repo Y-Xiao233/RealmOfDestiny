@@ -30,6 +30,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockItem(ModBlocks.BOLT_LOG);
         blockItem(ModBlocks.STRIPPED_BOLT_LOG);
         leavesBlock(ModBlocks.BOLT_LEAVES);
+        blockWithItem(ModBlocks.BOLT_PLANKS);
     }
 
     private void leavesBlock(RegistryObject<Block> registryObject){

@@ -8,6 +8,7 @@ import net.yxiao233.realmofdestiny.RealmOfDestiny;
 import net.yxiao233.realmofdestiny.recipes.ChangeStoneRecipe;
 import net.yxiao233.realmofdestiny.recipes.GemPolishingRecipe;
 import net.yxiao233.realmofdestiny.recipes.PedestalGeneratorRecipe;
+import net.yxiao233.realmofdestiny.recipes.PedestalLightingRecipe;
 
 public class ModRecipes {
     public static final DeferredRegister<RecipeSerializer<?>> SERIALIZERS =
@@ -21,4 +22,7 @@ public class ModRecipes {
 
     public static final RegistryObject<RecipeSerializer<PedestalGeneratorRecipe>> PEDESTAL_GENERATOR_SERIALIZER =
             SERIALIZERS.register("pedestal_generator", () -> PedestalGeneratorRecipe.Serializer.INSTANCE);
+
+    public static final RegistryObject<RecipeSerializer<PedestalLightingRecipe>> PEDESTAL_LIGHTING_SERIALIZER =
+            SERIALIZERS.register("pedestal_lighting", () -> PedestalLightingRecipe.Serializer.INSTANCE);
 }

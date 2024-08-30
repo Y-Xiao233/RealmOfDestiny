@@ -11,14 +11,18 @@
   "block.realmofdestiny.bolt_leaves": "Bolt Leaves",
   "block.realmofdestiny.stripped_bolt_log": "Strippeed Bolt Log",
   "block.realmofdestiny.bolt_sapling": "Bolt Sapling",
+  "block.realmofdestiny.bolt_planks": "Bolt Planks",
 
 
   "recipe.realmofdestiny.changestone.chance": "chance: %d",
   "recipe.realmofdestiny.changestone.failed": "Change Failed",
   "recipe.realmofdestiny.pedestal_generator.in_pedestal": "Put this item on Pedestal",
-  "recipe.realmofdestiny.pedestal_generator.progress": "Time: %d tick",
-  "recipe.realmofdestiny.pedestal_generator.energy": "Energy: %d FE",
+  "recipe.realmofdestiny.progress": "Time: %d tick",
+  "recipe.realmofdestiny.energy": "Energy: %d FE",
   "recipe.realmofdestiny.pedestal_generator.need_structure": "Need Structure",
+  "recipe.realmofdestiny.pedestal_generator": "Pedestal Generator",
+  "recipe.realmofdestiny.pedestal_lighting": "Pedestal Lighting",
+  "recipe.realmofdestiny.pedestal_lighting.leaves": "There should be Bolt Leaves directly above the pedestal,and there should be no obstruction",
 
 
   "book.realmofdestiny.name": "Realm of Destiny",

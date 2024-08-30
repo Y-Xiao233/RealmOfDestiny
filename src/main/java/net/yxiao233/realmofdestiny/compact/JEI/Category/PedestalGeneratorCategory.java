@@ -28,7 +28,7 @@ import java.awt.*;
 public class PedestalGeneratorCategory extends BaseJEICategory<PedestalGeneratorRecipe> implements IBaseJEICategory<PedestalGeneratorRecipe>{
     public static final ResourceLocation UID = new ResourceLocation(RealmOfDestiny.MODID,"pedestal_generator");
     public static final RecipeType<PedestalGeneratorRecipe> PEDESTAL_GENERATOR_TYPE = new RecipeType<>(UID, PedestalGeneratorRecipe.class);
-    public static final Component TITLE = Component.translatable("block.realmofdestiny.pedestal");
+    public static final Component TITLE = Component.translatable("recipe.realmofdestiny.pedestal_generator");
     public PedestalGeneratorCategory(IGuiHelper helper) {
         super(helper,PEDESTAL_GENERATOR_TYPE,TITLE, ModItems.PEDESTAL_ITEM.get(),176,176);
     }
@@ -55,11 +55,11 @@ public class PedestalGeneratorCategory extends BaseJEICategory<PedestalGenerator
                 builder.addSlot(RecipeIngredientRole.OUTPUT,x,y)
                         .addItemStack(stack)
                         .addTooltipCallback(addChanceTooltip(chance))
-                        .setBackground(drawChanceSlot(AllJEITextures.CHANCE_SLOT),-1,-1);
+                        .setBackground(drawChanceSlot(),-1,-1);
             }else{
                 builder.addSlot(RecipeIngredientRole.OUTPUT,x,y)
                         .addItemStack(stack)
-                        .setBackground(drawBasiceSlot(AllJEITextures.BASIC_SLOT),-1,-1);
+                        .setBackground(drawBasiceSlot(),-1,-1);
             }
         }
     }
@@ -68,16 +68,16 @@ public class PedestalGeneratorCategory extends BaseJEICategory<PedestalGenerator
     public void draw(PedestalGeneratorRecipe recipe, IRecipeSlotsView slotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
         guiGraphics.renderFakeItem(ModItems.PEDESTAL_ITEM.get().getDefaultInstance(),80,125);
         int redColor = (255 << 24) | (255 << 16) | (0 << 8) | 0;
-        guiGraphics.drawString(Minecraft.getInstance().font,Component.translatable("recipe.realmofdestiny.pedestal_generator.need_structure"),60,10,redColor);
+        guiGraphics.drawCenteredString(Minecraft.getInstance().font,Component.translatable("recipe.realmofdestiny.pedestal_generator.need_structure"),86,10,redColor);
 
         drawTextureWithTooltip(guiGraphics,
                 AllJEITextures.ENERGY_FILLED,
-                Component.translatable("recipe.realmofdestiny.pedestal_generator.energy",recipe.getNeededEnergy()),
+                Component.translatable("recipe.realmofdestiny.energy",recipe.getNeededEnergy()),
                 30,65,mouseX,mouseY);
 
         drawTextureWithTooltip(guiGraphics,
                 AllJEITextures.UP_ARROW,
-                Component.translatable("recipe.realmofdestiny.pedestal_generator.progress",recipe.getTime()),
+                Component.translatable("recipe.realmofdestiny.progress",recipe.getTime()),
                 85,78,mouseX,mouseY);
     }
 

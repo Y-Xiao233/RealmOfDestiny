@@ -19,6 +19,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Recipe;
 import net.yxiao233.realmofdestiny.RealmOfDestiny;
 import net.yxiao233.realmofdestiny.compact.JEI.AllJEITextures;
+import net.yxiao233.realmofdestiny.helper.jei.TooltipCallBackHelper;
 import org.jetbrains.annotations.Nullable;
 
 public abstract class BaseJEICategory<T extends Recipe<?>> implements IRecipeCategory<T> {
@@ -56,39 +57,41 @@ public abstract class BaseJEICategory<T extends Recipe<?>> implements IRecipeCat
     }
 
     //method
-    public IDrawable drawChanceSlot(AllJEITextures texture){
+    public IDrawable drawChanceSlot(){
+        AllJEITextures allJEITextures = AllJEITextures.CHANCE_SLOT;
         return new IDrawable() {
             @Override
             public int getWidth() {
-                return texture.width;
+                return allJEITextures.width;
             }
 
             @Override
             public int getHeight() {
-                return texture.height;
+                return allJEITextures.height;
             }
 
             @Override
             public void draw(GuiGraphics guiGraphics, int x, int y) {
-                texture.render(guiGraphics,x,y);
+                allJEITextures.render(guiGraphics,x,y);
             }
         };
     }
-    public IDrawable drawBasiceSlot(AllJEITextures texture){
+    public IDrawable drawBasiceSlot(){
+        AllJEITextures allJEITextures = AllJEITextures.BASIC_SLOT;
         return new IDrawable() {
             @Override
             public int getWidth() {
-                return texture.width;
+                return allJEITextures.width;
             }
 
             @Override
             public int getHeight() {
-                return texture.height;
+                return allJEITextures.height;
             }
 
             @Override
             public void draw(GuiGraphics guiGraphics, int x, int y) {
-                texture.render(guiGraphics,x,y);
+                allJEITextures.render(guiGraphics,x,y);
             }
         };
     }
@@ -97,22 +100,17 @@ public abstract class BaseJEICategory<T extends Recipe<?>> implements IRecipeCat
             tooltip.add(1,Component.translatable("recipe.realmofdestiny.changestone.chance", (chance >= 0.01 ? (int) (chance * 100) : "< 1") + "%").withStyle(ChatFormatting.GOLD));
         };
     }
-    public IRecipeSlotTooltipCallback addText(String tranklatableKey){
+
+    public IRecipeSlotTooltipCallback addText(String translatableKey, ChatFormatting style){
         return (view, tooltip) ->{
-          tooltip.add(1,Component.translatable(tranklatableKey).withStyle(ChatFormatting.GOLD));
+            tooltip.add(1,Component.translatable(translatableKey).withStyle(style));
         };
     }
 
-    public IRecipeSlotTooltipCallback addText(String tranklatableKey, ChatFormatting style){
+    public IRecipeSlotTooltipCallback addText(TooltipCallBackHelper... tooltips){
         return (view, tooltip) ->{
-            tooltip.add(1,Component.translatable(tranklatableKey).withStyle(style));
-        };
-    }
-
-    public IRecipeSlotTooltipCallback addText(String... tranklatableKey){
-        return (view, tooltip) ->{
-            for (int i = 0; i < tranklatableKey.length; i++) {
-                tooltip.add(1,Component.translatable(tranklatableKey[i]).withStyle(ChatFormatting.GOLD));
+            for (int i = 0; i < tooltips.length; i++) {
+                tooltip.add(i,tooltips[i].getComponent());
             }
         };
     }

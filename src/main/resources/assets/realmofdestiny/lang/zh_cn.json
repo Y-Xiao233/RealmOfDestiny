@@ -11,14 +11,18 @@
   "block.realmofdestiny.bolt_leaves": "电光树树叶",
   "block.realmofdestiny.stripped_bolt_log": "去皮电光木原木",
   "block.realmofdestiny.bolt_sapling": "电光树树苗",
+  "block.realmofdestiny.bolt_planks": "电光树木板",
 
 
   "recipe.realmofdestiny.changestone.chance": "概率: %d",
   "recipe.realmofdestiny.changestone.failed": "转化失败",
   "recipe.realmofdestiny.pedestal_generator.in_pedestal": "将这个物品放在基座上",
-  "recipe.realmofdestiny.pedestal_generator.progress": "时间: %d tick",
-  "recipe.realmofdestiny.pedestal_generator.energy": "能量: %d FE",
+  "recipe.realmofdestiny.progress": "时间: %d tick",
+  "recipe.realmofdestiny.energy": "能量: %d FE",
   "recipe.realmofdestiny.pedestal_generator.need_structure": "需要结构",
+  "recipe.realmofdestiny.pedestal_generator": "基座生产",
+  "recipe.realmofdestiny.pedestal_lighting": "雷击基座",
+  "recipe.realmofdestiny.pedestal_lighting.leaves": "基座正上方要有电光树树叶,并且没有遮挡",
 
 
   "book.realmofdestiny.name": "生命之境",
@@ -38,5 +42,8 @@
   "book.realmofdestiny.items.pedestal.text1": "主手/副手拿着物品对基座右键,可以将手上的物品放到基座上$(br2)空手shift右键基座可以将基座上的物品取下来$(br2)提示:当主副手都有东西时,优先判断主手",
 
   "book.realmofdestiny.items.change_stone.name": "转化石",
-  "book.realmofdestiny.items.change_stone.text0": "拿着这个石头右键可被转化的方块,方块会被转化成对应的新方块(有一定概率)$(br2)请查看jei获取转化配方以及概率"
+  "book.realmofdestiny.items.change_stone.text0": "拿着这个石头右键可被转化的方块,方块会被转化成对应的新方块(有一定概率)$(br2)请查看jei获取转化配方以及概率",
+  "recipe.realmofdestin.progress": "Time: %d tick",
+  "recipe.realmofdestiny.energy": "Energy: %d FE",
+  "recipe.realmofdestiny.pedestal_lighting.under_bolt_leaves": "There should be Bolt Leaves directly above the pedestal,and there should be no obstruction"
 }

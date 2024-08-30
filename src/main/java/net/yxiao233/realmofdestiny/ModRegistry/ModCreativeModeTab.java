@@ -19,6 +19,7 @@ public class ModCreativeModeTab {
                 output.accept(ModItems.BOLT_LEAVES_ITEM.get());
                 output.accept(ModItems.BOLT_SAPLING_ITEM.get());
                 output.accept(ModItems.STRIPPED_BOLT_LOG_ITEM.get());
+                output.accept(ModItems.BOLT_PLANKS_ITEM.get());
             })
             .title(Component.translatable("itemGroup.realmofdestiny"))
             .build()

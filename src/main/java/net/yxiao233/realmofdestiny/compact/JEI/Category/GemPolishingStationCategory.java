@@ -28,11 +28,11 @@ public class GemPolishingStationCategory extends BaseJEICategory<GemPolishingRec
     public void setRecipe(IRecipeLayoutBuilder iRecipeLayoutBuilder, GemPolishingRecipe gemPolishingRecipe, IFocusGroup iFocusGroup) {
         iRecipeLayoutBuilder.addSlot(RecipeIngredientRole.INPUT,80,11)
                 .addItemStack(gemPolishingRecipe.getItemStacks()[0])
-                .setBackground(drawBasiceSlot(AllJEITextures.BASIC_SLOT),-1,-1);
+                .setBackground(drawBasiceSlot(),-1,-1);
 
         iRecipeLayoutBuilder.addSlot(RecipeIngredientRole.OUTPUT,80,59)
                 .addItemStack(gemPolishingRecipe.getResultItem(null))
-                .setBackground(drawBasiceSlot(AllJEITextures.BASIC_SLOT),-1,-1);;
+                .setBackground(drawBasiceSlot(),-1,-1);;
     }
 
     @Override

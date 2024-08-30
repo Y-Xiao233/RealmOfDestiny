@@ -9,5 +9,6 @@ import net.minecraft.world.item.crafting.Recipe;
 
 public interface IBaseJEICategory<T extends Recipe<?>> extends IRecipeCategory<T> {
     void setRecipe(IRecipeLayoutBuilder builder, T recipe, IFocusGroup var3);
+
     void draw(T recipe, IRecipeSlotsView slotsView, GuiGraphics guiGraphics, double mouseX, double mouseY);
 }

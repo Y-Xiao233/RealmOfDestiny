@@ -26,9 +26,17 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                 .add(ModBlocks.GEM_POLISHING_STATION.get())
                 .add(ModBlocks.PEDESTAL.get());
 
+        this.tag(BlockTags.MINEABLE_WITH_AXE)
+                .add(ModBlocks.BOLT_PLANKS.get())
+                .add(ModBlocks.BOLT_LOG.get())
+                .add(ModBlocks.STRIPPED_BOLT_LOG.get());
+
         this.tag(BlockTags.LOGS_THAT_BURN)
                 .add(ModBlocks.BOLT_LOG.get())
                 .add(ModBlocks.STRIPPED_BOLT_LOG.get());
+
+        this.tag(BlockTags.PLANKS)
+                .add(ModBlocks.BOLT_PLANKS.get());
 
     }
 }

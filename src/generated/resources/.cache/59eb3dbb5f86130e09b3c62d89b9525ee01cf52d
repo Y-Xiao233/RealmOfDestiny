@@ -1,6 +1,7 @@
-// 1.20.1	2024-08-29T23:46:43.7175562	Loot Tables
+// 1.20.1	2024-08-30T14:37:47.0913204	Loot Tables
 2ad9097935e085c6366138dce229bdde723255a2 data/realmofdestiny/loot_tables/blocks/bolt_leaves.json
 83b7f49f8461cf7fe0a8814b1cec31dd2340eeb1 data/realmofdestiny/loot_tables/blocks/bolt_log.json
+385ae2687869e05367247c31c41c26852eb5fb2a data/realmofdestiny/loot_tables/blocks/bolt_planks.json
 71d8914a2c13fdb168b9f7558da62ee908124e92 data/realmofdestiny/loot_tables/blocks/bolt_sapling.json
 ba061ca94be64ff035090d348b15324422424d33 data/realmofdestiny/loot_tables/blocks/gem_polishing_station.json
 484fa6992f3d2bbedca4fbbbfd307a94343d21f8 data/realmofdestiny/loot_tables/blocks/pedestal.json

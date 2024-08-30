@@ -9,7 +9,8 @@ public enum AllJEITextures implements ScreenElement {
     BASIC_SLOT("widgets",0,0,18,18),
     DOWN_ARROW("arrow",0, 0, 7, 25),
     UP_ARROW("arrow",0, 230, 7, 25),
-    ENERGY_FILLED("energy_filled",0,0,14,42);
+    ENERGY_FILLED("energy_filled",0,0,14,42),
+    BOLT_TREE("bolt_tree",0,0,77,91);
     public final ResourceLocation location;
     public int width, height;
     public int startX, startY;

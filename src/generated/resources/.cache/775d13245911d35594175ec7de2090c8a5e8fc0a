@@ -1,4 +1,6 @@
-// 1.20.1	2024-08-29T23:46:43.7141269	Tags for minecraft:block mod id realmofdestiny
+// 1.20.1	2024-08-30T14:37:47.0888874	Tags for minecraft:block mod id realmofdestiny
 d4f5c826c3db4a18e44897b159306d31ef93752c data/minecraft/tags/blocks/logs_that_burn.json
+14463ee65254f6d4aad0122d51d3b8e44b23557b data/minecraft/tags/blocks/mineable/axe.json
 aae24167196c23a4d71a01af18acdd34b55e34a2 data/minecraft/tags/blocks/mineable/pickaxe.json
 aae24167196c23a4d71a01af18acdd34b55e34a2 data/minecraft/tags/blocks/needs_stone_tool.json
+e25f7d81ba1fcdf2748b38ee0ded1272143d0fb8 data/minecraft/tags/blocks/planks.json

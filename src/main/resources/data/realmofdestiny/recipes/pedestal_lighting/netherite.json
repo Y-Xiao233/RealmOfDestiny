@@ -1,0 +1,12 @@
+{
+  "type": "realmofdestiny:pedestal_lighting",
+  "pedestal_item": {
+    "item": "minecraft:diamond_block"
+  },
+  "output": {
+    "item": "minecraft:netherite_block"
+  },
+  "time": 100,
+  "energy": 100,
+  "chance": 0.8
+}

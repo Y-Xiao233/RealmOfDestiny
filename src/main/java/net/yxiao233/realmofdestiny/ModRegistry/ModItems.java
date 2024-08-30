@@ -31,4 +31,7 @@ public class ModItems {
 
     public static final RegistryObject<Item> BOLT_SAPLING_ITEM = ITEMS.register("bolt_sapling", () ->
             new BlockItem(ModBlocks.BOLT_SAPLING.get(),new Item.Properties()));
+
+    public static final RegistryObject<Item> BOLT_PLANKS_ITEM = ITEMS.register("bolt_planks", () ->
+            new BlockItem(ModBlocks.BOLT_PLANKS.get(),new Item.Properties()));
 }

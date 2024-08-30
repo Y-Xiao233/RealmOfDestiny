@@ -8,6 +8,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.yxiao233.realmofdestiny.Blocks.GemPolishingStationBlock;
+import net.yxiao233.realmofdestiny.Blocks.ModFlammableBlock;
 import net.yxiao233.realmofdestiny.Blocks.ModFlammableRotatedPillarBlock;
 import net.yxiao233.realmofdestiny.Blocks.PedestalBlock;
 import net.yxiao233.realmofdestiny.RealmOfDestiny;
@@ -33,6 +34,10 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> BOLT_SAPLING = BLOCKS.register("bolt_sapling", () ->
             new SaplingBlock(new BoltTreeGrower(), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
+
+    public static final RegistryObject<Block> BOLT_PLANKS = BLOCKS.register("bolt_planks", () ->
+            new ModFlammableBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
+
 
     private static <T extends Block> RegistryObject<T> registryBlock(String name, Supplier<T> block){
         RegistryObject<T> toReturn = BLOCKS.register(name,block);

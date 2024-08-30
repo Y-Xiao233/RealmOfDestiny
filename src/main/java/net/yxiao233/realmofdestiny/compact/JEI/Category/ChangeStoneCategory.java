@@ -28,7 +28,7 @@ public class ChangeStoneCategory extends BaseJEICategory<ChangeStoneRecipe> {
     public void setRecipe(IRecipeLayoutBuilder iRecipeLayoutBuilder, ChangeStoneRecipe changeStoneRecipe, IFocusGroup iFocusGroup) {
         iRecipeLayoutBuilder.addSlot(RecipeIngredientRole.INPUT,80,11)
                 .addItemStack(changeStoneRecipe.getCheckBlockItem())
-                .setBackground(drawBasiceSlot(AllJEITextures.BASIC_SLOT),-1,-1);
+                .setBackground(drawBasiceSlot(),-1,-1);
         int size = changeStoneRecipe.getIngredients().size();
         int y = 59;
         int x = size>= 3 ? 34 : 45;
@@ -45,11 +45,11 @@ public class ChangeStoneCategory extends BaseJEICategory<ChangeStoneRecipe> {
                 iRecipeLayoutBuilder.addSlot(RecipeIngredientRole.OUTPUT,x,y)
                         .addItemStack(stack)
                         .addTooltipCallback(addChanceTooltip(chance))
-                        .setBackground(drawChanceSlot(AllJEITextures.CHANCE_SLOT),-1,-1);
+                        .setBackground(drawChanceSlot(),-1,-1);
             }else{
                 iRecipeLayoutBuilder.addSlot(RecipeIngredientRole.OUTPUT,x,y)
                         .addItemStack(stack)
-                        .setBackground(drawBasiceSlot(AllJEITextures.BASIC_SLOT),-1,-1);;
+                        .setBackground(drawBasiceSlot(),-1,-1);;
             }
         }
     }
