@@ -4,7 +4,10 @@
   "category": "realmofdestiny:items",
   "pages": [
     {
-      "type": "patchouli:text",
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "realmofdestiny:pedestal"
+      },
       "text": "book.realmofdestiny.items.pedestal.text0"
     },
     {

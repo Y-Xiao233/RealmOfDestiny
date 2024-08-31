@@ -12,6 +12,7 @@
   "block.realmofdestiny.stripped_bolt_log": "Strippeed Bolt Log",
   "block.realmofdestiny.bolt_sapling": "Bolt Sapling",
   "block.realmofdestiny.bolt_planks": "Bolt Planks",
+  "block.realmofdestiny.creative_energy_matrix": "Creative Energy Matrix",
 
 
   "recipe.realmofdestiny.changestone.chance": "chance: %d",
@@ -42,5 +43,8 @@
   "book.realmofdestiny.items.pedestal.text1": "The main/off hand with the item and right-click on the pedestal to place the item on it$(br2)shift + right-click on the pedestal to remove items from it$(br2)Tip: When both the main and off hand have something, prioritize judging the main hand",
 
   "book.realmofdestiny.items.change_stone.name": "Change Stone",
-  "book.realmofdestiny.items.change_stone.text0": "By holding this stone and right clicking on the block that can be changed, it can be changed into the corresponding new block$(br2)Please refer to JEI for detailed recipes and chance"
+  "book.realmofdestiny.items.change_stone.text0": "By holding this stone and right clicking on the block that can be changed, it can be changed into the corresponding new block$(br2)Please refer to JEI for detailed recipes and chance",
+
+  "book.realmofdestiny.items.creative_energy_matrix.name": "Creative Energy Matrix",
+  "book.realmofdestiny.items.creative_energy_matrix.text0": "Can actively/passively output FE"
 }

@@ -34,4 +34,7 @@ public class ModItems {
 
     public static final RegistryObject<Item> BOLT_PLANKS_ITEM = ITEMS.register("bolt_planks", () ->
             new BlockItem(ModBlocks.BOLT_PLANKS.get(),new Item.Properties()));
+
+    public static final RegistryObject<Item> CREATIVE_ENERGY_MATRIX_ITEM = ITEMS.register("creative_energy_matrix", () ->
+            new BlockItem(ModBlocks.CREATIVE_ENERGY_MATRIX.get(),new Item.Properties()));
 }

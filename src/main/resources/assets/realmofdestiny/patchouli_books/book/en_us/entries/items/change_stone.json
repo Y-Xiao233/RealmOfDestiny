@@ -4,8 +4,15 @@
   "category": "realmofdestiny:items",
   "pages": [
     {
-      "type": "patchouli:text",
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "realmofdestiny:change_stone"
+      },
       "text": "book.realmofdestiny.items.change_stone.text0"
+    },
+    {
+      "type": "patchouli:empty",
+      "draw_filler": "false"
     }
   ]
 }

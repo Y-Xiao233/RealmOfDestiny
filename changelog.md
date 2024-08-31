@@ -18,6 +18,11 @@
 - 添加了雷击基座的配方
 - 添加了部分模组物品的配方
 
+### v1.0.4
+- 修复了雷击基座jei界面输出物品信息错误的bug
+- 添加了创造能量矩阵
+- 修改了教程书的部分内容
+
 ## en_us
 ### v1.0.0
 - init
@@ -35,3 +40,8 @@
 - Added Bolt Sapling
 - Added Pedestal Lighting recipe type
 - Added recipes for some mod items
+
+### v1.0.4
+- Fixed the bug of incorrect item information output on the JEI interface of the Pedestal Lighting
+- Added Creative Energy Matrix
+- Modified some content of the tutorial book

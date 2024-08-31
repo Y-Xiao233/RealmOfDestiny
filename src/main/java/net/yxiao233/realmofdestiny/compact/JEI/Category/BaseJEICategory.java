@@ -110,7 +110,7 @@ public abstract class BaseJEICategory<T extends Recipe<?>> implements IRecipeCat
     public IRecipeSlotTooltipCallback addText(TooltipCallBackHelper... tooltips){
         return (view, tooltip) ->{
             for (int i = 0; i < tooltips.length; i++) {
-                tooltip.add(i,tooltips[i].getComponent());
+                tooltip.add(tooltips[i].getComponent());
             }
         };
     }
