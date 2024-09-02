@@ -1,30 +1,27 @@
 package net.yxiao233.realmofdestiny.Items;
 
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
-import net.yxiao233.realmofdestiny.ModRegistry.ModItems;
+import net.yxiao233.realmofdestiny.Items.Abstract.AbstractBaseItemWithTooltip;
 import net.yxiao233.realmofdestiny.recipes.ChangeStoneRecipe;
-import net.yxiao233.realmofdestiny.recipes.GemPolishingRecipe;
 import net.yxiao233.realmofdestiny.recipes.container.EmptyContainer;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
-public class ChangeStoneItem extends Item {
+public class ChangeStoneItem extends AbstractBaseItemWithTooltip {
     public int failed;
     public int total;
 
@@ -98,5 +95,10 @@ public class ChangeStoneItem extends Item {
     private Optional<ChangeStoneRecipe> getCurrentRecipe(Player player, Level level) {
         EmptyContainer emptyContainer = new EmptyContainer(player);
         return level.getRecipeManager().getRecipeFor(ChangeStoneRecipe.Type.INSTANCE, emptyContainer, level);
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltips, TooltipFlag flag) {
+        addTooltipWhileKeyDown(SHIFT_KEY,tooltips,stack,ChatFormatting.GOLD);
     }
 }

@@ -5,6 +5,14 @@
   "item.realmofdestiny.change_stone": "Change Stone",
 
 
+  "tooltip.realmofdestiny.held.shift": "Press Shift to view more information",
+  "tooltip.realmofdestiny.held.alt": "Press Alt to view more information",
+  "tooltip.realmofdestiny.held.control": "Press Control to view more information",
+  "tooltip.realmofdestiny.change_stone": "Partial blocks can be converted into specific blocks",
+  "tooltip.realmofdestiny.creative_energy_matrix": "Can output FE infinitely",
+  "tooltip.realmofdestiny.pedestal": "Can be displayed as items and used to make special recipes",
+
+
   "block.realmofdestiny.gem_polishing_station": "Gem Polishing Station",
   "block.realmofdestiny.pedestal": "Pedestal",
   "block.realmofdestiny.bolt_log": "Bolt Log",

@@ -5,6 +5,14 @@
   "item.realmofdestiny.change_stone": "转换石",
 
 
+  "tooltip.realmofdestiny.held.shift": "按下Shift查看更多信息",
+  "tooltip.realmofdestiny.held.alt": "按下Alt查看更多信息",
+  "tooltip.realmofdestiny.held.control": "按下Control查看更多信息",
+  "tooltip.realmofdestiny.change_stone": "可以将部分方块转化为特定方块",
+  "tooltip.realmofdestiny.creative_energy_matrix": "可以无限输出FE",
+  "tooltip.realmofdestiny.pedestal": "可以放入物品进行展示,可以用来制作特殊配方",
+
+
   "block.realmofdestiny.gem_polishing_station": "宝石加工站",
   "block.realmofdestiny.pedestal": "基座",
   "block.realmofdestiny.bolt_log": "电光原木",

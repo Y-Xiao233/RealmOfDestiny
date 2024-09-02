@@ -341,7 +341,7 @@ public class PedestalBlockEntity extends BlockEntity {
 
     private void addParticle(BlockPos blockPos){
         ServerLevel serverLevel = (ServerLevel) level;
-            serverLevel.sendParticles(ParticleTypes.AMBIENT_ENTITY_EFFECT,blockPos.getX() + 0.5,blockPos.getY() + 0.5,blockPos.getZ() + 0.5,4,0,0,0,0.05);
+        serverLevel.sendParticles(ParticleTypes.AMBIENT_ENTITY_EFFECT,blockPos.getX() + 0.5,blockPos.getY() + 0.5,blockPos.getZ() + 0.5,4,0,0,0,0.05);
     }
 
     private void craftItem(Optional<PedestalLightingRecipe> recipe, BlockPos blockPos){
