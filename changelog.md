@@ -23,6 +23,9 @@
 - 添加了创造能量矩阵
 - 修改了教程书的部分内容
 
+### v1.0.5
+- 修复了创造能量矩阵被动输出能量时不会自动补充能量的bug
+
 ## en_us
 ### v1.0.0
 - init
@@ -45,3 +48,6 @@
 - Fixed the bug of incorrect item information output on the JEI interface of the Pedestal Lighting
 - Added Creative Energy Matrix
 - Modified some content of the tutorial book
+
+### v1.0.5
+- Fixed a bug where the passive output energy of the creative energy matrix does not automatically replenish energy

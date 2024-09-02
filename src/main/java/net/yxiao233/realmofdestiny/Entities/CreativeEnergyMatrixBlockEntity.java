@@ -15,7 +15,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class CreativeEnergyMatrixBlockEntity extends BlockEntity {
-    private EnergyStorage energyStorage = new EnergyStorage(energyStored,0,energyStored,energyStored);
+    private final EnergyStorage energyStorage = new EnergyStorage(energyStored);
     private LazyOptional<IEnergyStorage> lazyEnergyStorage = LazyOptional.empty();
     private static final int energyStored = 2147483647;
 
@@ -25,7 +25,7 @@ public class CreativeEnergyMatrixBlockEntity extends BlockEntity {
 
     @Override
     public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
-        if(cap == ForgeCapabilities.ENERGY){
+        if (cap == ForgeCapabilities.ENERGY) {
             return lazyEnergyStorage.cast();
         }
         return super.getCapability(cap, side);
@@ -45,7 +45,7 @@ public class CreativeEnergyMatrixBlockEntity extends BlockEntity {
 
     @Override
     protected void saveAdditional(CompoundTag pTag) {
-        pTag.put("energy",energyStorage.serializeNBT());
+        pTag.put("energy", energyStorage.serializeNBT());
         super.saveAdditional(pTag);
     }
 
@@ -59,15 +59,14 @@ public class CreativeEnergyMatrixBlockEntity extends BlockEntity {
         energyStorage.receiveEnergy(energyStored,false);
 
         activeOutput(blockPos);
-        setChanged(level,blockPos,blockState);
+        setChanged(level, blockPos, blockState);
     }
-
     private void activeOutput(BlockPos blockPos) {
         for (Direction direction : Direction.values()) {
             BlockPos nearbyPos = blockPos.offset(direction.getNormal());
             BlockEntity entity = level.getBlockEntity(nearbyPos);
 
-            if(entity != null && entity.getCapability(ForgeCapabilities.ENERGY).isPresent()){
+            if (entity != null && entity.getCapability(ForgeCapabilities.ENERGY).isPresent()) {
                 extractEnergyTo(entity);
             }
         }
@@ -75,7 +74,7 @@ public class CreativeEnergyMatrixBlockEntity extends BlockEntity {
 
     private void extractEnergyTo(BlockEntity entity) {
         entity.getCapability(ForgeCapabilities.ENERGY).ifPresent((energy -> {
-            energy.receiveEnergy(Math.min(energy.getMaxEnergyStored() - energy.getEnergyStored(),energyStored),false);
+            energy.receiveEnergy(energy.getMaxEnergyStored() - energy.getEnergyStored(), false);
         }));
     }
 }
