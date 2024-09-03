@@ -21,7 +21,6 @@ public class ModCreativeModeTab {
                 output.accept(ModItems.STRIPPED_BOLT_LOG_ITEM.get());
                 output.accept(ModItems.BOLT_PLANKS_ITEM.get());
                 output.accept(ModItems.CREATIVE_ENERGY_MATRIX_ITEM.get());
-                output.accept(ModItems.MULTI_BLOCK_ITEM.get());
             })
             .title(Component.translatable("itemGroup.realmofdestiny"))
             .build()
