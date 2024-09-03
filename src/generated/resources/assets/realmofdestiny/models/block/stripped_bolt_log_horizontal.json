@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column_horizontal",
+  "textures": {
+    "end": "realmofdestiny:block/stripped_bolt_log_top",
+    "side": "realmofdestiny:block/stripped_bolt_log"
+  }
+}

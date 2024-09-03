@@ -90,9 +90,6 @@ dependencies {
     //Patchouli
     compileOnly fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}:api")
     runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}")
-
-    //Mekanism
-    compileOnly "mekanism:Mekanism:${mekanism_version}:api"
 }
 
 tasks.named('processResources', ProcessResources).configure {

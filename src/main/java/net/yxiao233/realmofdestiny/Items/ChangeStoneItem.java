@@ -99,6 +99,6 @@ public class ChangeStoneItem extends AbstractBaseItemWithTooltip {
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltips, TooltipFlag flag) {
-        addTooltipWhileKeyDown(SHIFT_KEY,tooltips,stack,ChatFormatting.GOLD);
+        addTooltip(tooltips,stack,ChatFormatting.GOLD);
     }
 }
