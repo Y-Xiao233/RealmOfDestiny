@@ -52,7 +52,7 @@ public class BaseFluidTankBlockEntity extends BlockEntity implements MenuProvide
     @Override
     public void onLoad() {
         lazyFluidHandler = LazyOptional.of(() -> tank);
-        ModNetWorking.sendToClient(new FluidSyncS2CPacket(tank.getFluid(),this.getBlockPos(), FluidSyncS2CPacket.FluidCs2PacketAction.SET));
+        ModNetWorking.sendToClient(new FluidSyncS2CPacket(tank.getFluid(),this.getBlockPos(), FluidSyncS2CPacket.PacketAction.SET));
         super.onLoad();
     }
 

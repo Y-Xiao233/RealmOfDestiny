@@ -49,7 +49,7 @@ public abstract class AbstractModFluidTankEntityBlock<T extends BlockEntity> ext
                     player.addItem(new ItemStack(Items.BUCKET,1));
                 }
                 entity.setChanged();
-                ModNetWorking.sendToClient(new FluidSyncS2CPacket(stack,entity.getBlockPos(), FluidSyncS2CPacket.FluidCs2PacketAction.SET));
+                ModNetWorking.sendToClient(new FluidSyncS2CPacket(stack,entity.getBlockPos(), FluidSyncS2CPacket.PacketAction.SET));
                 return true;
             }else {
                 return false;
@@ -71,7 +71,7 @@ public abstract class AbstractModFluidTankEntityBlock<T extends BlockEntity> ext
                 FluidStack newStack = new FluidStack(fluidStack,amount - 1000);
                 setTank(entity,newStack);
                 player.addItem(itemStack);
-                ModNetWorking.sendToClient(new FluidSyncS2CPacket(newStack,entity.getBlockPos(), FluidSyncS2CPacket.FluidCs2PacketAction.SET));
+                ModNetWorking.sendToClient(new FluidSyncS2CPacket(newStack,entity.getBlockPos(), FluidSyncS2CPacket.PacketAction.SET));
             }else{
                 return false;
             }

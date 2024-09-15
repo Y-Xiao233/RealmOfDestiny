@@ -13,9 +13,9 @@ import java.util.function.Supplier;
 public class FluidSyncS2CPacket extends AbstractModSyncPacket {
     private final FluidStack stack;
     private final BlockPos blockPos;
-    public final FluidCs2PacketAction action;
+    public final PacketAction action;
 
-    public FluidSyncS2CPacket(FluidStack stack, BlockPos blockPos, FluidCs2PacketAction action) {
+    public FluidSyncS2CPacket(FluidStack stack, BlockPos blockPos, PacketAction action) {
         this.stack = stack;
         this.blockPos = blockPos;
         this.action = action;
@@ -24,7 +24,7 @@ public class FluidSyncS2CPacket extends AbstractModSyncPacket {
     public FluidSyncS2CPacket(FriendlyByteBuf buffer) {
         this.stack = buffer.readFluidStack();
         this.blockPos = buffer.readBlockPos();
-        this.action = buffer.readEnum(FluidCs2PacketAction.class);
+        this.action = buffer.readEnum(PacketAction.class);
     }
 
     @Override
@@ -52,16 +52,16 @@ public class FluidSyncS2CPacket extends AbstractModSyncPacket {
     }
 
     public void action(BaseFluidTankBlockEntity entity){
-        if(action == FluidCs2PacketAction.DRAIN){
+        if(action == PacketAction.DRAIN){
             entity.drain(stack);
-        }else if (action == FluidCs2PacketAction.FILL) {
+        }else if (action == PacketAction.FILL) {
             entity.fill(stack);
-        }else if (action == FluidCs2PacketAction.SET){
+        }else if (action == PacketAction.SET){
             entity.setTank(stack);
         }
     }
 
-    public enum FluidCs2PacketAction{
+    public enum PacketAction{
         SET,
         FILL,
         DRAIN;

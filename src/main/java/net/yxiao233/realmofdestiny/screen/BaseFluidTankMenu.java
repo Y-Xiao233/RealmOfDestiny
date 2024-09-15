@@ -31,7 +31,7 @@ public class BaseFluidTankMenu extends AbstractModContainerMenu<BaseFluidTankBlo
         FluidStack stack = blockEntity.getFluidStackInTank();
         int amount = stack.getAmount();
         FluidStack newStack = new FluidStack(stack,amount);
-        ModNetWorking.sendToClient(new FluidSyncS2CPacket(newStack,blockEntity.getBlockPos(), FluidSyncS2CPacket.FluidCs2PacketAction.SET));
+        ModNetWorking.sendToClient(new FluidSyncS2CPacket(newStack,blockEntity.getBlockPos(), FluidSyncS2CPacket.PacketAction.SET));
 
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
