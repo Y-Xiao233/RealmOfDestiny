@@ -12,7 +12,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.yxiao233.realmofdestiny.ModRegistry.ModItems;
 import net.yxiao233.realmofdestiny.RealmOfDestiny;
-import net.yxiao233.realmofdestiny.compact.JEI.AllJEITextures;
 import net.yxiao233.realmofdestiny.recipes.ChangeStoneRecipe;
 
 public class ChangeStoneCategory extends BaseJEICategory<ChangeStoneRecipe> {

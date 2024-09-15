@@ -1,37 +1,23 @@
 package net.yxiao233.realmofdestiny.recipes.container;
 
-import net.minecraft.core.BlockPos;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.HitResult;
+import net.minecraftforge.fluids.capability.IFluidHandler;
 
-public class EmptyContainer implements Container {
-    private final Player player;
-    private BlockPos blockPos;
-
-    public EmptyContainer(Player player) {
-        this.player = player;
-        if(player != null){
-            HitResult hitResult = player.pick(5.0D,player.getEyeHeight(),false);
-            if(hitResult.getType() == HitResult.Type.BLOCK) {
-                BlockHitResult blockHitResult = (BlockHitResult) hitResult;
-                blockPos = blockHitResult.getBlockPos();
-            }
-        }
+public class FluidContainer implements Container {
+    private IFluidHandler fluidHandler;
+    public FluidContainer(IFluidHandler fluidHandler){
+        this.fluidHandler = fluidHandler;
     }
 
-    public Player getPlayer() {
-        return player;
-    }
-    public BlockPos getBlockPos(){
-        return blockPos;
+    public IFluidHandler getFluidHandler() {
+        return fluidHandler;
     }
 
     @Override
     public int getContainerSize() {
-        return 0;
+        return 1;
     }
 
     @Override

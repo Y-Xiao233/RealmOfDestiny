@@ -1,9 +1,7 @@
 package net.yxiao233.realmofdestiny.datagen.loot;
 
 import net.minecraft.data.loot.BlockLootSubProvider;
-import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.flag.FeatureFlags;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.RegistryObject;
 import net.yxiao233.realmofdestiny.ModRegistry.ModBlocks;
@@ -24,6 +22,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.STRIPPED_BOLT_LOG.get());
         this.dropSelf(ModBlocks.BOLT_PLANKS.get());
         this.dropSelf(ModBlocks.CREATIVE_ENERGY_MATRIX.get());
+        this.dropSelf(ModBlocks.BASE_FLUID_TANK.get());
         this.add(ModBlocks.BOLT_LEAVES.get(), block ->
                 createLeavesDrops(block,ModBlocks.BOLT_SAPLING.get(),NORMAL_LEAVES_SAPLING_CHANCES));
     }

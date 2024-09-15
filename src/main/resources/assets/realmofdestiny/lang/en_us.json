@@ -12,6 +12,9 @@
   "tooltip.realmofdestiny.creative_energy_matrix": "Can output FE infinitely",
   "tooltip.realmofdestiny.pedestal": "Can be displayed as items and used to make special recipes",
 
+  "tooltip.realmofdestiny.liquid.amount.with.capacity": "amount: %d/%d",
+  "tooltip.realmofdestiny.liquid.amount": "amount: %d",
+
 
   "block.realmofdestiny.gem_polishing_station": "Gem Polishing Station",
   "block.realmofdestiny.pedestal": "Pedestal",
@@ -21,6 +24,7 @@
   "block.realmofdestiny.bolt_sapling": "Bolt Sapling",
   "block.realmofdestiny.bolt_planks": "Bolt Planks",
   "block.realmofdestiny.creative_energy_matrix": "Creative Energy Matrix",
+  "block.realmofdestiny.base_fluid_tank": "Base Fluid Tank",
 
 
   "recipe.realmofdestiny.changestone.chance": "chance: %d",

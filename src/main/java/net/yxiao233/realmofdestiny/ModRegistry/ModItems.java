@@ -39,4 +39,7 @@ public class ModItems {
 
     public static final RegistryObject<Item> CREATIVE_ENERGY_MATRIX_ITEM = ITEMS.register("creative_energy_matrix", () ->
             new CreativeEnergyMatrixItem(ModBlocks.CREATIVE_ENERGY_MATRIX.get(),new Item.Properties()));
+
+    public static final RegistryObject<Item> BASE_FLUID_TANK_ITEM = ITEMS.register("base_fluid_tank", () ->
+            new BlockItem(ModBlocks.BASE_FLUID_TANK.get(),new Item.Properties()));
 }

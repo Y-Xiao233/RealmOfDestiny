@@ -12,7 +12,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.yxiao233.realmofdestiny.ModRegistry.ModItems;
 import net.yxiao233.realmofdestiny.RealmOfDestiny;
 import net.yxiao233.realmofdestiny.compact.JEI.AllJEITextures;
-import net.yxiao233.realmofdestiny.recipes.ChangeStoneRecipe;
 import net.yxiao233.realmofdestiny.recipes.GemPolishingRecipe;
 
 public class GemPolishingStationCategory extends BaseJEICategory<GemPolishingRecipe> {

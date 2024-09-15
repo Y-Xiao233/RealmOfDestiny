@@ -1,4 +1,4 @@
-package net.yxiao233.realmofdestiny.Blocks;
+package net.yxiao233.realmofdestiny.Blocks.custom;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
@@ -7,9 +7,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -18,14 +16,28 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.network.NetworkHooks;
+import net.yxiao233.realmofdestiny.Blocks.modAbstractBlock.AbstractModContainerEntityBlock;
 import net.yxiao233.realmofdestiny.Entities.GemPolishingStationBlockEntity;
 import net.yxiao233.realmofdestiny.ModRegistry.ModBlockEntities;
 import org.jetbrains.annotations.Nullable;
 
-public class GemPolishingStationBlock extends BaseEntityBlock {
+public class GemPolishingStationBlock extends AbstractModContainerEntityBlock<GemPolishingStationBlockEntity> {
     public static final VoxelShape SHAPE = Block.box(0,0,0,16,16,16);
     public GemPolishingStationBlock(Properties pProperties) {
         super(pProperties);
+    }
+
+    @Override
+    public GemPolishingStationBlockEntity setBlockEntity(BlockPos blockPos, BlockState blockState) {
+        return new GemPolishingStationBlockEntity(blockPos,blockState);
+    }
+
+    @Override
+    public void setDrops(Level level, BlockPos blockPos) {
+        BlockEntity blockEntity = level.getBlockEntity(blockPos);
+        if(blockEntity instanceof GemPolishingStationBlockEntity entity){
+            entity.drops();
+        }
     }
 
     @SuppressWarnings("deprecation")
@@ -34,22 +46,6 @@ public class GemPolishingStationBlock extends BaseEntityBlock {
         return SHAPE;
     }
 
-    @Override
-    public RenderShape getRenderShape(BlockState pState) {
-        return RenderShape.MODEL;
-    }
-
-    @SuppressWarnings("deprecation")
-    @Override
-    public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pMovedByPiston) {
-        if(pState.getBlock() != pNewState.getBlock()){
-            BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
-            if(blockEntity instanceof GemPolishingStationBlockEntity){
-                ((GemPolishingStationBlockEntity) blockEntity).drops();
-            }
-        }
-        super.onRemove(pState, pLevel, pPos, pNewState, pMovedByPiston);
-    }
 
     @SuppressWarnings("deprecation")
     @Override
@@ -64,12 +60,6 @@ public class GemPolishingStationBlock extends BaseEntityBlock {
             }
         }
         return super.use(pState, pLevel, pPos, pPlayer, pHand, pHit);
-    }
-
-    @Nullable
-    @Override
-    public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
-        return new GemPolishingStationBlockEntity(blockPos,blockState);
     }
 
     @Nullable

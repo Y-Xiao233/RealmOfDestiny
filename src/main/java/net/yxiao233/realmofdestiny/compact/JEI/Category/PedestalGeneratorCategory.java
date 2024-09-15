@@ -6,24 +6,16 @@ import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
-import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.client.event.RenderTooltipEvent;
-import net.minecraftforge.client.extensions.IForgeGuiGraphics;
 import net.yxiao233.realmofdestiny.ModRegistry.ModItems;
 import net.yxiao233.realmofdestiny.RealmOfDestiny;
 import net.yxiao233.realmofdestiny.compact.JEI.AllJEITextures;
-import net.yxiao233.realmofdestiny.recipes.ChangeStoneRecipe;
 import net.yxiao233.realmofdestiny.recipes.PedestalGeneratorRecipe;
-
-import java.awt.*;
 
 public class PedestalGeneratorCategory extends BaseJEICategory<PedestalGeneratorRecipe> implements IBaseJEICategory<PedestalGeneratorRecipe>{
     public static final ResourceLocation UID = new ResourceLocation(RealmOfDestiny.MODID,"pedestal_generator");
@@ -67,7 +59,7 @@ public class PedestalGeneratorCategory extends BaseJEICategory<PedestalGenerator
     @Override
     public void draw(PedestalGeneratorRecipe recipe, IRecipeSlotsView slotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
         guiGraphics.renderFakeItem(ModItems.PEDESTAL_ITEM.get().getDefaultInstance(),80,125);
-        int redColor = (255 << 24) | (255 << 16) | (0 << 8) | 0;
+        int redColor = (255 << 24) | (255 << 16) | (0);
         guiGraphics.drawCenteredString(Minecraft.getInstance().font,Component.translatable("recipe.realmofdestiny.pedestal_generator.need_structure"),86,10,redColor);
 
         drawTextureWithTooltip(guiGraphics,

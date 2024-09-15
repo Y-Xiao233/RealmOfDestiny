@@ -12,6 +12,9 @@
   "tooltip.realmofdestiny.creative_energy_matrix": "可以无限输出FE",
   "tooltip.realmofdestiny.pedestal": "可以放入物品进行展示,可以用来制作特殊配方",
 
+  "tooltip.realmofdestiny.liquid.amount.with.capacity": "容量: %d/%d",
+  "tooltip.realmofdestiny.liquid.amount": "容量: %d",
+
 
   "block.realmofdestiny.gem_polishing_station": "宝石加工站",
   "block.realmofdestiny.pedestal": "基座",
@@ -21,6 +24,7 @@
   "block.realmofdestiny.bolt_sapling": "电光树树苗",
   "block.realmofdestiny.bolt_planks": "电光树木板",
   "block.realmofdestiny.creative_energy_matrix": "创造能量矩阵",
+  "block.realmofdestiny.base_fluid_tank": "基础流体储罐",
 
 
   "recipe.realmofdestiny.changestone.chance": "概率: %d",

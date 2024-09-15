@@ -2,7 +2,6 @@ package net.yxiao233.realmofdestiny.helper.jei;
 
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 
 public class RegisterRecipeCatalystHelper {
     private IRecipeCatalystRegistration registration;

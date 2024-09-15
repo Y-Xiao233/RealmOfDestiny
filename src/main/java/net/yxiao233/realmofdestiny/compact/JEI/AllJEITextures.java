@@ -3,6 +3,7 @@ package net.yxiao233.realmofdestiny.compact.JEI;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.resources.ResourceLocation;
 import net.yxiao233.realmofdestiny.RealmOfDestiny;
+import org.cyclops.cyclopscore.helper.RenderHelpers;
 
 public enum AllJEITextures implements ScreenElement {
     CHANCE_SLOT("widgets",20, 156, 18, 18),

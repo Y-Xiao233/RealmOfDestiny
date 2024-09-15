@@ -77,6 +77,13 @@ repositories {
 
     maven {
         url 'https://modmaven.dev/' }
+
+    maven {
+        url "https://cursemaven.com"
+        content {
+            includeGroup "curse.maven"
+        }
+    }
 }
 
 dependencies {
@@ -90,6 +97,10 @@ dependencies {
     //Patchouli
     compileOnly fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}:api")
     runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}")
+
+
+    //CyclopsCore
+    implementation fg.deobf("curse.maven:cyclopscore-${cyclopscore_version}")
 }
 
 tasks.named('processResources', ProcessResources).configure {

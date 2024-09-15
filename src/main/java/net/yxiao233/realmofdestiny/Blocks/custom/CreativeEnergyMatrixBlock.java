@@ -1,32 +1,26 @@
-package net.yxiao233.realmofdestiny.Blocks;
+package net.yxiao233.realmofdestiny.Blocks.custom;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.BaseEntityBlock;
-import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.yxiao233.realmofdestiny.Blocks.modAbstractBlock.AbstractModBaseEntityBlock;
 import net.yxiao233.realmofdestiny.Entities.CreativeEnergyMatrixBlockEntity;
 import net.yxiao233.realmofdestiny.ModRegistry.ModBlockEntities;
 import org.jetbrains.annotations.Nullable;
 
-public class CreativeEnergyMatrixBlock extends BaseEntityBlock {
+public class CreativeEnergyMatrixBlock extends AbstractModBaseEntityBlock<CreativeEnergyMatrixBlockEntity> {
     public CreativeEnergyMatrixBlock(Properties pProperties) {
         super(pProperties);
     }
 
-    @Nullable
     @Override
-    public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
+    public CreativeEnergyMatrixBlockEntity setBlockEntity(BlockPos blockPos, BlockState blockState) {
         return new CreativeEnergyMatrixBlockEntity(blockPos,blockState);
     }
 
-    @Override
-    public RenderShape getRenderShape(BlockState pState) {
-        return RenderShape.MODEL;
-    }
 
     @Nullable
     @Override

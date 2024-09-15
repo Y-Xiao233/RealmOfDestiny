@@ -14,6 +14,8 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.yxiao233.realmofdestiny.ModRegistry.*;
+import net.yxiao233.realmofdestiny.networking.ModNetWorking;
+import net.yxiao233.realmofdestiny.screen.BaseFluidTankScreen;
 import net.yxiao233.realmofdestiny.screen.GemPolishingStationScreen;
 
 @Mod(RealmOfDestiny.MODID)
@@ -35,13 +37,16 @@ public class RealmOfDestiny
         ModBlockEntities.BLOCK_ENTITIES.register(modEventBus);
         ModMenuTypes.MENUS.register(modEventBus);
         ModRecipes.SERIALIZERS.register(modEventBus);
+        ModNetWorking.register();
     }
 
 
+    @SuppressWarnings("deprecation")
     private void commonSetup(final FMLCommonSetupEvent event)
     {
         event.enqueueWork(() -> {
             ItemBlockRenderTypes.setRenderLayer(ModBlocks.PEDESTAL.get(),RenderType.cutout());
+            ItemBlockRenderTypes.setRenderLayer(ModBlocks.BASE_FLUID_TANK.get(),RenderType.cutout());
         });
     }
 
@@ -50,6 +55,7 @@ public class RealmOfDestiny
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
             MenuScreens.register(ModMenuTypes.GEM_POLISHING_MENU.get(), GemPolishingStationScreen::new);
+            MenuScreens.register(ModMenuTypes.BASE_FLUID_TANK_MENU.get(), BaseFluidTankScreen::new);
         }
     }
 }
