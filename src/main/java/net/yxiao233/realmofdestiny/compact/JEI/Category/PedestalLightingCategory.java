@@ -33,22 +33,23 @@ public class PedestalLightingCategory extends BaseJEICategory<PedestalLightingRe
                         new TooltipCallBackHelper("recipe.realmofdestiny.pedestal_lighting.leaves",ChatFormatting.GOLD))
                 )
                 .addItemStack(recipe.getPedestalItemStack())
-                .setBackground(drawBasiceSlot(),-1,-1);
+                .setBackground(drawSlot(INEVITABLE),-1,-1);
 
-        if(recipe.getChance() >= 1){
+        double chance = recipe.getChance();
+        if(chance < 1){
             builder.addSlot(RecipeIngredientRole.OUTPUT,120,49)
+                    .addTooltipCallback(addChanceTooltip(chance))
                     .addItemStack(recipe.getOutput())
-                    .setBackground(drawBasiceSlot(),-1,-1);
+                    .setBackground(drawSlot(chance),-1,-1);
         }else{
             builder.addSlot(RecipeIngredientRole.OUTPUT,120,49)
-                    .addTooltipCallback(addChanceTooltip(recipe.getChance()))
                     .addItemStack(recipe.getOutput())
-                    .setBackground(drawChanceSlot(),-1,-1);
+                    .setBackground(drawSlot(chance),-1,-1);
         }
 
         builder.addSlot(RecipeIngredientRole.INPUT,0,158)
                 .addItemStack(ModItems.BOLT_SAPLING_ITEM.get().getDefaultInstance())
-                .setBackground(drawBasiceSlot(),-1,-1);
+                .setBackground(drawSlot(INEVITABLE),-1,-1);
     }
 
     @Override

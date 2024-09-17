@@ -14,75 +14,102 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 public abstract class AbstractBaseBlockItemWithTooltip extends BlockItem {
-    public static final int SHIFT_KEY = 0;
-    public static final int ALT_KEY = 1;
-    public static final int CONTROL_KEY = 2;
-    public static final String SHIFT_VALUE = "shift";
-    public static final String ALT_VALUE = "alt";
-    public static final String CONTROL_VALUE = "control";
 
     public AbstractBaseBlockItemWithTooltip(Block pBlock, Properties pProperties) {
         super(pBlock, pProperties);
     }
+
     @Override
     public abstract void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltip, TooltipFlag pFlag);
+    public boolean getKeyType(KeyType keyType) {
+        return switch (keyType) {
+            case SHIFT -> Screen.hasShiftDown();
+            case ALT -> Screen.hasAltDown();
+            case CONTROL -> Screen.hasControlDown();
+        };
+    }
 
-    public void addTooltip(List<Component> tooltips, ItemStack itemStack){
+    //Multiple
+    public void addTooltip(List<Component> tooltips, ItemStack itemStack, int index) {
+        tooltips.add(Component.translatable(itemIdToKey(itemStack, index)));
+    }
+
+    public void addTooltip(List<Component> tooltips, ItemStack itemStack, ChatFormatting style, int index, Object... obj) {
+        tooltips.add(Component.translatable(itemIdToKey(itemStack, index), obj).withStyle(style));
+    }
+
+    public void addTooltip(List<Component> tooltips, ItemStack itemStack, ChatFormatting style, int index) {
+        tooltips.add(Component.translatable(itemIdToKey(itemStack, index)).withStyle(style));
+    }
+
+    public String itemIdToKey(ItemStack itemStack, int index) {
+        String rawKey = itemStack.getDescriptionId();
+        return "tooltip" + rawKey.substring(rawKey.indexOf(".")) + index;
+    }
+
+    public void addTooltipWhileKeyDown(KeyType keyType, List<Component> tooltips, ItemStack itemStack, int index) {
+        if (getKeyType(keyType)) {
+            addTooltip(tooltips, itemStack, index);
+        } else {
+            tooltips.add(Component.translatable("tooltip.realmofdestiny.held." + keyType.getValue()).withStyle(ChatFormatting.GRAY));
+        }
+    }
+
+    public void addTooltipWhileKeyDown(KeyType keyType, List<Component> tooltips, ItemStack itemStack, ChatFormatting style, int index, Object... obj) {
+        if (getKeyType(keyType)) {
+            addTooltip(tooltips, itemStack, style, index, obj);
+        } else {
+            tooltips.add(Component.translatable("tooltip.realmofdestiny.held." + keyType.getValue()).withStyle(ChatFormatting.GRAY));
+        }
+    }
+
+    public void addTooltipWhileKeyDown(KeyType keyType, List<Component> tooltips, ItemStack itemStack, ChatFormatting style, int index) {
+        if (getKeyType(keyType)) {
+            addTooltip(tooltips, itemStack, style, index);
+        } else {
+            tooltips.add(Component.translatable("tooltip.realmofdestiny.held." + keyType.getValue()).withStyle(ChatFormatting.GRAY));
+        }
+    }
+
+    //Single
+    public void addTooltip(List<Component> tooltips, ItemStack itemStack) {
         tooltips.add(Component.translatable(itemIdToKey(itemStack)));
     }
 
-    public void addTooltip(List<Component> tooltips, ItemStack itemStack, ChatFormatting style, Object... obj){
-        tooltips.add(Component.translatable(itemIdToKey(itemStack),obj).withStyle(style));
+    public void addTooltip(List<Component> tooltips, ItemStack itemStack, ChatFormatting style, Object... obj) {
+        tooltips.add(Component.translatable(itemIdToKey(itemStack), obj).withStyle(style));
     }
 
-    public void addTooltip(List<Component> tooltips, ItemStack itemStack, ChatFormatting style){
+    public void addTooltip(List<Component> tooltips, ItemStack itemStack, ChatFormatting style) {
         tooltips.add(Component.translatable(itemIdToKey(itemStack)).withStyle(style));
     }
 
-    public String itemIdToKey(ItemStack itemStack){
+    public String itemIdToKey(ItemStack itemStack) {
         String rawKey = itemStack.getDescriptionId();
         return "tooltip" + rawKey.substring(rawKey.indexOf("."));
     }
 
-    public void addTooltipWhileKeyDown(int keyType, List<Component> tooltips, ItemStack itemStack){
-        if(getKeyType(keyType)){
-            addTooltip(tooltips,itemStack);
-        }else{
-            tooltips.add(Component.translatable("tooltip.realmofdestiny.held." + getKeyValue(keyType)).withStyle(ChatFormatting.GRAY));
+    public void addTooltipWhileKeyDown(KeyType keyType, List<Component> tooltips, ItemStack itemStack) {
+        if (getKeyType(keyType)) {
+            addTooltip(tooltips, itemStack);
+        } else {
+            tooltips.add(Component.translatable("tooltip.realmofdestiny.held." + keyType.getValue()).withStyle(ChatFormatting.GRAY));
         }
     }
 
-    public void addTooltipWhileKeyDown(int keyType, List<Component> tooltips, ItemStack itemStack, ChatFormatting style, Object... obj){
-        if(getKeyType(keyType)){
-            addTooltip(tooltips,itemStack,style,obj);
-        }else{
-            tooltips.add(Component.translatable("tooltip.realmofdestiny.held." + getKeyValue(keyType)).withStyle(ChatFormatting.GRAY));
+    public void addTooltipWhileKeyDown(KeyType keyType, List<Component> tooltips, ItemStack itemStack, ChatFormatting style, Object... obj) {
+        if (getKeyType(keyType)) {
+            addTooltip(tooltips, itemStack, style, obj);
+        } else {
+            tooltips.add(Component.translatable("tooltip.realmofdestiny.held." + keyType.getValue()).withStyle(ChatFormatting.GRAY));
         }
     }
 
-    public void addTooltipWhileKeyDown(int keyType, List<Component> tooltips, ItemStack itemStack, ChatFormatting style){
-        if(getKeyType(keyType)){
-            addTooltip(tooltips,itemStack,style);
-        }else{
-            tooltips.add(Component.translatable("tooltip.realmofdestiny.held." + getKeyValue(keyType)).withStyle(ChatFormatting.GRAY));
+    public void addTooltipWhileKeyDown(KeyType keyType, List<Component> tooltips, ItemStack itemStack, ChatFormatting style) {
+        if (getKeyType(keyType)) {
+            addTooltip(tooltips, itemStack, style);
+        } else {
+            tooltips.add(Component.translatable("tooltip.realmofdestiny.held." + keyType.getValue()).withStyle(ChatFormatting.GRAY));
         }
-    }
-
-    public boolean getKeyType(int keyType){
-        return switch (keyType){
-            case 0 -> Screen.hasShiftDown();
-            case 1 -> Screen.hasAltDown();
-            case 2 -> Screen.hasControlDown();
-            default -> Screen.hasShiftDown();
-        };
-    }
-
-    public String getKeyValue(int keyType){
-        return switch (keyType){
-            case 0 -> SHIFT_VALUE;
-            case 1 -> ALT_VALUE;
-            case 2 -> CONTROL_VALUE;
-            default -> SHIFT_VALUE;
-        };
     }
 }

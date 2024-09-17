@@ -38,11 +38,6 @@ public class BaseFluidTankBlock extends AbstractModFluidTankEntityBlock<BaseFlui
     }
 
     @Override
-    public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
-        return new BlockBoxHelper("base_fluid_tank").getVoxelShapes();
-    }
-
-    @Override
     public int getTankCap(BaseFluidTankBlockEntity entity) {
         return entity.getTankCap();
     }

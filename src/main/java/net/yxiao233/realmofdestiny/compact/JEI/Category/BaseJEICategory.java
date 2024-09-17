@@ -23,11 +23,14 @@ import net.yxiao233.realmofdestiny.compact.JEI.AllJEITextures;
 import net.yxiao233.realmofdestiny.helper.jei.TooltipCallBackHelper;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Arrays;
+
 public abstract class BaseJEICategory<T extends Recipe<?>> implements IRecipeCategory<T> {
     public final RecipeType<T> type;
     public final Component title;
     public final IDrawable background;
     public final IDrawable icon;
+    public static final double INEVITABLE = 1;
 
     public BaseJEICategory(IGuiHelper helper, RecipeType<T> type, Component title, Item icon, int width, int height) {
         ResourceLocation TEXTURE = new ResourceLocation(RealmOfDestiny.MODID,"textures/jei/empty.png");
@@ -60,45 +63,76 @@ public abstract class BaseJEICategory<T extends Recipe<?>> implements IRecipeCat
     public abstract void draw(T recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY);
 
     //method
-    public IDrawable drawChanceSlot(){
-        AllJEITextures allJEITextures = AllJEITextures.CHANCE_SLOT;
+//    public IDrawable drawChanceSlot(){
+//        AllJEITextures allJEITextures = AllJEITextures.CHANCE_SLOT;
+//        return new IDrawable() {
+//            @Override
+//            public int getWidth() {
+//                return allJEITextures.width;
+//            }
+//
+//            @Override
+//            public int getHeight() {
+//                return allJEITextures.height;
+//            }
+//
+//            @Override
+//            public void draw(GuiGraphics guiGraphics, int x, int y) {
+//                allJEITextures.render(guiGraphics,x,y);
+//            }
+//        };
+//    }
+//    public IDrawable drawBasiceSlot(){
+//        AllJEITextures allJEITextures = AllJEITextures.BASIC_SLOT;
+//        return new IDrawable() {
+//            @Override
+//            public int getWidth() {
+//                return allJEITextures.width;
+//            }
+//
+//            @Override
+//            public int getHeight() {
+//                return allJEITextures.height;
+//            }
+//
+//            @Override
+//            public void draw(GuiGraphics guiGraphics, int x, int y) {
+//                allJEITextures.render(guiGraphics,x,y);
+//            }
+//        };
+//    }
+
+    public IDrawable drawSlot(double chance){
+        AllJEITextures allJEITextures = null;
+
+        if(chance >= INEVITABLE){
+            allJEITextures = AllJEITextures.BASIC_SLOT;
+        }else{
+            allJEITextures = AllJEITextures.CHANCE_SLOT;
+        }
+
+        AllJEITextures finalAllJEITextures = allJEITextures;
         return new IDrawable() {
             @Override
             public int getWidth() {
-                return allJEITextures.width;
+                return finalAllJEITextures.width;
             }
 
             @Override
             public int getHeight() {
-                return allJEITextures.height;
+                return finalAllJEITextures.height;
             }
 
             @Override
-            public void draw(GuiGraphics guiGraphics, int x, int y) {
-                allJEITextures.render(guiGraphics,x,y);
-            }
-        };
-    }
-    public IDrawable drawBasiceSlot(){
-        AllJEITextures allJEITextures = AllJEITextures.BASIC_SLOT;
-        return new IDrawable() {
-            @Override
-            public int getWidth() {
-                return allJEITextures.width;
-            }
-
-            @Override
-            public int getHeight() {
-                return allJEITextures.height;
-            }
-
-            @Override
-            public void draw(GuiGraphics guiGraphics, int x, int y) {
-                allJEITextures.render(guiGraphics,x,y);
+            public void draw(GuiGraphics guiGraphics, int i, int i1) {
+                finalAllJEITextures.render(guiGraphics,i,i1);
             }
         };
     }
     public IRecipeSlotTooltipCallback addChanceTooltip(double chance){
+        if(chance >= 1){
+            return null;
+        }
         return (view, tooltip) ->{
             tooltip.add(1,Component.translatable("recipe.realmofdestiny.changestone.chance", (chance >= 0.01 ? (int) (chance * 100) : "< 1") + "%").withStyle(ChatFormatting.GOLD));
         };

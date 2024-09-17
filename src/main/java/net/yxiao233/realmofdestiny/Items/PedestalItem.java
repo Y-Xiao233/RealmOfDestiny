@@ -7,6 +7,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.yxiao233.realmofdestiny.Items.Abstract.AbstractBaseBlockItemWithTooltip;
+import net.yxiao233.realmofdestiny.Items.Abstract.KeyType;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -18,6 +19,7 @@ public class PedestalItem extends AbstractBaseBlockItemWithTooltip {
 
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltip, TooltipFlag pFlag) {
-        addTooltip(pTooltip,pStack, ChatFormatting.GOLD);
+        addTooltipWhileKeyDown(KeyType.SHIFT,pTooltip,pStack,ChatFormatting.GOLD,0);
+        addTooltipWhileKeyDown(KeyType.ALT,pTooltip,pStack,ChatFormatting.GOLD,1);
     }
 }

@@ -43,7 +43,7 @@ public class ModBlocks {
             new CreativeEnergyMatrixBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)));
 
     public static final RegistryObject<Block> BASE_FLUID_TANK = BLOCKS.register("base_fluid_tank", () ->
-            new BaseFluidTankBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)));
+            new BaseFluidTankBlock(BlockBehaviour.Properties.copy(Blocks.GLASS).sound(SoundType.METAL)));
 
     private static <T extends Block> RegistryObject<T> registryBlock(String name, Supplier<T> block){
         RegistryObject<T> toReturn = BLOCKS.register(name,block);

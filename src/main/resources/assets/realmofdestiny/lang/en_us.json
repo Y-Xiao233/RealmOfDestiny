@@ -5,15 +5,17 @@
   "item.realmofdestiny.change_stone": "Change Stone",
 
 
-  "tooltip.realmofdestiny.held.shift": "Press Shift to view more information",
-  "tooltip.realmofdestiny.held.alt": "Press Alt to view more information",
-  "tooltip.realmofdestiny.held.control": "Press Control to view more information",
+  "tooltip.realmofdestiny.held.shift": "§9Press §6Shift§9 to view more information",
+  "tooltip.realmofdestiny.held.alt": "§9Press §6Alt§9 to view more information",
+  "tooltip.realmofdestiny.held.control": "§9Press §6Control§9 to view more information",
+
   "tooltip.realmofdestiny.change_stone": "Partial blocks can be converted into specific blocks",
   "tooltip.realmofdestiny.creative_energy_matrix": "Can output FE infinitely",
-  "tooltip.realmofdestiny.pedestal": "Can be displayed as items and used to make special recipes",
+  "tooltip.realmofdestiny.pedestal0": "Can be displayed as items and used to make special recipes",
+  "tooltip.realmofdestiny.pedestal1": "Can be used to make special recipes",
 
-  "tooltip.realmofdestiny.liquid.amount.with.capacity": "amount: %d/%d",
-  "tooltip.realmofdestiny.liquid.amount": "amount: %d",
+  "tooltip.realmofdestiny.liquid_amount_with_capacity": "amount: %d/%d",
+  "tooltip.realmofdestiny.liquid_amount": "amount: %d",
 
 
   "block.realmofdestiny.gem_polishing_station": "Gem Polishing Station",

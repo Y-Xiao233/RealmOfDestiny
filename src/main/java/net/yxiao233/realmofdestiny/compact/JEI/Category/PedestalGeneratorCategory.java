@@ -43,15 +43,15 @@ public class PedestalGeneratorCategory extends BaseJEICategory<PedestalGenerator
             }
             ItemStack stack = recipe.getOutputItemStack()[i];
             double chance = recipe.getChanceList().get(i);
-            if(chance != 1){
+            if(chance < 1){
                 builder.addSlot(RecipeIngredientRole.OUTPUT,x,y)
                         .addItemStack(stack)
                         .addTooltipCallback(addChanceTooltip(chance))
-                        .setBackground(drawChanceSlot(),-1,-1);
+                        .setBackground(drawSlot(chance),-1,-1);
             }else{
                 builder.addSlot(RecipeIngredientRole.OUTPUT,x,y)
                         .addItemStack(stack)
-                        .setBackground(drawBasiceSlot(),-1,-1);
+                        .setBackground(drawSlot(chance),-1,-1);
             }
         }
     }

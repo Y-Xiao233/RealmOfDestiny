@@ -29,9 +29,7 @@ public class FluidSyncS2CPacket extends AbstractModSyncPacket {
 
     @Override
     public void toBytes(FriendlyByteBuf buffer) {
-        if(buffer != null){
-            buffer.writeFluidStack(stack);
-        }
+        buffer.writeFluidStack(stack);
         buffer.writeBlockPos(blockPos);
         buffer.writeEnum(action);
     }
