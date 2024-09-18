@@ -35,11 +35,16 @@ public abstract class AbstractBaseBlockItemWithTooltip extends BlockItem {
             CompoundTag tag =  stack.getTag();
 
             String fluid = tag.getString("FluidName");
-            int amount =  Integer.parseInt(tag.get("Amount").getAsString());
-            String key = "block." + fluid.replace(':','.');
-            tooltips.add(Component.translatable(key).withStyle(fluidStyle).append(Component.literal(": " + amount + "mb").withStyle(extraStyle)));
+
+            if(fluid.equals("minecraft:empty")){
+                tooltips.add(Component.translatable("tooltip.realmofdestiny.empty").withStyle(ChatFormatting.GREEN));
+            }else{
+                int amount =  Integer.parseInt(tag.get("Amount").getAsString());
+                String key = "block." + fluid.replace(':','.');
+                tooltips.add(Component.translatable(key).withStyle(fluidStyle).append(Component.literal(": " + amount + "mb").withStyle(extraStyle)));
+            }
         }else{
-            tooltips.add(Component.translatable("tooltip.realmofdestiny.empty"));
+            tooltips.add(Component.translatable("tooltip.realmofdestiny.empty").withStyle(ChatFormatting.GREEN));
         }
     }
 
