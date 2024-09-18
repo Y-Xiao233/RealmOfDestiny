@@ -5,6 +5,7 @@ import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import net.yxiao233.realmofdestiny.Items.BaseFluidTankItem;
 import net.yxiao233.realmofdestiny.Items.ChangeStoneItem;
 import net.yxiao233.realmofdestiny.Items.CreativeEnergyMatrixItem;
 import net.yxiao233.realmofdestiny.Items.PedestalItem;
@@ -41,5 +42,5 @@ public class ModItems {
             new CreativeEnergyMatrixItem(ModBlocks.CREATIVE_ENERGY_MATRIX.get(),new Item.Properties()));
 
     public static final RegistryObject<Item> BASE_FLUID_TANK_ITEM = ITEMS.register("base_fluid_tank", () ->
-            new BlockItem(ModBlocks.BASE_FLUID_TANK.get(),new Item.Properties()));
+            new BaseFluidTankItem(ModBlocks.BASE_FLUID_TANK.get(),new Item.Properties()));
 }

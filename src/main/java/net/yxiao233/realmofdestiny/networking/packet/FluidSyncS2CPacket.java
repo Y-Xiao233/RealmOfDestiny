@@ -1,5 +1,6 @@
 package net.yxiao233.realmofdestiny.networking.packet;
 
+import com.mojang.brigadier.Message;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
@@ -40,10 +41,6 @@ public class FluidSyncS2CPacket extends AbstractModSyncPacket {
         context.enqueueWork(() -> {
             if(Minecraft.getInstance().level.getBlockEntity(blockPos) instanceof BaseFluidTankBlockEntity entity){
                 action(entity);
-            }
-
-            if(Minecraft.getInstance().player.containerMenu instanceof BaseFluidTankMenu menu){
-                action(menu.blockEntity);
             }
         });
         return true;

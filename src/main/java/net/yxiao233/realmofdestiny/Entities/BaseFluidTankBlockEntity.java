@@ -4,10 +4,18 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.Container;
+import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
+import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
@@ -24,7 +32,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class BaseFluidTankBlockEntity extends BlockEntity implements MenuProvider {
-    protected FluidTank tank = new FluidTank(10000){
+    public FluidTank tank = new FluidTank(10000){
         @Override
         protected void onContentsChanged() {
             setChanged();
@@ -52,7 +60,6 @@ public class BaseFluidTankBlockEntity extends BlockEntity implements MenuProvide
     @Override
     public void onLoad() {
         lazyFluidHandler = LazyOptional.of(() -> tank);
-        ModNetWorking.sendToClient(new FluidSyncS2CPacket(tank.getFluid(),this.getBlockPos(), FluidSyncS2CPacket.PacketAction.SET));
         super.onLoad();
     }
 
@@ -109,5 +116,22 @@ public class BaseFluidTankBlockEntity extends BlockEntity implements MenuProvide
 
     public void setTank(FluidStack stack){
         tank.setFluid(stack);
+    }
+
+    public void tick(Level level, BlockPos blockPos, BlockState blockState){
+        BlockEntity entity = level.getBlockEntity(blockPos);
+        if(entity instanceof BaseFluidTankBlockEntity baseFluidTankBlockEntity){
+            FluidStack stack = baseFluidTankBlockEntity.getFluidStackInTank();
+            ModNetWorking.sendToClient(new FluidSyncS2CPacket(stack,blockPos, FluidSyncS2CPacket.PacketAction.SET));
+        }
+    }
+
+    public void drops(){
+        CompoundTag tag = new CompoundTag();
+        tank.writeToNBT(tag);
+        ItemStack stack = new ItemStack(this.getBlockState().getBlock().asItem());
+        stack.setTag(tag);
+        ItemEntity itemEntity = new ItemEntity(level, getBlockPos().getX() + 0.5, getBlockPos().getY() + 1,getBlockPos().getZ() + 0.5,stack);
+        level.addFreshEntity(itemEntity);
     }
 }

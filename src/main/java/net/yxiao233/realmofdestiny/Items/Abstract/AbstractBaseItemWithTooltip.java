@@ -16,7 +16,7 @@ public abstract class AbstractBaseItemWithTooltip extends Item {
         super(pProperties);
     }
     @Override
-    public abstract void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltip, TooltipFlag pFlag);
+    public abstract void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltips, TooltipFlag flag);
     public boolean getKeyType(KeyType keyType) {
         return switch (keyType) {
             case SHIFT -> Screen.hasShiftDown();

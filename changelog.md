@@ -26,6 +26,7 @@
 ### v1.0.5
 - 修复了创造能量矩阵被动输出能量时不会自动补充能量的bug
 - 给部分物品添加了工具提示
+- 添加了流体储罐
 
 ## en_us
 ### v1.0.0
@@ -53,3 +54,4 @@
 ### v1.0.5
 - Fixed a bug where the passive output energy of the creative energy matrix does not automatically replenish energy
 - Added item tooltip to some items
+- Added Fluid Tank

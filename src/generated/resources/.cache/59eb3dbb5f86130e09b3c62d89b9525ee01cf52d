@@ -1,10 +1,10 @@
-// 1.20.1	2024-09-03T19:56:31.8740133	Loot Tables
+// 1.20.1	2024-09-17T23:38:01.4521339	Loot Tables
+9aad461aab1701e07bbeee3cc7568115b95178fc data/realmofdestiny/loot_tables/blocks/base_fluid_tank.json
 2ad9097935e085c6366138dce229bdde723255a2 data/realmofdestiny/loot_tables/blocks/bolt_leaves.json
 83b7f49f8461cf7fe0a8814b1cec31dd2340eeb1 data/realmofdestiny/loot_tables/blocks/bolt_log.json
 385ae2687869e05367247c31c41c26852eb5fb2a data/realmofdestiny/loot_tables/blocks/bolt_planks.json
 71d8914a2c13fdb168b9f7558da62ee908124e92 data/realmofdestiny/loot_tables/blocks/bolt_sapling.json
 ed1d06c416e8e376ff05c713dbe903ef5b3e3edc data/realmofdestiny/loot_tables/blocks/creative_energy_matrix.json
 ba061ca94be64ff035090d348b15324422424d33 data/realmofdestiny/loot_tables/blocks/gem_polishing_station.json
-d770a1e3da60b6d8f7531ebbe7bd7bb8d07e53ec data/realmofdestiny/loot_tables/blocks/multi_block.json
 484fa6992f3d2bbedca4fbbbfd307a94343d21f8 data/realmofdestiny/loot_tables/blocks/pedestal.json
 0945311ac077ee05eecc9a82e871aeea65685c57 data/realmofdestiny/loot_tables/blocks/stripped_bolt_log.json

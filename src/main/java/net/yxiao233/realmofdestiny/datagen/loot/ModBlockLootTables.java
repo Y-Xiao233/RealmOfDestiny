@@ -22,7 +22,6 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.STRIPPED_BOLT_LOG.get());
         this.dropSelf(ModBlocks.BOLT_PLANKS.get());
         this.dropSelf(ModBlocks.CREATIVE_ENERGY_MATRIX.get());
-        this.dropSelf(ModBlocks.BASE_FLUID_TANK.get());
         this.add(ModBlocks.BOLT_LEAVES.get(), block ->
                 createLeavesDrops(block,ModBlocks.BOLT_SAPLING.get(),NORMAL_LEAVES_SAPLING_CHANCES));
     }

@@ -11,6 +11,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.ItemStack;
@@ -24,8 +25,9 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.network.NetworkHooks;
 import net.yxiao233.realmofdestiny.networking.ModNetWorking;
 import net.yxiao233.realmofdestiny.networking.packet.FluidSyncS2CPacket;
+import org.jetbrains.annotations.Nullable;
 
-public abstract class AbstractModFluidTankEntityBlock<T extends BlockEntity> extends AbstractModBaseEntityBlock<T>{
+public abstract class AbstractModFluidTankEntityBlock<T extends BlockEntity> extends AbstractModContainerEntityBlock<T>{
     protected AbstractModFluidTankEntityBlock(Properties pProperties) {
         super(pProperties);
     }

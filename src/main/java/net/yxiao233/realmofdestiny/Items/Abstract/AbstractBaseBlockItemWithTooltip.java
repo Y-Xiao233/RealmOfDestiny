@@ -2,6 +2,7 @@ package net.yxiao233.realmofdestiny.Items.Abstract;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
@@ -20,13 +21,32 @@ public abstract class AbstractBaseBlockItemWithTooltip extends BlockItem {
     }
 
     @Override
-    public abstract void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltip, TooltipFlag pFlag);
+    public abstract void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltips, TooltipFlag flag);
     public boolean getKeyType(KeyType keyType) {
         return switch (keyType) {
             case SHIFT -> Screen.hasShiftDown();
             case ALT -> Screen.hasAltDown();
             case CONTROL -> Screen.hasControlDown();
         };
+    }
+
+    public void addTooltipWhileHasFluidTag(List<Component> tooltips, ItemStack stack, ChatFormatting fluidStyle, ChatFormatting extraStyle){
+        if(stack.hasTag()){
+            CompoundTag tag =  stack.getTag();
+
+            String fluid = tag.getString("FluidName");
+            int amount =  Integer.parseInt(tag.get("Amount").getAsString());
+            String key = "block." + fluid.replace(':','.');
+            tooltips.add(Component.translatable(key).withStyle(fluidStyle).append(Component.literal(": " + amount + "mb").withStyle(extraStyle)));
+        }
+    }
+
+    public void addTooltipWhileKeyDown(KeyType keyType, List<Component> tooltips, ItemStack itemStack, ChatFormatting fluidStyle, ChatFormatting extraStyle) {
+        if (getKeyType(keyType)) {
+            addTooltipWhileHasFluidTag(tooltips,itemStack,fluidStyle,extraStyle);
+        } else {
+            tooltips.add(Component.translatable("tooltip.realmofdestiny.held." + keyType.getValue()).withStyle(ChatFormatting.GRAY));
+        }
     }
 
     //Multiple
