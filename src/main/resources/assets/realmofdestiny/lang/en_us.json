@@ -8,6 +8,7 @@
   "tooltip.realmofdestiny.held.shift": "§9Press §6Shift§9 to view more information",
   "tooltip.realmofdestiny.held.alt": "§9Press §6Alt§9 to view more information",
   "tooltip.realmofdestiny.held.control": "§9Press §6Control§9 to view more information",
+  "tooltip.realmofdestiny.empty": "Empty",
 
   "tooltip.realmofdestiny.change_stone": "Partial blocks can be converted into specific blocks",
   "tooltip.realmofdestiny.creative_energy_matrix": "Can output FE infinitely",

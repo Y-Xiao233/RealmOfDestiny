@@ -38,6 +38,8 @@ public abstract class AbstractBaseBlockItemWithTooltip extends BlockItem {
             int amount =  Integer.parseInt(tag.get("Amount").getAsString());
             String key = "block." + fluid.replace(':','.');
             tooltips.add(Component.translatable(key).withStyle(fluidStyle).append(Component.literal(": " + amount + "mb").withStyle(extraStyle)));
+        }else{
+            tooltips.add(Component.translatable("tooltip.realmofdestiny.empty"));
         }
     }
 

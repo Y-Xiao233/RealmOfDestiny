@@ -8,6 +8,7 @@
   "tooltip.realmofdestiny.held.shift": "§9按下§6Shift§9查看更多信息",
   "tooltip.realmofdestiny.held.alt": "§9按下§6Alt§9查看更多信息",
   "tooltip.realmofdestiny.held.control": "§9按下§6Control§9查看更多信息",
+  "tooltip.realmofdestiny.empty": "空",
 
   "tooltip.realmofdestiny.change_stone": "可以将部分方块转化为特定方块",
   "tooltip.realmofdestiny.creative_energy_matrix": "可以无限输出FE",
