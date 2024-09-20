@@ -28,6 +28,10 @@
 - 给部分物品添加了工具提示
 - 添加了流体储罐
 
+### v1.0.6
+- 基础流体储罐是空的的时候挖掘下来的方块不会有标签了
+- 为需要结构的合成表添加结构预览
+
 ## en_us
 ### v1.0.0
 - init
@@ -55,3 +59,7 @@
 - Fixed a bug where the passive output energy of the creative energy matrix does not automatically replenish energy
 - Added item tooltip to some items
 - Added Fluid Tank
+
+### v1.0.6
+- When the base fluid storage tank is empty, the excavated blocks will no longer have tags
+- Add a structure preview for recipes that require structure

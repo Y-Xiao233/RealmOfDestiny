@@ -3,6 +3,7 @@
 
 
   "item.realmofdestiny.change_stone": "Change Stone",
+  "item.realmofdestiny.structure_viewer": "Structure Viewer",
 
 
   "tooltip.realmofdestiny.held.shift": "§9Press §6Shift§9 to view more information",
@@ -14,9 +15,14 @@
   "tooltip.realmofdestiny.creative_energy_matrix": "Can output FE infinitely",
   "tooltip.realmofdestiny.pedestal0": "Can be displayed as items and used to make special recipes",
   "tooltip.realmofdestiny.pedestal1": "Can be used to make special recipes",
+  "tooltip.realmofdestiny.structure_viewer": "Right click on the pedestal to view the structure",
 
   "tooltip.realmofdestiny.liquid_amount_with_capacity": "amount: %d/%d",
   "tooltip.realmofdestiny.liquid_amount": "amount: %d",
+
+
+  "tip.realmofdestiny.render_structure": "Structure successfully previewed",
+  "tip.realmofdestiny.clear_structure": "The preview structure has been cleared",
 
 
   "block.realmofdestiny.gem_polishing_station": "Gem Polishing Station",

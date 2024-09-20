@@ -12,9 +12,10 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.yxiao233.realmofdestiny.ModRegistry.ModItems;
 import net.yxiao233.realmofdestiny.RealmOfDestiny;
+import net.yxiao233.realmofdestiny.modAbstracts.jei.AbstractJEICategory;
 import net.yxiao233.realmofdestiny.recipes.ChangeStoneRecipe;
 
-public class ChangeStoneCategory extends BaseJEICategory<ChangeStoneRecipe> {
+public class ChangeStoneCategory extends AbstractJEICategory<ChangeStoneRecipe> {
     public static final ResourceLocation UID = new ResourceLocation(RealmOfDestiny.MODID,"block_change");
     public static final RecipeType<ChangeStoneRecipe> BLOCK_CHANGE_TYPE = new RecipeType<>(UID, ChangeStoneRecipe.class);
     public static final Component TITLE = Component.translatable("item.realmofdestiny.change_stone");

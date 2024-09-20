@@ -12,11 +12,13 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.yxiao233.realmofdestiny.ModRegistry.ModItems;
 import net.yxiao233.realmofdestiny.RealmOfDestiny;
-import net.yxiao233.realmofdestiny.compact.JEI.AllJEITextures;
+import net.yxiao233.realmofdestiny.modTextures.AllJEITextures;
 import net.yxiao233.realmofdestiny.helper.jei.TooltipCallBackHelper;
+import net.yxiao233.realmofdestiny.modAbstracts.jei.AbstractJEICategory;
+import net.yxiao233.realmofdestiny.modInterfaces.jei.IBaseJEICategory;
 import net.yxiao233.realmofdestiny.recipes.PedestalLightingRecipe;
 
-public class PedestalLightingCategory extends BaseJEICategory<PedestalLightingRecipe> implements IBaseJEICategory<PedestalLightingRecipe> {
+public class PedestalLightingCategory extends AbstractJEICategory<PedestalLightingRecipe> implements IBaseJEICategory<PedestalLightingRecipe> {
 
     public static final ResourceLocation UID = new ResourceLocation(RealmOfDestiny.MODID,"pedestal_lighting");
     public static final RecipeType<PedestalLightingRecipe> PEDESTAL_LIGHTING_TYPE = new RecipeType<>(UID, PedestalLightingRecipe.class);

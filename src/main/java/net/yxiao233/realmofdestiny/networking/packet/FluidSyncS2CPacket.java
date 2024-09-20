@@ -1,13 +1,12 @@
 package net.yxiao233.realmofdestiny.networking.packet;
 
-import com.mojang.brigadier.Message;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.network.NetworkEvent;
 import net.yxiao233.realmofdestiny.Entities.BaseFluidTankBlockEntity;
-import net.yxiao233.realmofdestiny.screen.BaseFluidTankMenu;
+import net.yxiao233.realmofdestiny.modAbstracts.packet.AbstractModSyncPacket;
 
 import java.util.function.Supplier;
 

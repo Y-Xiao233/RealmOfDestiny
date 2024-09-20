@@ -1,4 +1,4 @@
-package net.yxiao233.realmofdestiny.screen;
+package net.yxiao233.realmofdestiny.modInterfaces.screen;
 
 import net.minecraft.client.gui.GuiGraphics;
 

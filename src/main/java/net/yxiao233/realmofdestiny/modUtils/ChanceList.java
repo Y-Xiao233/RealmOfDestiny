@@ -1,4 +1,4 @@
-package net.yxiao233.realmofdestiny.Items;
+package net.yxiao233.realmofdestiny.modUtils;
 
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.item.ItemStack;

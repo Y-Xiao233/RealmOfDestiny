@@ -11,10 +11,11 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.yxiao233.realmofdestiny.ModRegistry.ModItems;
 import net.yxiao233.realmofdestiny.RealmOfDestiny;
-import net.yxiao233.realmofdestiny.compact.JEI.AllJEITextures;
+import net.yxiao233.realmofdestiny.modTextures.AllJEITextures;
+import net.yxiao233.realmofdestiny.modAbstracts.jei.AbstractJEICategory;
 import net.yxiao233.realmofdestiny.recipes.GemPolishingRecipe;
 
-public class GemPolishingStationCategory extends BaseJEICategory<GemPolishingRecipe> {
+public class GemPolishingStationCategory extends AbstractJEICategory<GemPolishingRecipe> {
     public static final ResourceLocation UID = new ResourceLocation(RealmOfDestiny.MODID,"gem_polishing");
     public static final RecipeType<GemPolishingRecipe> GEM_POLISHING_TYPE = new RecipeType<>(UID, GemPolishingRecipe.class);
     public static final Component TITLE = Component.translatable("block.realmofdestiny.gem_polishing_station");

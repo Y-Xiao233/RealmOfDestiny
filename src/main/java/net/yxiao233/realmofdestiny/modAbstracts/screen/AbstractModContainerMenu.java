@@ -1,4 +1,4 @@
-package net.yxiao233.realmofdestiny.screen;
+package net.yxiao233.realmofdestiny.modAbstracts.screen;
 
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -27,7 +27,6 @@ public abstract class AbstractModContainerMenu<T extends BlockEntity> extends Ab
         super(pMenuType, pContainerId);
         this.blockEntity = blockEntity;
     }
-
 
     public void init(int slotCount){
         this.TE_INVENTORY_SLOT_COUNT = slotCount;
@@ -61,13 +60,15 @@ public abstract class AbstractModContainerMenu<T extends BlockEntity> extends Ab
         return copyOfSourceStack;
     }
 
+    public abstract boolean stillValid(Player player);
+
 
     public boolean getStillValid(Level level, Player player){
         return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
                 player, blockEntity.getBlockState().getBlock());
     }
 
-    void addPlayerInventory(Inventory playerInventory) {
+    protected void addPlayerInventory(Inventory playerInventory) {
         for (int i = 0; i < 3; ++i) {
             for (int l = 0; l < 9; ++l) {
                 this.addSlot(new Slot(playerInventory, l + i * 9 + 9, 8 + l * 18, 84 + i * 18));
@@ -75,7 +76,7 @@ public abstract class AbstractModContainerMenu<T extends BlockEntity> extends Ab
         }
     }
 
-    void addPlayerHotbar(Inventory playerInventory) {
+    protected void addPlayerHotbar(Inventory playerInventory) {
         for (int i = 0; i < 9; ++i) {
             this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 142));
         }

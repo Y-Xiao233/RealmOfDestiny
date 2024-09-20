@@ -1,4 +1,4 @@
-package net.yxiao233.realmofdestiny.compact.JEI.Category;
+package net.yxiao233.realmofdestiny.modInterfaces.jei;
 
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.ingredient.IRecipeSlotsView;

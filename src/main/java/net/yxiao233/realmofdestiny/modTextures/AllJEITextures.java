@@ -1,9 +1,9 @@
-package net.yxiao233.realmofdestiny.compact.JEI;
+package net.yxiao233.realmofdestiny.modTextures;
 
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.resources.ResourceLocation;
 import net.yxiao233.realmofdestiny.RealmOfDestiny;
-import org.cyclops.cyclopscore.helper.RenderHelpers;
+import net.yxiao233.realmofdestiny.modInterfaces.jei.ScreenElement;
 
 public enum AllJEITextures implements ScreenElement {
     CHANCE_SLOT("widgets",20, 156, 18, 18),
@@ -26,5 +26,15 @@ public enum AllJEITextures implements ScreenElement {
     @Override
     public void render(GuiGraphics guiGraphics, int x, int y) {
         guiGraphics.blit(location, x, y, startX, startY, width, height);
+    }
+
+    @Override
+    public int getWidth() {
+        return width;
+    }
+
+    @Override
+    public int getHeight() {
+        return height;
     }
 }

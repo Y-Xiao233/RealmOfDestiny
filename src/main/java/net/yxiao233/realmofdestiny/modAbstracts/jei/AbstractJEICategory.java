@@ -1,4 +1,4 @@
-package net.yxiao233.realmofdestiny.compact.JEI.Category;
+package net.yxiao233.realmofdestiny.modAbstracts.jei;
 
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
@@ -19,20 +19,18 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Recipe;
 import net.yxiao233.realmofdestiny.RealmOfDestiny;
-import net.yxiao233.realmofdestiny.compact.JEI.AllJEITextures;
+import net.yxiao233.realmofdestiny.modTextures.AllJEITextures;
 import net.yxiao233.realmofdestiny.helper.jei.TooltipCallBackHelper;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Arrays;
-
-public abstract class BaseJEICategory<T extends Recipe<?>> implements IRecipeCategory<T> {
+public abstract class AbstractJEICategory<T extends Recipe<?>> implements IRecipeCategory<T> {
     public final RecipeType<T> type;
     public final Component title;
     public final IDrawable background;
     public final IDrawable icon;
     public static final double INEVITABLE = 1;
 
-    public BaseJEICategory(IGuiHelper helper, RecipeType<T> type, Component title, Item icon, int width, int height) {
+    public AbstractJEICategory(IGuiHelper helper, RecipeType<T> type, Component title, Item icon, int width, int height) {
         ResourceLocation TEXTURE = new ResourceLocation(RealmOfDestiny.MODID,"textures/jei/empty.png");
         this.type = type;
         this.title = title;

@@ -1,4 +1,4 @@
-package net.yxiao233.realmofdestiny.networking.packet;
+package net.yxiao233.realmofdestiny.modAbstracts.packet;
 
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.network.NetworkEvent;

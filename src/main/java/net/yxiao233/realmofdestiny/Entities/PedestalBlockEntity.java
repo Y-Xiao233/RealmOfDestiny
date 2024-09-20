@@ -1,22 +1,22 @@
 package net.yxiao233.realmofdestiny.Entities;
 
-import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.minecraft.client.Camera;
-import net.minecraft.client.multiplayer.ClientLevel;
-import net.minecraft.client.particle.Particle;
-import net.minecraft.client.particle.ParticleRenderType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.Containers;
+import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LightningBolt;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -25,6 +25,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.chunk.ChunkAccess;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
@@ -33,19 +34,25 @@ import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.ItemStackHandler;
-import net.yxiao233.realmofdestiny.Items.ChanceList;
+import net.yxiao233.realmofdestiny.modUtils.ChanceList;
 import net.yxiao233.realmofdestiny.ModRegistry.ModBlockEntities;
 import net.yxiao233.realmofdestiny.ModRegistry.ModBlocks;
 import net.yxiao233.realmofdestiny.helper.recipe.KeyToItemStackHelper;
 import net.yxiao233.realmofdestiny.recipes.PedestalGeneratorRecipe;
 import net.yxiao233.realmofdestiny.recipes.PedestalLightingRecipe;
+import net.yxiao233.realmofdestiny.screen.BaseFluidTankMenu;
+import net.yxiao233.realmofdestiny.screen.GemPolishingStationMenu;
+import net.yxiao233.realmofdestiny.screen.PedestalMenu;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
-public class PedestalBlockEntity extends BlockEntity {
+public class PedestalBlockEntity extends BlockEntity implements MenuProvider {
+    private boolean pressed = false;
+    private int structureId = -1;
     public ItemStackHandler itemHandler = new ItemStackHandler(1){
         @Override
         protected void onContentsChanged(int slot) {
@@ -368,5 +375,40 @@ public class PedestalBlockEntity extends BlockEntity {
         inventory.setItem(0,this.itemHandler.getStackInSlot(0));
 
         return this.level.getRecipeManager().getRecipeFor(PedestalLightingRecipe.Type.INSTANCE, inventory, level);
+    }
+
+    @Override
+    public Component getDisplayName() {
+        return Component.translatable("block.realmofdestiny.pedestal");
+    }
+
+    @Nullable
+    @Override
+    public AbstractContainerMenu createMenu(int i, Inventory inventory, Player player) {
+        return new PedestalMenu(i,inventory,this);
+    }
+
+    public void setPressed(boolean hasPressed){
+        this.pressed = hasPressed;
+    }
+
+    public boolean isPressed(){
+        return this.pressed;
+    }
+
+    public int getStructureId(){
+        return this.structureId;
+    }
+
+    public void increaseStructureId(){
+        this.structureId ++;
+    }
+
+    public void setStructureId(int structureId){
+        this.structureId = structureId;
+    }
+
+    public List<PedestalGeneratorRecipe> getPedestalGeneratorRecipeList(){
+        return level.getRecipeManager().getAllRecipesFor(PedestalGeneratorRecipe.Type.INSTANCE);
     }
 }

@@ -1,15 +1,19 @@
 package net.yxiao233.realmofdestiny.screen;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.item.TooltipFlag;
 import net.yxiao233.realmofdestiny.helper.screen.MouseHelper;
+import net.yxiao233.realmofdestiny.modAbstracts.screen.AbstractModContainerScreen;
+import net.yxiao233.realmofdestiny.modInterfaces.screen.IFluidTankRenderer;
+import net.yxiao233.realmofdestiny.modTextures.AllScreenTextures;
+import net.yxiao233.realmofdestiny.screen.button.ImageButton;
 import net.yxiao233.realmofdestiny.screen.renderer.FluidTankRenderer;
 
-import java.util.Optional;
+import java.util.ArrayList;
 
-public class BaseFluidTankScreen extends AbstractModContainerScreen<BaseFluidTankMenu> implements IFluidTankRenderer{
+public class BaseFluidTankScreen extends AbstractModContainerScreen<BaseFluidTankMenu> implements IFluidTankRenderer {
     private FluidTankRenderer renderer;
     public BaseFluidTankScreen(BaseFluidTankMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
@@ -26,12 +30,6 @@ public class BaseFluidTankScreen extends AbstractModContainerScreen<BaseFluidTan
     public void assignFluidRenderer() {
         renderer = new FluidTankRenderer(menu.blockEntity.getTankCap(), true, 16, 61,40);
     }
-
-    @Override
-    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float delta) {
-        super.render(guiGraphics, mouseX, mouseY, delta);
-    }
-
 
     @Override
     protected void renderBg(GuiGraphics guiGraphics, float v, int i, int i1) {

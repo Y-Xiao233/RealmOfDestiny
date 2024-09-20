@@ -10,6 +10,7 @@ import net.minecraftforge.registries.RegistryObject;
 import net.yxiao233.realmofdestiny.RealmOfDestiny;
 import net.yxiao233.realmofdestiny.screen.BaseFluidTankMenu;
 import net.yxiao233.realmofdestiny.screen.GemPolishingStationMenu;
+import net.yxiao233.realmofdestiny.screen.PedestalMenu;
 
 public class ModMenuTypes {
     public static final DeferredRegister<MenuType<?>> MENUS =
@@ -19,6 +20,9 @@ public class ModMenuTypes {
 
     public static final RegistryObject<MenuType<BaseFluidTankMenu>> BASE_FLUID_TANK_MENU =
             registerMenuType("base_fluid_tank_menu", BaseFluidTankMenu::new);
+
+    public static final RegistryObject<MenuType<PedestalMenu>> PEDESTAL_MENU =
+            registerMenuType("pedestal_menu",PedestalMenu::new);
 
 
     private static <T extends AbstractContainerMenu>RegistryObject<MenuType<T>> registerMenuType(String name, IContainerFactory<T> factory) {

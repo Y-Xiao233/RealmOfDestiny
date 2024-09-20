@@ -1,4 +1,4 @@
-package net.yxiao233.realmofdestiny.Items.Abstract;
+package net.yxiao233.realmofdestiny.modAbstracts.item;
 
 public enum KeyType {
     SHIFT("shift"),

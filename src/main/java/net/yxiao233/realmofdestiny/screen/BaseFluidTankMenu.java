@@ -10,6 +10,7 @@ import net.yxiao233.realmofdestiny.Entities.BaseFluidTankBlockEntity;
 import net.yxiao233.realmofdestiny.ModRegistry.ModMenuTypes;
 import net.yxiao233.realmofdestiny.networking.ModNetWorking;
 import net.yxiao233.realmofdestiny.networking.packet.FluidSyncS2CPacket;
+import net.yxiao233.realmofdestiny.modAbstracts.screen.AbstractModContainerMenu;
 
 public class BaseFluidTankMenu extends AbstractModContainerMenu<BaseFluidTankBlockEntity> {
     public BaseFluidTankBlockEntity blockEntity;

@@ -22,6 +22,7 @@ public class ModCreativeModeTab {
                 output.accept(ModItems.BOLT_PLANKS_ITEM.get());
                 output.accept(ModItems.CREATIVE_ENERGY_MATRIX_ITEM.get());
                 output.accept(ModItems.BASE_FLUID_TANK_ITEM.get());
+                output.accept(ModItems.STRUCTURE_VIEWER.get());
             })
             .title(Component.translatable("itemGroup.realmofdestiny"))
             .build()

@@ -6,7 +6,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.yxiao233.realmofdestiny.Blocks.modAbstractBlock.AbstractModBaseEntityBlock;
+import net.yxiao233.realmofdestiny.modAbstracts.block.AbstractModBaseEntityBlock;
 import net.yxiao233.realmofdestiny.Entities.CreativeEnergyMatrixBlockEntity;
 import net.yxiao233.realmofdestiny.ModRegistry.ModBlockEntities;
 import org.jetbrains.annotations.Nullable;

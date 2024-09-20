@@ -5,6 +5,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.network.NetworkEvent;
 import net.yxiao233.realmofdestiny.Entities.BaseFluidTankBlockEntity;
+import net.yxiao233.realmofdestiny.modAbstracts.packet.AbstractModSyncPacket;
 
 import java.util.function.Supplier;
 

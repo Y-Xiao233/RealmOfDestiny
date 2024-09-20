@@ -27,7 +27,6 @@ public class ModNetWorking {
 
         INSTANCE = net;
 
-
         net.messageBuilder(EnergySyncS2CPacket.class,id(),NetworkDirection.PLAY_TO_CLIENT)
                 .decoder(EnergySyncS2CPacket::new)
                 .encoder(EnergySyncS2CPacket::toBytes)

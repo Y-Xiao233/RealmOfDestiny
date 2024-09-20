@@ -1,8 +1,10 @@
 package net.yxiao233.realmofdestiny.Blocks.custom;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -16,7 +18,9 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.yxiao233.realmofdestiny.Blocks.modAbstractBlock.AbstractModContainerEntityBlock;
+import net.minecraftforge.network.NetworkHooks;
+import net.yxiao233.realmofdestiny.ModRegistry.ModItems;
+import net.yxiao233.realmofdestiny.modAbstracts.block.AbstractModContainerEntityBlock;
 import net.yxiao233.realmofdestiny.Entities.PedestalBlockEntity;
 import net.yxiao233.realmofdestiny.ModRegistry.ModBlockEntities;
 import net.yxiao233.realmofdestiny.helper.blockBox.BlockBoxHelper;
@@ -51,6 +55,11 @@ public class PedestalBlock extends AbstractModContainerEntityBlock<PedestalBlock
         if(!level.isClientSide()){
             BlockPos blockPos = hitResult.getBlockPos();
 
+            if(openMenu(blockPos,player,(PedestalBlockEntity) entity)){
+                return InteractionResult.SUCCESS;
+            }
+
+
             BlockEntity entity = level.getBlockEntity(blockPos);
             PedestalBlockEntity blockEntity = entity instanceof PedestalBlockEntity ? (PedestalBlockEntity) entity : null;
 
@@ -63,7 +72,7 @@ public class PedestalBlock extends AbstractModContainerEntityBlock<PedestalBlock
                 ItemStack get = blockEntity.itemHandler.getStackInSlot(0);
                 blockEntity.itemHandler.extractItem(0,count,false);
                 player.setItemInHand(hand,get);
-            }else if(item == Items.AIR){
+            }else if(item == Items.AIR && !player.getMainHandItem().is(ModItems.STRUCTURE_VIEWER.get())){
                 put(blockEntity,player,count,hand);
             }else if(player.getMainHandItem().is(item) && count < maxStack){
                 put(blockEntity,player,count,hand);
@@ -85,6 +94,18 @@ public class PedestalBlock extends AbstractModContainerEntityBlock<PedestalBlock
             player.setItemInHand(hand,new ItemStack(handItemStack.getItem(),handItemStack.getCount() - putCount));
         }else{
             player.setItemInHand(hand,Items.AIR.getDefaultInstance());
+        }
+    }
+
+    public boolean openMenu(BlockPos blockPos, Player player, PedestalBlockEntity entity){
+        if(entity != null){
+            if(player.getMainHandItem().is(ModItems.STRUCTURE_VIEWER.get())){
+                NetworkHooks.openScreen(((ServerPlayer) player),entity,blockPos);
+                return true;
+            }
+            return false;
+        }else{
+            throw new IllegalStateException("Our Container provider is missing");
         }
     }
 

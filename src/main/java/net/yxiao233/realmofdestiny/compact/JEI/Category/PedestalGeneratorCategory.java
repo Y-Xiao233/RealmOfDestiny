@@ -14,10 +14,12 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.yxiao233.realmofdestiny.ModRegistry.ModItems;
 import net.yxiao233.realmofdestiny.RealmOfDestiny;
-import net.yxiao233.realmofdestiny.compact.JEI.AllJEITextures;
+import net.yxiao233.realmofdestiny.modTextures.AllJEITextures;
+import net.yxiao233.realmofdestiny.modAbstracts.jei.AbstractJEICategory;
+import net.yxiao233.realmofdestiny.modInterfaces.jei.IBaseJEICategory;
 import net.yxiao233.realmofdestiny.recipes.PedestalGeneratorRecipe;
 
-public class PedestalGeneratorCategory extends BaseJEICategory<PedestalGeneratorRecipe> implements IBaseJEICategory<PedestalGeneratorRecipe>{
+public class PedestalGeneratorCategory extends AbstractJEICategory<PedestalGeneratorRecipe> implements IBaseJEICategory<PedestalGeneratorRecipe> {
     public static final ResourceLocation UID = new ResourceLocation(RealmOfDestiny.MODID,"pedestal_generator");
     public static final RecipeType<PedestalGeneratorRecipe> PEDESTAL_GENERATOR_TYPE = new RecipeType<>(UID, PedestalGeneratorRecipe.class);
     public static final Component TITLE = Component.translatable("recipe.realmofdestiny.pedestal_generator");

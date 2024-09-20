@@ -122,7 +122,7 @@ public class BaseFluidTankBlockEntity extends BlockEntity implements MenuProvide
         BlockEntity entity = level.getBlockEntity(blockPos);
         if(entity instanceof BaseFluidTankBlockEntity baseFluidTankBlockEntity){
             FluidStack stack = baseFluidTankBlockEntity.getFluidStackInTank();
-            ModNetWorking.sendToClient(new FluidSyncS2CPacket(stack,blockPos, FluidSyncS2CPacket.PacketAction.SET));
+            ModNetWorking.sendToClient(new FluidSyncS2CPacket(stack,blockPos,FluidSyncS2CPacket.PacketAction.SET));
         }
     }
 
@@ -130,7 +130,11 @@ public class BaseFluidTankBlockEntity extends BlockEntity implements MenuProvide
         CompoundTag tag = new CompoundTag();
         tank.writeToNBT(tag);
         ItemStack stack = new ItemStack(this.getBlockState().getBlock().asItem());
-        stack.setTag(tag);
+
+        if(!tag.getString("FluidName").equals("minecraft:empty")){
+            stack.setTag(tag);
+        }
+
         ItemEntity itemEntity = new ItemEntity(level, getBlockPos().getX() + 0.5, getBlockPos().getY() + 1,getBlockPos().getZ() + 0.5,stack);
         level.addFreshEntity(itemEntity);
     }

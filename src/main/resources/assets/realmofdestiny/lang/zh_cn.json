@@ -3,6 +3,7 @@
 
 
   "item.realmofdestiny.change_stone": "转换石",
+  "item.realmofdestiny.structure_viewer": "结构查看器",
 
 
   "tooltip.realmofdestiny.held.shift": "§9按下§6Shift§9查看更多信息",
@@ -14,9 +15,14 @@
   "tooltip.realmofdestiny.creative_energy_matrix": "可以无限输出FE",
   "tooltip.realmofdestiny.pedestal0": "可以放入物品进行展示",
   "tooltip.realmofdestiny.pedestal1": "可以用来制作特殊配方",
+  "tooltip.realmofdestiny.structure_viewer": "右键基座查看结构",
 
   "tooltip.realmofdestiny.liquid_amount_with_capacity": "容量: %d/%d",
   "tooltip.realmofdestiny.liquid_amount": "容量: %d",
+
+
+  "tip.realmofdestiny.render_structure": "结构成功预览",
+  "tip.realmofdestiny.clear_structure": "预览的结构已被清除",
 
 
   "block.realmofdestiny.gem_polishing_station": "宝石加工站",
