@@ -6,6 +6,7 @@ import com.mojang.math.Axis;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.block.BlockRenderDispatcher;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
@@ -18,14 +19,13 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.client.model.data.ModelData;
 import net.yxiao233.realmofdestiny.Entities.PedestalBlockEntity;
-import net.yxiao233.realmofdestiny.helper.recipe.KeyToItemStackHelper;
+import net.yxiao233.realmofdestiny.ModRegistry.ModBlocks;
 import net.yxiao233.realmofdestiny.recipes.PedestalGeneratorRecipe;
 
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class PedestalRenderer implements BlockEntityRenderer<PedestalBlockEntity> {
     private float rotationAngle = 0.0f;
@@ -56,47 +56,76 @@ public class PedestalRenderer implements BlockEntityRenderer<PedestalBlockEntity
         renderWhileNeeded(blockEntity,poseStack,buffer,i,i1);
     }
 
+    @SuppressWarnings("deprecation")
     private void renderWhileNeeded(PedestalBlockEntity blockEntity, PoseStack poseStack, MultiBufferSource buffer, int light, int overlay) {
         if(blockEntity.isPressed() && blockEntity.getStructureId() != -1){
-            List<PedestalGeneratorRecipe> recipeList = getRecipeList(blockEntity);
+            List<PedestalGeneratorRecipe> recipeList = blockEntity.getPedestalGeneratorRecipeList();
             PedestalGeneratorRecipe recipe = recipeList.get(blockEntity.getStructureId());
 
-            poseStack.pushPose();
             RenderSystem.enableBlend();
             RenderSystem.disableCull();
             RenderSystem.enableBlend();
             RenderSystem.blendFunc(770, 771);
             Minecraft.getInstance().getTextureManager().bindForSetup(TextureAtlas.LOCATION_BLOCKS);
             {
-                renderStructure(recipe,poseStack,buffer,light,overlay);
+                renderStructure(blockEntity,recipe,poseStack,buffer,light,overlay);
             }
             RenderSystem.disableBlend();
-            poseStack.popPose();
         }
     }
 
-    private void renderStructure(PedestalGeneratorRecipe recipe,PoseStack poseStack, MultiBufferSource bufferSource, int light, int overlay){
+    private void renderStructure(PedestalBlockEntity blockEntity,PedestalGeneratorRecipe recipe,PoseStack poseStack, MultiBufferSource bufferSource, int light, int overlay){
         char[][][] patternsList = recipe.getPatternsList();
         int[] pedestal = findPedestal(patternsList);
         poseStack.translate(pedestal[0],pedestal[1],pedestal[2]);
         for (int y = 0; y < patternsList.length; y++) {
             for (int x = 0; x < patternsList[y].length; x++) {
                 for (int z = 0; z < patternsList[y][x].length; z++) {
-                    poseStack.translate(-x,-y,-z);
-                    renderBlock(recipe,patternsList[y][x][z],poseStack,bufferSource,light,overlay);
-                    poseStack.translate(x,y,z);
+                    final int[] offSet = {-x,-y,-z};
+                    renderBlock(blockEntity,recipe,patternsList[y][x][z],poseStack,bufferSource,light,overlay,offSet,pedestal);
                 }
             }
         }
     }
 
-    private void renderBlock(PedestalGeneratorRecipe recipe, char key, PoseStack poseStack, MultiBufferSource bufferSource,int light, int overlay){
+    @SuppressWarnings("deprecation")
+    private void renderBlock(PedestalBlockEntity blockEntity,PedestalGeneratorRecipe recipe, char key, PoseStack poseStack, MultiBufferSource bufferSource,int light, int overlay, int[] offSet, int[] pedestal){
+        poseStack.pushPose();
+        poseStack.translate(offSet[0],offSet[1],offSet[2]);
+
         BlockRenderDispatcher blockRender = Minecraft.getInstance().getBlockRenderer();
         ItemStack itemStack = recipe.getKeyItemStack().getCurrentItemStack(String.valueOf(key));
         if(itemStack != null){
             BlockState blockState = Block.byItem(itemStack.getItem()).defaultBlockState();
-            blockRender.renderSingleBlock(blockState,poseStack,bufferSource,light,overlay);
+            if(isAir(blockEntity,offSet,pedestal)){
+                poseStack.scale(0.95F,0.95F,0.95F);
+                poseStack.translate(0.025F,0.025F,0.025F);
+                blockRender.renderSingleBlock(blockState,poseStack,bufferSource,light,overlay,ModelData.EMPTY,RenderType.cutout());
+            }else if(!hasCurrentBlock(blockEntity,blockState,offSet,pedestal) && !isAir(blockEntity,offSet,pedestal)){
+                poseStack.scale(1.001F,1.001F,1.001F);
+                poseStack.translate(-0.0005F,-0.0005F,-0.0005F);
+                BlockState errorBlock = ModBlocks.WARNING.get().defaultBlockState();
+                blockRender.renderSingleBlock(errorBlock,poseStack,bufferSource,light,overlay);
+                blockRender.renderSingleBlock(errorBlock,poseStack,bufferSource,light,overlay,ModelData.EMPTY,RenderType.cutout());
+            }
         }
+
+        poseStack.popPose();
+    }
+
+    private boolean hasCurrentBlock(PedestalBlockEntity blockEntity,BlockState blockState, int[] offSet, int[] pedestal){
+        BlockPos offSetPos = getCurrentBlockPos(blockEntity,offSet,pedestal);
+        return blockEntity.getLevel().getBlockState(offSetPos).is(blockState.getBlock()) || blockState.isAir();
+    }
+
+    private boolean isAir(PedestalBlockEntity blockEntity, int[] offSet, int[] pedestal){
+        BlockPos offSetPos = getCurrentBlockPos(blockEntity,offSet,pedestal);
+        return blockEntity.getLevel().getBlockState(offSetPos).isAir();
+    }
+
+    private BlockPos getCurrentBlockPos(PedestalBlockEntity blockEntity, int[] offSet, int[] pedestal){
+        BlockPos offSetPedestal = blockEntity.getBlockPos().offset(pedestal[0],pedestal[1],pedestal[2]);
+        return offSetPedestal.offset(offSet[0],offSet[1],offSet[2]);
     }
 
     private int[] findPedestal(char[][][] patternsList) {
@@ -116,9 +145,5 @@ public class PedestalRenderer implements BlockEntityRenderer<PedestalBlockEntity
         int bLight = level.getBrightness(LightLayer.BLOCK,blockPos);
         int sLight = level.getBrightness(LightLayer.SKY,blockPos);
         return LightTexture.pack(bLight,sLight);
-    }
-
-    private List<PedestalGeneratorRecipe> getRecipeList(PedestalBlockEntity entity){
-        return entity.getPedestalGeneratorRecipeList();
     }
 }

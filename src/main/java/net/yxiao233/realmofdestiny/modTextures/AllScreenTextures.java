@@ -9,7 +9,9 @@ public enum AllScreenTextures implements ScreenElement {
     BASIC_BUTTON("widgets",0, 0, 20, 20),
     PRESS_BASIC_BUTTON("widgets",0,20,20,20),
     STRUCTURE_BUTTON("widgets",0,40,55,20),
-    PRESS_STRUCTURE_BUTTON("widgets",0,60,55,20);
+    PRESS_STRUCTURE_BUTTON("widgets",0,60,55,20),
+    RIGHT_ARROW("widgets",0,249,15,7),
+    SCROLLED("widgets",232,0,12,15);
     public final ResourceLocation location;
     public int width, height;
     public int startX, startY;

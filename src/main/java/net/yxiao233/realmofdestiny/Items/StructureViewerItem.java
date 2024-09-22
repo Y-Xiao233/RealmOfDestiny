@@ -6,6 +6,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.yxiao233.realmofdestiny.modAbstracts.item.AbstractBaseItemWithTooltip;
+import net.yxiao233.realmofdestiny.modAbstracts.item.KeyType;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -17,7 +18,7 @@ public class StructureViewerItem extends AbstractBaseItemWithTooltip {
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltips, TooltipFlag flag) {
-        addTooltip(tooltips,stack, ChatFormatting.GOLD);
+        addTooltipWhileKeyDown(KeyType.SHIFT,tooltips,stack,ChatFormatting.GOLD);
     }
 
     @Override

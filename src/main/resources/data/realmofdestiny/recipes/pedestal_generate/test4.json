@@ -1,0 +1,40 @@
+{
+  "type": "realmofdestiny:pedestal_generator",
+  "pedestal_item": {
+    "item": "minecraft:diamond_block"
+  },
+  "time": 60,
+  "energy": 4000,
+  "pattern": [
+    [
+      "   ",
+      " P ",
+      "   "
+    ],[
+      "SSS",
+      "SGS",
+      "SSS"
+    ],[
+      "DDD",
+      "DGD",
+      "DDD"
+    ]
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:stone"
+    },
+    "D": {
+      "item": "minecraft:diamond_block"
+    },
+    "G": {
+      "item": "minecraft:gold_block"
+    }
+  },
+  "output": [
+    {
+      "item": "minecraft:diamond_ore",
+      "count": 2
+    }
+  ]
+}

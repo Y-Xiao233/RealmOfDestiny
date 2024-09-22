@@ -23,6 +23,9 @@
 
   "tip.realmofdestiny.render_structure": "Structure successfully previewed",
   "tip.realmofdestiny.clear_structure": "The preview structure has been cleared",
+  "tip.realmofdestiny.structure_preview": "Click to preview the structure",
+  "tip.realmofdestiny.structure_preview_creative": "[§cWIP!§f]Click to place the structure (Creative Only)",
+  "tip.realmofdestiny.structure_preview_clear": "Click to clear structure preview",
 
 
   "block.realmofdestiny.gem_polishing_station": "Gem Polishing Station",

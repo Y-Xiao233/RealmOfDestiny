@@ -23,6 +23,9 @@
 
   "tip.realmofdestiny.render_structure": "结构成功预览",
   "tip.realmofdestiny.clear_structure": "预览的结构已被清除",
+  "tip.realmofdestiny.structure_preview": "点击预览结构",
+  "tip.realmofdestiny.structure_preview_creative": "[§c§lWIP!§f]点击预览结构(仅限创造)",
+  "tip.realmofdestiny.structure_preview_clear": "点击清除结构预览",
 
 
   "block.realmofdestiny.gem_polishing_station": "宝石加工站",

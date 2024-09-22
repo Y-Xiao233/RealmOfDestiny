@@ -45,11 +45,15 @@ public class ModBlocks {
     public static final RegistryObject<Block> BASE_FLUID_TANK = BLOCKS.register("base_fluid_tank", () ->
             new BaseFluidTankBlock(BlockBehaviour.Properties.copy(Blocks.GLASS).sound(SoundType.METAL).noLootTable()));
 
+    public static final RegistryObject<Block> WARNING = BLOCKS.register("warning", () ->
+            new Block(BlockBehaviour.Properties.copy(Blocks.BEDROCK).noLootTable()));
+
     private static <T extends Block> RegistryObject<T> registryBlock(String name, Supplier<T> block){
         RegistryObject<T> toReturn = BLOCKS.register(name,block);
         registryBlockItem(name,toReturn);
         return toReturn;
     }
+
     public static <T extends Block> RegistryObject<Item> registryBlockItem(String name, RegistryObject<T> block){
         return ModItems.ITEMS.register(name,() ->
                 new BlockItem(ModBlocks.GEM_POLISHING_STATION.get(),new Item.Properties()));

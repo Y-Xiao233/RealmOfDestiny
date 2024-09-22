@@ -8,6 +8,8 @@ import org.cyclops.cyclopscore.client.gui.image.IImage;
 public class ImageButton extends ButtonImage {
     public IImage image;
     public IModImage modImage;
+    public final int finalY;
+    public final int finalX;
 
     public ImageButton(int x, int y, Component narrationMessage, OnPress pressCallback, IImage image) {
         super(x, y, narrationMessage, pressCallback, image);
@@ -16,5 +18,7 @@ public class ImageButton extends ButtonImage {
         }else{
             this.image = image;
         }
+        this.finalY = y;
+        this.finalX = x;
     }
 }

@@ -32,6 +32,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         leavesBlock(ModBlocks.BOLT_LEAVES);
         blockWithItem(ModBlocks.BOLT_PLANKS);
         blockWithItem(ModBlocks.CREATIVE_ENERGY_MATRIX);
+        blockWithItem(ModBlocks.WARNING);
     }
 
     private void leavesBlock(RegistryObject<Block> registryObject){
