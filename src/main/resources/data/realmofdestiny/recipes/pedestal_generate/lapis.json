@@ -1,0 +1,14 @@
+{
+  "type": "realmofdestiny:pedestal_generator",
+  "pedestal_item": {
+    "item": "minecraft:lapis_block"
+  },
+  "time": 10,
+  "energy": 0,
+  "output": [
+    {
+      "item": "minecraft:lapis_lazuli",
+      "count": 2
+    }
+  ]
+}
