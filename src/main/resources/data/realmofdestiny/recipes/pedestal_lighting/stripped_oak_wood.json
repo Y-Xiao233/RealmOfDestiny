@@ -1,10 +1,10 @@
 {
   "type": "realmofdestiny:pedestal_lighting",
   "pedestal_item": {
-    "item": "minecraft:oak_log"
+    "item": "minecraft:oak_wood"
   },
   "output": {
-    "item": "minecraft:oak_wood"
+    "item": "minecraft:stripped_oak_wood"
   },
   "time": 50,
   "energy": 0,

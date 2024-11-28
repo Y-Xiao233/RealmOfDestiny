@@ -41,7 +41,6 @@ import net.yxiao233.realmofdestiny.helper.recipe.KeyToItemStackHelper;
 import net.yxiao233.realmofdestiny.recipes.PedestalGeneratorRecipe;
 import net.yxiao233.realmofdestiny.recipes.PedestalLightingRecipe;
 import net.yxiao233.realmofdestiny.screen.BaseFluidTankMenu;
-import net.yxiao233.realmofdestiny.screen.GemPolishingStationMenu;
 import net.yxiao233.realmofdestiny.screen.PedestalMenu;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -50,7 +49,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
-public class PedestalBlockEntity extends BlockEntity implements MenuProvider {
+public class PedestalBlockEntity extends ModBaseBlockEntity implements MenuProvider {
     private boolean pressed = false;
     private int structureId = -1;
     public ItemStackHandler itemHandler = new ItemStackHandler(1){
@@ -214,7 +213,11 @@ public class PedestalBlockEntity extends BlockEntity implements MenuProvider {
     }
     private boolean hasGeneratorRecipe(Optional<PedestalGeneratorRecipe> recipe,BlockPos pedestalBlockPos) {
         if(!recipe.isEmpty()){
-            return checkBlock(recipe.get().getKeyItemStack(),recipe.get().getPatternsList(),pedestalBlockPos);
+            if(recipe.get().getKeyItemStack() == KeyToItemStackHelper.EMPTY){
+                return true;
+            }else{
+                return checkBlock(recipe.get().getKeyItemStack(),recipe.get().getPatternsList(),pedestalBlockPos);
+            }
         }
         return false;
     }
@@ -267,7 +270,7 @@ public class PedestalBlockEntity extends BlockEntity implements MenuProvider {
 
     private void craftItem(Optional<PedestalGeneratorRecipe> recipe) {
         ChanceList chanceList = new ChanceList(recipe.get().getIngredients(),recipe.get().getChanceList(),recipe.get().getCountList());
-        BlockEntity containerEntity =  level.getBlockEntity(this.containerBlockPos);
+        BlockEntity containerEntity = level.getBlockEntity(this.containerBlockPos);
 
         containerEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent((inventory -> {
             if(inventory instanceof IItemHandler){

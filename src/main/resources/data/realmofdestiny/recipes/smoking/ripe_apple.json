@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smoking",
+  "cookingtime": 30,
+  "experience": 0.2,
+  "ingredient": {
+    "item": "minecraft:apple"
+  },
+  "result": "realmofdestiny:ripe_apple"
+}

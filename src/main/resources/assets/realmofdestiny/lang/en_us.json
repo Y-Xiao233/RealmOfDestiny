@@ -4,6 +4,8 @@
 
   "item.realmofdestiny.change_stone": "Change Stone",
   "item.realmofdestiny.structure_viewer": "Structure Viewer",
+  "item.realmofdestiny.paper_pile": "Paper Pile",
+  "item.realmofdestiny.ripe_apple": "Ripe Apple",
 
 
   "tooltip.realmofdestiny.held.shift": "§9Press §6Shift§9 to view more information",
@@ -13,7 +15,7 @@
 
   "tooltip.realmofdestiny.change_stone": "Partial blocks can be converted into specific blocks",
   "tooltip.realmofdestiny.creative_energy_matrix": "Can output FE infinitely",
-  "tooltip.realmofdestiny.pedestal0": "Can be displayed as items and used to make special recipes",
+  "tooltip.realmofdestiny.pedestal0": "Items can be placed for display",
   "tooltip.realmofdestiny.pedestal1": "Can be used to make special recipes",
   "tooltip.realmofdestiny.structure_viewer": "Right click on the pedestal to view the structure",
 
@@ -37,6 +39,7 @@
   "block.realmofdestiny.bolt_planks": "Bolt Planks",
   "block.realmofdestiny.creative_energy_matrix": "Creative Energy Matrix",
   "block.realmofdestiny.base_fluid_tank": "Base Fluid Tank",
+  "block.realmofdestiny.void_plant_machine": "Void Plant Machine",
 
 
   "recipe.realmofdestiny.changestone.chance": "chance: %d",
@@ -44,9 +47,10 @@
   "recipe.realmofdestiny.pedestal_generator.in_pedestal": "Put this item on Pedestal",
   "recipe.realmofdestiny.progress": "Time: %d tick",
   "recipe.realmofdestiny.energy": "Energy: %d FE",
-  "recipe.realmofdestiny.pedestal_generator.need_structure": "Need Structure",
+  "recipe.realmofdestiny.np_structure_required": "No structure required",
   "recipe.realmofdestiny.pedestal_generator": "Pedestal Generator",
   "recipe.realmofdestiny.pedestal_lighting": "Pedestal Lighting",
+  "recipe.realmofdestiny.void_plant_machine": "Void Plant",
   "recipe.realmofdestiny.pedestal_lighting.leaves": "There should be Bolt Leaves directly above the pedestal,and there should be no obstruction",
 
 

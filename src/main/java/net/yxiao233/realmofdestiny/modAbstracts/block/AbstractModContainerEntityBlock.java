@@ -4,9 +4,11 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.yxiao233.realmofdestiny.Entities.ModBaseBlockEntity;
+import net.yxiao233.realmofdestiny.Entities.PedestalBlockEntity;
 import net.yxiao233.realmofdestiny.modAbstracts.block.AbstractModBaseEntityBlock;
 
-public abstract class AbstractModContainerEntityBlock<T extends BlockEntity> extends AbstractModBaseEntityBlock<T> {
+public abstract class AbstractModContainerEntityBlock<T extends ModBaseBlockEntity> extends AbstractModBaseEntityBlock<T> {
     protected AbstractModContainerEntityBlock(Properties pProperties) {
         super(pProperties);
     }

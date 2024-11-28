@@ -100,13 +100,13 @@ public class PedestalRenderer implements BlockEntityRenderer<PedestalBlockEntity
             if(isAir(blockEntity,offSet,pedestal)){
                 poseStack.scale(0.95F,0.95F,0.95F);
                 poseStack.translate(0.025F,0.025F,0.025F);
-                blockRender.renderSingleBlock(blockState,poseStack,bufferSource,light,overlay,ModelData.EMPTY,RenderType.cutout());
+                blockRender.renderSingleBlock(blockState,poseStack,bufferSource,light,overlay,ModelData.EMPTY,RenderType.translucent());
             }else if(!hasCurrentBlock(blockEntity,blockState,offSet,pedestal) && !isAir(blockEntity,offSet,pedestal)){
                 poseStack.scale(1.001F,1.001F,1.001F);
                 poseStack.translate(-0.0005F,-0.0005F,-0.0005F);
                 BlockState errorBlock = ModBlocks.WARNING.get().defaultBlockState();
                 blockRender.renderSingleBlock(errorBlock,poseStack,bufferSource,light,overlay);
-                blockRender.renderSingleBlock(errorBlock,poseStack,bufferSource,light,overlay,ModelData.EMPTY,RenderType.cutout());
+                blockRender.renderSingleBlock(errorBlock,poseStack,bufferSource,light,overlay,ModelData.EMPTY,RenderType.translucent());
             }
         }
 

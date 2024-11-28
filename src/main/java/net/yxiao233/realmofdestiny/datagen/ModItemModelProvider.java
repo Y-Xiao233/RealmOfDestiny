@@ -21,6 +21,9 @@ public class ModItemModelProvider extends ItemModelProvider {
     protected void registerModels() {
         simpleItem(ModItems.CHANGE_STONE);
         saplingItem(ModBlocks.BOLT_SAPLING);
+        simpleItem(ModItems.STRUCTURE_VIEWER);
+        simpleItem(ModItems.PAPER_PILE);
+        simpleItem(ModItems.RIPE_APPLE);
     }
     private ItemModelBuilder simpleItem(RegistryObject<Item> item){
         return withExistingParent(item.getId().getPath(),

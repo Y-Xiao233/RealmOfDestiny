@@ -12,6 +12,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.yxiao233.realmofdestiny.Entities.PedestalBlockEntity;
 import net.yxiao233.realmofdestiny.ModRegistry.ModItems;
+import net.yxiao233.realmofdestiny.helper.recipe.KeyToItemStackHelper;
 import net.yxiao233.realmofdestiny.helper.screen.MouseHelper;
 import net.yxiao233.realmofdestiny.modAbstracts.screen.AbstractModContainerScreen;
 import net.yxiao233.realmofdestiny.modTextures.AllScreenTextures;
@@ -37,12 +38,19 @@ public class PedestalScreen extends AbstractModContainerScreen<PedestalMenu> {
         setTEXTURE("textures/gui/pedestal_gui.png");
         addClearButton();
         addStructureButton();
-        this.SCROLL_STEP = (getRecipeList().size()*24)/82;
+
+        AtomicInteger size = new AtomicInteger();
+        getRecipeList().forEach(recipe -> {
+            if(recipe.getKeyItemStack() != KeyToItemStackHelper.EMPTY){
+                size.getAndIncrement();
+            }
+        });
+        this.SCROLL_STEP = (size.get()*24)/82;
     }
 
     @Override
     protected void renderBg(GuiGraphics guiGraphics, float v, int i, int i1) {
-        basicRenderBG(guiGraphics, v, i, i1);
+        basicRenderBG(guiGraphics);
     }
 
     @Override
@@ -152,16 +160,18 @@ public class PedestalScreen extends AbstractModContainerScreen<PedestalMenu> {
         AtomicInteger i = new AtomicInteger(0);
         recipeList.forEach(recipe -> {
             final int currentI = i.get();
-            ImageButton imageButton = new ImageButton(firstX.get(),firstY.get(),Component.empty(),button1 -> {
-                renderStructure(currentI);
-                setIfPlayerIsCreative(recipe);
-            },getImage(AllScreenTextures.STRUCTURE_BUTTON,AllScreenTextures.PRESS_STRUCTURE_BUTTON));
+            if(recipe.getKeyItemStack() != KeyToItemStackHelper.EMPTY){
+                ImageButton imageButton = new ImageButton(firstX.get(),firstY.get(),Component.empty(),button1 -> {
+                    renderStructure(currentI);
+                    setIfPlayerIsCreative(recipe);
+                },getImage(AllScreenTextures.STRUCTURE_BUTTON,AllScreenTextures.PRESS_STRUCTURE_BUTTON));
 
-            firstY.getAndAdd(24);
+                firstY.getAndAdd(24);
 
+                this.addRenderableWidget(imageButton);
+                addToMouseListener(imageButton);
+            }
             i.getAndIncrement();
-            this.addRenderableWidget(imageButton);
-            addToMouseListener(imageButton);
         });
     }
 
@@ -175,16 +185,18 @@ public class PedestalScreen extends AbstractModContainerScreen<PedestalMenu> {
         AtomicInteger firstY = new AtomicInteger(9);
         List<PedestalGeneratorRecipe> recipeList = getRecipeList();
         recipeList.forEach(recipe -> {
-            int cY = firstY.get()+yOffSet*SCROLL_STEP;
-            if(cY <= 7 || cY-16 >= 7 + imageHeight - 18*4 - 50){
+            if(recipe.getKeyItemStack() != KeyToItemStackHelper.EMPTY){
+                int cY = firstY.get()+yOffSet*SCROLL_STEP;
+                if(cY <= 7 || cY-16 >= 7 + imageHeight - 18*4 - 50){
 
-            }else{
-                guiGraphics.renderItem(recipe.getPedestalItemStack(),firstX,cY);
-                AllScreenTextures.RIGHT_ARROW.render(guiGraphics,firstX+17,cY+4);
-                guiGraphics.renderItem(recipe.getResultItem(null),firstX+34,cY);
+                }else{
+                    guiGraphics.renderItem(recipe.getPedestalItemStack(),firstX,cY);
+                    AllScreenTextures.RIGHT_ARROW.render(guiGraphics,firstX+17,cY+4);
+                    guiGraphics.renderItem(recipe.getResultItem(null),firstX+34,cY);
+                }
+
+                firstY.getAndAdd(24);
             }
-
-            firstY.getAndAdd(24);
         });
     }
 

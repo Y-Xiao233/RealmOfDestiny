@@ -1,5 +1,6 @@
 package net.yxiao233.realmofdestiny.modAbstracts.block;
 
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.network.protocol.game.ClientboundContainerSetContentPacket;
@@ -22,10 +23,11 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.common.SoundActions;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.network.NetworkHooks;
+import net.yxiao233.realmofdestiny.Entities.ModBaseBlockEntity;
 import net.yxiao233.realmofdestiny.networking.ModNetWorking;
 import net.yxiao233.realmofdestiny.networking.packet.FluidSyncS2CPacket;
 
-public abstract class AbstractModFluidTankEntityBlock<T extends BlockEntity> extends AbstractModContainerEntityBlock<T> {
+public abstract class AbstractModFluidTankEntityBlock<T extends ModBaseBlockEntity> extends AbstractModContainerEntityBlock<T> {
     protected AbstractModFluidTankEntityBlock(Properties pProperties) {
         super(pProperties);
     }

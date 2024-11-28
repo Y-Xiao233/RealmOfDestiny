@@ -28,6 +28,11 @@ public class PedestalLightingCategory extends AbstractJEICategory<PedestalLighti
     }
 
     @Override
+    public net.minecraft.world.item.crafting.RecipeType<PedestalLightingRecipe> getTypeInstance() {
+        return PedestalLightingRecipe.Type.INSTANCE;
+    }
+
+    @Override
     public void setRecipe(IRecipeLayoutBuilder builder, PedestalLightingRecipe recipe, IFocusGroup iFocusGroup) {
         builder.addSlot(RecipeIngredientRole.INPUT,120,110)
                 .addTooltipCallback(addText(

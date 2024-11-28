@@ -32,6 +32,13 @@
 - 基础流体储罐是空的的时候挖掘下来的方块不会有标签了
 - 为需要结构的合成表添加结构预览
 
+### v1.0.7
+- 添加了纸堆
+- 为结构查看器添加了贴图
+- 基座可以处理无结构配方了
+- 为基座生产配方添加了JEI右下角结构所需方块提示
+- 添加了虚空植物资源获取器(未完善)
+
 ## en_us
 ### v1.0.0
 - init
@@ -63,3 +70,10 @@
 ### v1.0.6
 - When the base fluid storage tank is empty, the excavated blocks will no longer have tags
 - Add a structure preview for recipes that require structure
+
+### v1.0.7
+- Added paper pile
+- Added texture to the structure viewer
+- -The Pedestal can handle unstructured recipes now
+  -Added block prompts for JEI bottom right corner structure to the Pedestal Generating Recipe
+  -Added Void Plant Machine (incomplete)

@@ -50,7 +50,11 @@ public class PedestalGeneratorRecipe implements Recipe<SimpleContainer> {
         if (level.isClientSide()) {
             return false;
         }
-        return simpleContainer.getItem(0).is(pedestalItemStack.getItem()) && keyItemStack.getKeys().contains("P");
+        if(keyItemStack == KeyToItemStackHelper.EMPTY){
+            return simpleContainer.getItem(0).is(pedestalItemStack.getItem());
+        }else{
+            return simpleContainer.getItem(0).is(pedestalItemStack.getItem()) && keyItemStack.getKeys().contains("P");
+        }
     }
 
     @Override
@@ -165,31 +169,39 @@ public class PedestalGeneratorRecipe implements Recipe<SimpleContainer> {
             }
 
             //pattern
-            JsonArray pattern = GsonHelper.getAsJsonArray(jsonObject,"pattern");
-            ArrayList<String> patternList = new ArrayList<>();
-            for (int i = 0; i < pattern.size(); i++) {
-                patternList.add(pattern.get(i).toString());
-            }
+            PatternHelper helper = null;
+            char[][][] patterns = null;
+            if(jsonObject.has("pattern")){
+                JsonArray pattern = GsonHelper.getAsJsonArray(jsonObject,"pattern");
+                ArrayList<String> patternList = new ArrayList<>();
+                for (int i = 0; i < pattern.size(); i++) {
+                    patternList.add(pattern.get(i).toString());
+                }
 
-            PatternHelper helper = new PatternHelper(patternList);
-            char[][][] patterns = helper.getPatternChars();
+                helper = new PatternHelper(patternList);
+                patterns = helper.getPatternChars();
+            }
 
             //key
-            JsonObject keyObject = GsonHelper.getAsJsonObject(jsonObject,"key");
-            ArrayList<ItemStack> itemStacks = new ArrayList<>();
-            ArrayList<String> keys = helper.getKeysMap();
-            for (int i = 0; i < keys.size(); i++) {
-                if(keys.get(i).equals("P")){
-                    itemStacks.add(new ItemStack(ModBlocks.PEDESTAL.get()));
-                    continue;
-                }else if(keys.get(i).equals(" ")){
-                    itemStacks.add(new ItemStack(Items.AIR));
-                    continue;
+            KeyToItemStackHelper toHelper = KeyToItemStackHelper.EMPTY;
+            if(jsonObject.has("key")){
+                JsonObject keyObject = GsonHelper.getAsJsonObject(jsonObject,"key");
+                ArrayList<ItemStack> itemStacks = new ArrayList<>();
+                ArrayList<String> keys = helper.getKeysMap();
+                for (int i = 0; i < keys.size(); i++) {
+                    if(keys.get(i).equals("P")){
+                        itemStacks.add(new ItemStack(ModBlocks.PEDESTAL.get()));
+                        continue;
+                    }else if(keys.get(i).equals(" ")){
+                        itemStacks.add(new ItemStack(Items.AIR));
+                        continue;
+                    }
+                    ItemStack itemStack = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(keyObject,keys.get(i)));
+                    itemStacks.add(itemStack);
                 }
-                ItemStack itemStack = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(keyObject,keys.get(i)));
-                itemStacks.add(itemStack);
+
+                toHelper = new KeyToItemStackHelper(helper.getKeysMap(),itemStacks);
             }
-            KeyToItemStackHelper toHelper = new KeyToItemStackHelper(helper.getKeysMap(),itemStacks);
 
             //energy
             int energy = Integer.valueOf(String.valueOf(jsonObject.get("energy"))).intValue();

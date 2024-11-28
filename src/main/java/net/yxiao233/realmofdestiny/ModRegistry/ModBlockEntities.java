@@ -6,17 +6,12 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.yxiao233.realmofdestiny.Entities.BaseFluidTankBlockEntity;
 import net.yxiao233.realmofdestiny.Entities.CreativeEnergyMatrixBlockEntity;
-import net.yxiao233.realmofdestiny.Entities.GemPolishingStationBlockEntity;
 import net.yxiao233.realmofdestiny.Entities.PedestalBlockEntity;
+import net.yxiao233.realmofdestiny.Entities.VoidPlantMachineBlockEntity;
 import net.yxiao233.realmofdestiny.RealmOfDestiny;
 
 public class ModBlockEntities {
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, RealmOfDestiny.MODID);
-
-    public static final RegistryObject<BlockEntityType<GemPolishingStationBlockEntity>> GEM_POLISHING_STATION_BE = BLOCK_ENTITIES.register("gem_polishing_station", () ->
-            BlockEntityType.Builder.of(GemPolishingStationBlockEntity::new, ModBlocks.GEM_POLISHING_STATION.get())
-                    .build(null)
-    );
 
     public static final RegistryObject<BlockEntityType<PedestalBlockEntity>> PEDESTAL_BE = BLOCK_ENTITIES.register("pedestal", () ->
             BlockEntityType.Builder.of(PedestalBlockEntity::new,ModBlocks.PEDESTAL.get())
@@ -28,5 +23,9 @@ public class ModBlockEntities {
 
     public static final RegistryObject<BlockEntityType<BaseFluidTankBlockEntity>> BASE_FLUID_TANK_BE = BLOCK_ENTITIES.register("base_fluid_tank", () ->
             BlockEntityType.Builder.of(BaseFluidTankBlockEntity::new,ModBlocks.BASE_FLUID_TANK.get())
+                    .build(null));
+
+    public static final RegistryObject<BlockEntityType<VoidPlantMachineBlockEntity>> VOID_PLANT_MACHINE_BE = BLOCK_ENTITIES.register("void_plant_machine", () ->
+            BlockEntityType.Builder.of(VoidPlantMachineBlockEntity::new,ModBlocks.VOID_PLANT_MACHINE.get())
                     .build(null));
 }

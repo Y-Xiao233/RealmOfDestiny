@@ -33,7 +33,7 @@ public class BaseFluidTankScreen extends AbstractModContainerScreen<BaseFluidTan
 
     @Override
     protected void renderBg(GuiGraphics guiGraphics, float v, int i, int i1) {
-        basicRenderBG(guiGraphics, v, i, i1);
+        basicRenderBG(guiGraphics);
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
         renderer.render(guiGraphics,x + 77,y,menu.getFluidStackInTank());

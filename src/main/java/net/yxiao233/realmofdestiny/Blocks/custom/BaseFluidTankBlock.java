@@ -1,8 +1,10 @@
 package net.yxiao233.realmofdestiny.Blocks.custom;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -76,8 +78,11 @@ public class BaseFluidTankBlock extends AbstractModFluidTankEntityBlock<BaseFlui
     @Override
     public void setDrops(Level level, BlockPos blockPos) {
         BlockEntity blockEntity = level.getBlockEntity(blockPos);
+        Player player = Minecraft.getInstance().player;
         if(blockEntity instanceof BaseFluidTankBlockEntity entity){
-            entity.drops();
+            if(player != null && !player.isCreative()){
+                entity.drops();
+            }
         }
     }
 
@@ -89,7 +94,6 @@ public class BaseFluidTankBlock extends AbstractModFluidTankEntityBlock<BaseFlui
                 entity.onLoad();
                 CompoundTag tag = pStack.getTag();
                 entity.tank.readFromNBT(tag);
-                entity.load(tag);
             }
         }
         super.setPlacedBy(pLevel, pPos, pState, pPlacer, pStack);

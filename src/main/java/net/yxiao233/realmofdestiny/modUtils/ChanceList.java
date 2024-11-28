@@ -13,6 +13,7 @@ import java.util.Random;
 
 public class ChanceList {
     private ArrayList<BlockState> blockStateList = new ArrayList<>();
+    private ArrayList<ItemStack> itemStacks = new ArrayList<>();
     private ArrayList<Double> rawChanceList = new ArrayList<>();
     private ArrayList<Double> chanceList = new ArrayList<>();
     private ArrayList<Integer> countList = new ArrayList<>();
@@ -28,7 +29,6 @@ public class ChanceList {
         initChanceList(ingredients,chanceList,countList);
     }
     public ChanceList(){}
-
 
     public ArrayList<BlockState> getBlockStateList(){
         return this.blockStateList;
@@ -71,11 +71,26 @@ public class ChanceList {
             this.chanceList.add(newChance);
         }
     }
+
+    public void add(ItemStack stack, BlockState blockState, double chance, int count){
+        this.totalChance += chance;
+        this.itemStacks.add(stack);
+        this.blockStateList.add(blockState);
+        this.countList.add(count);
+        this.rawChanceList.add(chance);
+        this.chanceList.removeAll(this.chanceList);
+        if(isOnly()){
+            this.chanceList.add(this.rawChanceList.get(0));
+            return;
+        }
+        for(double rawChance : this.rawChanceList){
+            double newChance = rawChance / this.totalChance;
+            this.chanceList.add(newChance);
+        }
+    }
     public boolean isOnly(){
         return this.rawChanceList.size() == 1;
     }
-
-
 
     public void initChanceList(NonNullList<Ingredient> ingredients, ArrayList<Double> chanceList){
         for (int i = 0; i < ingredients.size(); i++) {
@@ -84,14 +99,15 @@ public class ChanceList {
             add(blockState1,chance1);
         }
     }
+
     public void initChanceList(NonNullList<Ingredient> ingredients, ArrayList<Double> chanceList,int[] countList){
         for (int i = 0; i < ingredients.size(); i++) {
             BlockState blockState1 = Block.byItem(ingredients.get(i).getItems()[0].getItem()).defaultBlockState();
+            ItemStack stack = ingredients.get(i).getItems()[0];
             double chance1 = chanceList.get(i);
-            add(blockState1,chance1,countList[i]);
+            add(stack,blockState1,chance1,countList[i]);
         }
     }
-
 
     public ItemStack getChanceItemStack(){
         if(this.countList.isEmpty()){
@@ -104,7 +120,7 @@ public class ChanceList {
             double currentChance = this.chanceList.get(i);
             totalChance += currentChance;
             if(chance <= totalChance){
-                itemStack = new ItemStack(this.blockStateList.get(i).getBlock().asItem(),this.countList.get(i));
+                itemStack = new ItemStack(this.itemStacks.get(i).getItem(),this.countList.get(i));
                 break;
             }
         }

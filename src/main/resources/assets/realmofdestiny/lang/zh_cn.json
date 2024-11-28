@@ -4,6 +4,8 @@
 
   "item.realmofdestiny.change_stone": "转换石",
   "item.realmofdestiny.structure_viewer": "结构查看器",
+  "item.realmofdestiny.paper_pile": "纸堆",
+  "item.realmofdestiny.ripe_apple": "熟苹果",
 
 
   "tooltip.realmofdestiny.held.shift": "§9按下§6Shift§9查看更多信息",
@@ -37,6 +39,7 @@
   "block.realmofdestiny.bolt_planks": "电光树木板",
   "block.realmofdestiny.creative_energy_matrix": "创造能量矩阵",
   "block.realmofdestiny.base_fluid_tank": "基础流体储罐",
+  "block.realmofdestiny.void_plant_machine": "虚空植物机",
 
 
   "recipe.realmofdestiny.changestone.chance": "概率: %d",
@@ -44,9 +47,10 @@
   "recipe.realmofdestiny.pedestal_generator.in_pedestal": "将这个物品放在基座上",
   "recipe.realmofdestiny.progress": "时间: %d tick",
   "recipe.realmofdestiny.energy": "能量: %d FE",
-  "recipe.realmofdestiny.pedestal_generator.need_structure": "需要结构",
+  "recipe.realmofdestiny.np_structure_required": "不需要结构",
   "recipe.realmofdestiny.pedestal_generator": "基座生产",
   "recipe.realmofdestiny.pedestal_lighting": "雷击基座",
+  "recipe.realmofdestiny.void_plant_machine": "虚空植物",
   "recipe.realmofdestiny.pedestal_lighting.leaves": "基座正上方要有电光树树叶,并且没有遮挡",
 
 

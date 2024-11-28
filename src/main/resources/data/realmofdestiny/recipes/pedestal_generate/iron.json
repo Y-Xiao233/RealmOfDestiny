@@ -1,9 +1,9 @@
 {
   "type": "realmofdestiny:pedestal_generator",
   "pedestal_item": {
-    "item": "minecraft:iron_ore"
+    "item": "minecraft:iron_block"
   },
-  "time": 20,
+  "time": 2000,
   "energy": 1000,
   "pattern": [
     [
@@ -31,7 +31,7 @@
       "count": 2
     },
     {
-      "item": "minecraft:deepslate_gold_ore",
+      "item": "minecraft:deepslate_iron_ore",
       "chance": 0.6,
       "count": 2
     },

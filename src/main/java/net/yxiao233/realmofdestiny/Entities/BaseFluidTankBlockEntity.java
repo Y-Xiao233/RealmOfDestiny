@@ -4,12 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.Container;
-import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
-import net.minecraft.world.SimpleContainer;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -31,7 +26,7 @@ import net.yxiao233.realmofdestiny.screen.BaseFluidTankMenu;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class BaseFluidTankBlockEntity extends BlockEntity implements MenuProvider {
+public class BaseFluidTankBlockEntity extends ModBaseBlockEntity implements MenuProvider {
     public FluidTank tank = new FluidTank(10000){
         @Override
         protected void onContentsChanged() {

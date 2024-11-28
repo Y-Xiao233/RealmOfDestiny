@@ -1,7 +1,5 @@
 package net.yxiao233.realmofdestiny.ModRegistry;
 
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraftforge.registries.DeferredRegister;
@@ -10,17 +8,14 @@ import net.minecraftforge.registries.RegistryObject;
 import net.yxiao233.realmofdestiny.Blocks.*;
 import net.yxiao233.realmofdestiny.Blocks.custom.BaseFluidTankBlock;
 import net.yxiao233.realmofdestiny.Blocks.custom.CreativeEnergyMatrixBlock;
-import net.yxiao233.realmofdestiny.Blocks.custom.GemPolishingStationBlock;
 import net.yxiao233.realmofdestiny.Blocks.custom.PedestalBlock;
+import net.yxiao233.realmofdestiny.Blocks.custom.VoidPlantMachineBlock;
+import net.yxiao233.realmofdestiny.Entities.VoidPlantMachineBlockEntity;
 import net.yxiao233.realmofdestiny.RealmOfDestiny;
 import net.yxiao233.realmofdestiny.worldgen.tree.BoltTreeGrower;
 
-import java.util.function.Supplier;
-
 public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, RealmOfDestiny.MODID);
-    public static final RegistryObject<Block> GEM_POLISHING_STATION = BLOCKS.register("gem_polishing_station", () ->
-            new GemPolishingStationBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)));
     public static final RegistryObject<Block> PEDESTAL = BLOCKS.register("pedestal", () ->
             new PedestalBlock(BlockBehaviour.Properties.copy(Blocks.GLASS).sound(SoundType.STONE).noOcclusion()));
 
@@ -48,14 +43,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> WARNING = BLOCKS.register("warning", () ->
             new Block(BlockBehaviour.Properties.copy(Blocks.BEDROCK).noLootTable()));
 
-    private static <T extends Block> RegistryObject<T> registryBlock(String name, Supplier<T> block){
-        RegistryObject<T> toReturn = BLOCKS.register(name,block);
-        registryBlockItem(name,toReturn);
-        return toReturn;
-    }
+    public static final RegistryObject<Block> VOID_PLANT_MACHINE = BLOCKS.register("void_plant_machine", () ->
+        new VoidPlantMachineBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)));
 
-    public static <T extends Block> RegistryObject<Item> registryBlockItem(String name, RegistryObject<T> block){
-        return ModItems.ITEMS.register(name,() ->
-                new BlockItem(ModBlocks.GEM_POLISHING_STATION.get(),new Item.Properties()));
-    }
 }

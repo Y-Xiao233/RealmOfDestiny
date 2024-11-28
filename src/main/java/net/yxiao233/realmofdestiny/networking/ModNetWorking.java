@@ -7,6 +7,7 @@ import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.PacketDistributor;
 import net.minecraftforge.network.simple.SimpleChannel;
 import net.yxiao233.realmofdestiny.RealmOfDestiny;
+import net.yxiao233.realmofdestiny.networking.packet.ContainerDataSyncS2CPacket;
 import net.yxiao233.realmofdestiny.networking.packet.EnergySyncS2CPacket;
 import net.yxiao233.realmofdestiny.networking.packet.FluidSyncS2CPacket;
 
@@ -37,6 +38,12 @@ public class ModNetWorking {
                 .decoder(FluidSyncS2CPacket::new)
                 .encoder(FluidSyncS2CPacket::toBytes)
                 .consumerMainThread(FluidSyncS2CPacket::handle)
+                .add();
+
+        net.messageBuilder(ContainerDataSyncS2CPacket.class,id(),NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(ContainerDataSyncS2CPacket::new)
+                .encoder(ContainerDataSyncS2CPacket::toBytes)
+                .consumerMainThread(ContainerDataSyncS2CPacket::handle)
                 .add();
     }
 

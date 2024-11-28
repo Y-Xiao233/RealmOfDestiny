@@ -1,9 +1,9 @@
 {
   "type": "realmofdestiny:pedestal_generator",
   "pedestal_item": {
-    "item": "minecraft:diamond_ore"
+    "item": "minecraft:diamond_block"
   },
-  "time": 60,
+  "time": 2000,
   "energy": 4000,
   "pattern": [
     [
@@ -34,7 +34,8 @@
   "output": [
     {
       "item": "minecraft:diamond_ore",
-      "count": 2
+      "count": 2,
+      "chance": 0.6
     }
   ]
 }

@@ -1,0 +1,14 @@
+{
+  "type": "realmofdestiny:void_plant",
+  "input": {
+    "item": "minecraft:iron_ingot"
+  },
+  "output": [
+    {
+      "item": "minecraft:diamond",
+      "count": 2,
+      "chance": 0.8
+    }
+  ],
+  "time": 100
+}

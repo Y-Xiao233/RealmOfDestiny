@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public class KeyToItemStackHelper {
     private ArrayList<String> keys;
     private ArrayList<ItemStack> itemStacks;
+    public static final KeyToItemStackHelper EMPTY = null;
     public KeyToItemStackHelper(ArrayList<String> keys, ArrayList<ItemStack> itemStacks){
         this.keys = keys;
         this.itemStacks = itemStacks;

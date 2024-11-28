@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "B": {
+      "item": "minecraft:blue_dye"
+    },
+    "P": {
+      "item": "realmofdestiny:paper_pile"
+    }
+  },
+  "pattern": [
+    "BBB",
+    "BPB",
+    "BBB"
+  ],
+  "result": {
+    "item": "realmofdestiny:structure_viewer"
+  }
+}

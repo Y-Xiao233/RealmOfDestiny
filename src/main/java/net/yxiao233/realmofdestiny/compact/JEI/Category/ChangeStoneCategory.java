@@ -25,6 +25,11 @@ public class ChangeStoneCategory extends AbstractJEICategory<ChangeStoneRecipe> 
     }
 
     @Override
+    public net.minecraft.world.item.crafting.RecipeType<ChangeStoneRecipe> getTypeInstance() {
+        return ChangeStoneRecipe.Type.INSTANCE;
+    }
+
+    @Override
     public void setRecipe(IRecipeLayoutBuilder iRecipeLayoutBuilder, ChangeStoneRecipe changeStoneRecipe, IFocusGroup iFocusGroup) {
         iRecipeLayoutBuilder.addSlot(RecipeIngredientRole.INPUT,80,11)
                 .addItemStack(changeStoneRecipe.getCheckBlockItem())

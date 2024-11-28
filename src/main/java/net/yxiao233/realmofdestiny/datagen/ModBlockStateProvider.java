@@ -19,7 +19,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-        blockWithItem(ModBlocks.GEM_POLISHING_STATION);
         saplingBlock(ModBlocks.BOLT_SAPLING);
 
         logBlock((RotatedPillarBlock) ModBlocks.BOLT_LOG.get());

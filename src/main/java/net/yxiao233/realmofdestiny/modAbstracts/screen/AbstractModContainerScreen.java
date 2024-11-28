@@ -46,14 +46,14 @@ public abstract class AbstractModContainerScreen<T extends AbstractContainerMenu
     @Override
     public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float delta) {
         renderBackground(guiGraphics);
-        super.render(guiGraphics, mouseX, mouseY, delta);
         renderTooltip(guiGraphics, mouseX, mouseY);
+        super.render(guiGraphics, mouseX, mouseY, delta);
     }
 
     @Override
     protected abstract void renderBg(GuiGraphics guiGraphics, float v, int i, int i1);
 
-    public void basicRenderBG(GuiGraphics guiGraphics, float v, int i, int i1){
+    public void basicRenderBG(GuiGraphics guiGraphics){
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
         RenderSystem.setShader(GameRenderer::getPositionTexShader);

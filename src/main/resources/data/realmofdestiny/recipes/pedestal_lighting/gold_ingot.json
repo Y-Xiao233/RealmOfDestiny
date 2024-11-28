@@ -1,12 +1,12 @@
 {
   "type": "realmofdestiny:pedestal_lighting",
   "pedestal_item": {
-    "item": "minecraft:diamond_block"
+    "item": "minecraft:iron_ingot"
   },
   "output": {
-    "item": "minecraft:netherite_block"
+    "item": "minecraft:gold_ingot"
   },
   "time": 100,
-  "energy": 100,
+  "energy": 5000,
   "chance": 0.8
 }

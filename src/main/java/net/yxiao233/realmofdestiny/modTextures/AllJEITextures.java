@@ -11,10 +11,11 @@ public enum AllJEITextures implements ScreenElement {
     DOWN_ARROW("arrow",0, 0, 7, 25),
     UP_ARROW("arrow",0, 230, 7, 25),
     ENERGY_FILLED("energy_filled",0,0,14,42),
-    BOLT_TREE("bolt_tree",0,0,77,91);
+    BOLT_TREE("bolt_tree",0,0,77,91),
+    TIP("widgets",249,0,7,7);
     public final ResourceLocation location;
-    public int width, height;
-    public int startX, startY;
+    public final int width, height;
+    public final int startX, startY;
     private AllJEITextures(String location, int startX, int startY, int width, int height) {
         this.location = new ResourceLocation(RealmOfDestiny.MODID, "textures/jei/" + location + ".png");
         this.width = width;
@@ -27,6 +28,21 @@ public enum AllJEITextures implements ScreenElement {
     public void render(GuiGraphics guiGraphics, int x, int y) {
         guiGraphics.blit(location, x, y, startX, startY, width, height);
     }
+
+    @Override
+    public void render(GuiGraphics guiGraphics, int x, int y, int extraValue, ExtraType extraType) {
+        if(extraType == ExtraType.HEIGHT){
+            guiGraphics.blit(location, x, y, startX, startY, width, extraValue);
+        }else{
+            guiGraphics.blit(location, x, y, startX, startY, extraValue, height);
+        }
+    }
+
+    @Override
+    public void render(GuiGraphics guiGraphics, int x, int y, int width, int height) {
+        guiGraphics.blit(location, x, y, startX, startY, width, height);
+    }
+
 
     @Override
     public int getWidth() {

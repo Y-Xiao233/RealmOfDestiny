@@ -14,7 +14,7 @@ import net.yxiao233.realmofdestiny.ModRegistry.ModBlockEntities;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class CreativeEnergyMatrixBlockEntity extends BlockEntity {
+public class CreativeEnergyMatrixBlockEntity extends ModBaseBlockEntity {
     private final EnergyStorage energyStorage = new EnergyStorage(energyStored);
     private LazyOptional<IEnergyStorage> lazyEnergyStorage = LazyOptional.empty();
     private static final int energyStored = 2147483647;

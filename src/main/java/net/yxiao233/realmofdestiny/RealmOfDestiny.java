@@ -16,8 +16,8 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.yxiao233.realmofdestiny.ModRegistry.*;
 import net.yxiao233.realmofdestiny.networking.ModNetWorking;
 import net.yxiao233.realmofdestiny.screen.BaseFluidTankScreen;
-import net.yxiao233.realmofdestiny.screen.GemPolishingStationScreen;
 import net.yxiao233.realmofdestiny.screen.PedestalScreen;
+import net.yxiao233.realmofdestiny.screen.VoidPlantMachineScreen;
 
 @Mod(RealmOfDestiny.MODID)
 public class RealmOfDestiny
@@ -55,9 +55,9 @@ public class RealmOfDestiny
     public static class ClientModEvents {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
-            MenuScreens.register(ModMenuTypes.GEM_POLISHING_MENU.get(), GemPolishingStationScreen::new);
             MenuScreens.register(ModMenuTypes.BASE_FLUID_TANK_MENU.get(), BaseFluidTankScreen::new);
             MenuScreens.register(ModMenuTypes.PEDESTAL_MENU.get(), PedestalScreen::new);
+            MenuScreens.register(ModMenuTypes.VOID_PLANT_MACHINE_MENU.get(), VoidPlantMachineScreen::new);
         }
     }
 }
