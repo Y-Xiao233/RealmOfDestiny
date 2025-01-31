@@ -2,77 +2,40 @@
   "itemGroup.realmofdestiny": "Realm of Destiny",
 
 
-  "item.realmofdestiny.change_stone": "Change Stone",
-  "item.realmofdestiny.structure_viewer": "Structure Viewer",
-  "item.realmofdestiny.paper_pile": "Paper Pile",
-  "item.realmofdestiny.ripe_apple": "Ripe Apple",
-
 
   "tooltip.realmofdestiny.held.shift": "§9Press §6Shift§9 to view more information",
   "tooltip.realmofdestiny.held.alt": "§9Press §6Alt§9 to view more information",
-  "tooltip.realmofdestiny.held.control": "§9Press §6Control§9 to view more information",
-  "tooltip.realmofdestiny.empty": "Empty",
+  "tooltip.realmofdestiny.held.control": "§9Press §6Ctrl§9 to view more information",
 
-  "tooltip.realmofdestiny.change_stone": "Partial blocks can be converted into specific blocks",
-  "tooltip.realmofdestiny.creative_energy_matrix": "Can output FE infinitely",
   "tooltip.realmofdestiny.pedestal0": "Items can be placed for display",
   "tooltip.realmofdestiny.pedestal1": "Can be used to make special recipes",
-  "tooltip.realmofdestiny.structure_viewer": "Right click on the pedestal to view the structure",
-
-  "tooltip.realmofdestiny.liquid_amount_with_capacity": "amount: %d/%d",
-  "tooltip.realmofdestiny.liquid_amount": "amount: %d",
-
-
-  "tip.realmofdestiny.render_structure": "Structure successfully previewed",
-  "tip.realmofdestiny.clear_structure": "The preview structure has been cleared",
-  "tip.realmofdestiny.structure_preview": "Click to preview the structure",
-  "tip.realmofdestiny.structure_preview_creative": "[§cWIP!§f]Click to place the structure (Creative Only)",
-  "tip.realmofdestiny.structure_preview_clear": "Click to clear structure preview",
+  "tooltip.realmofdestiny.pedestal2": "Right-click to place items",
+  "tooltip.realmofdestiny.pedestal3": "Shift + right-click to extract items",
+  "tooltip.realmofdestiny.pedestal4": "Ctrl + right-click to open the upgrade menu",
 
 
-  "block.realmofdestiny.gem_polishing_station": "Gem Polishing Station",
+
+  "gui.realmofdestiny.chance": "Chance: %d",
+  "gui.realmofdestiny.consume_energy": "Power: ",
+  "gui.realmofdestiny.on_pedestal": "Place it on the Pedestal",
+  "gui.realmofdestiny.processingTime": "ProcessingTime: %d tick",
+  "gui.realmofdestiny.not_consume": "Not consuming",
+  "gui.realmofdestiny.consume": "%d probability of consumption",
+
+
+
   "block.realmofdestiny.pedestal": "Pedestal",
-  "block.realmofdestiny.bolt_log": "Bolt Log",
-  "block.realmofdestiny.bolt_leaves": "Bolt Leaves",
-  "block.realmofdestiny.stripped_bolt_log": "Strippeed Bolt Log",
-  "block.realmofdestiny.bolt_sapling": "Bolt Sapling",
-  "block.realmofdestiny.bolt_planks": "Bolt Planks",
-  "block.realmofdestiny.creative_energy_matrix": "Creative Energy Matrix",
-  "block.realmofdestiny.base_fluid_tank": "Base Fluid Tank",
-  "block.realmofdestiny.void_plant_machine": "Void Plant Machine",
 
 
-  "recipe.realmofdestiny.changestone.chance": "chance: %d",
-  "recipe.realmofdestiny.changestone.failed": "Change Failed",
-  "recipe.realmofdestiny.pedestal_generator.in_pedestal": "Put this item on Pedestal",
-  "recipe.realmofdestiny.progress": "Time: %d tick",
-  "recipe.realmofdestiny.energy": "Energy: %d FE",
-  "recipe.realmofdestiny.np_structure_required": "No structure required",
-  "recipe.realmofdestiny.pedestal_generator": "Pedestal Generator",
-  "recipe.realmofdestiny.pedestal_lighting": "Pedestal Lighting",
-  "recipe.realmofdestiny.void_plant_machine": "Void Plant",
-  "recipe.realmofdestiny.pedestal_lighting.leaves": "There should be Bolt Leaves directly above the pedestal,and there should be no obstruction",
+
+  "item.realmofdestiny.speed_augment_1": "Speed Augment Tier1",
+  "item.realmofdestiny.input_augment_1": "Input Augment Tier1",
+  "item.realmofdestiny.output_augment_1": "Output Augment Tier1",
 
 
-  "book.realmofdestiny.name": "Realm of Destiny",
-  "book.realmofdestiny.landing_text": "Welcome to the Realm of Destiny! Here, you can find various information that can help you on your journey.",
 
-  "book.realmofdestiny.multiblock.iron_ore.text": "Please refer to JEI for other requirements",
-
-  "book.realmofdestiny.pedestal.name": "Pedestal Generator Multiblock",
-  "book.realmofdestiny.pedestal.desc": "This multiblock structure allows the pedestal to produce items with corresponding recipes.",
-  "book.realmofdestiny.pedestal.iron_ore.name": "Iron Ore",
-  "book.realmofdestiny.pedestal.iron_ore.text": "Generates iron ore.",
-
-  "book.realmofdestiny.items.name": "Items",
-  "book.realmofdestiny.items.desc": "Understand the purpose of the item",
-  "book.realmofdestiny.items.pedestale.name": "Pedestal",
-  "book.realmofdestiny.items.pedestal.text0": "Produce items in container adjacent to the pedestal$(br2)1. The correct structure is required$(br2)2. Corresponding items are required (not consumed)$(br2)3. Consume FE",
-  "book.realmofdestiny.items.pedestal.text1": "The main/off hand with the item and right-click on the pedestal to place the item on it$(br2)shift + right-click on the pedestal to remove items from it$(br2)Tip: When both the main and off hand have something, prioritize judging the main hand",
-
-  "book.realmofdestiny.items.change_stone.name": "Change Stone",
-  "book.realmofdestiny.items.change_stone.text0": "By holding this stone and right clicking on the block that can be changed, it can be changed into the corresponding new block$(br2)Please refer to JEI for detailed recipes and chance",
-
-  "book.realmofdestiny.items.creative_energy_matrix.name": "Creative Energy Matrix",
-  "book.realmofdestiny.items.creative_energy_matrix.text0": "Can actively/passively output FE"
+  "addon_item.realmofdestiny.input_chance": "Each upgrade can reduce the probability of input items being consumed by %d",
+  "addon_item.realmofdestiny.output_chance": "Each upgrade can increase the probability of product output by %d",
+  "addon_item.realmofdestiny.speed": "Each upgrade can reduce procressingTime by %d",
+  "addon_item.realmofdestiny.hold_ctrl": "Press Ctrl + right-click to open the upgrade menu"
 }

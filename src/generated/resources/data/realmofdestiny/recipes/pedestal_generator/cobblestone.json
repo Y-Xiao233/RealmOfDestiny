@@ -1,0 +1,20 @@
+{
+  "type": "realmofdestiny:pedestal_generator",
+  "energy": 2000,
+  "inputConsumeChance": 0.0,
+  "output": [
+    {
+      "count": 2,
+      "item": "minecraft:cobblestone"
+    },
+    {
+      "count": 1,
+      "item": "minecraft:stone"
+    }
+  ],
+  "outputChance": 0.8,
+  "previewItem": {
+    "tag": "forge:cobblestone"
+  },
+  "processingTime": 20
+}

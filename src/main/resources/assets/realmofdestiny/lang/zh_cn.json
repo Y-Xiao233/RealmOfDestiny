@@ -2,77 +2,40 @@
   "itemGroup.realmofdestiny": "生命之境",
 
 
-  "item.realmofdestiny.change_stone": "转换石",
-  "item.realmofdestiny.structure_viewer": "结构查看器",
-  "item.realmofdestiny.paper_pile": "纸堆",
-  "item.realmofdestiny.ripe_apple": "熟苹果",
-
 
   "tooltip.realmofdestiny.held.shift": "§9按下§6Shift§9查看更多信息",
   "tooltip.realmofdestiny.held.alt": "§9按下§6Alt§9查看更多信息",
-  "tooltip.realmofdestiny.held.control": "§9按下§6Control§9查看更多信息",
-  "tooltip.realmofdestiny.empty": "空",
+  "tooltip.realmofdestiny.held.control": "§9按下§6Ctrl§9查看更多信息",
 
-  "tooltip.realmofdestiny.change_stone": "可以将部分方块转化为特定方块",
-  "tooltip.realmofdestiny.creative_energy_matrix": "可以无限输出FE",
   "tooltip.realmofdestiny.pedestal0": "可以放入物品进行展示",
   "tooltip.realmofdestiny.pedestal1": "可以用来制作特殊配方",
-  "tooltip.realmofdestiny.structure_viewer": "右键基座查看结构",
-
-  "tooltip.realmofdestiny.liquid_amount_with_capacity": "容量: %d/%d",
-  "tooltip.realmofdestiny.liquid_amount": "容量: %d",
-
-
-  "tip.realmofdestiny.render_structure": "结构成功预览",
-  "tip.realmofdestiny.clear_structure": "预览的结构已被清除",
-  "tip.realmofdestiny.structure_preview": "点击预览结构",
-  "tip.realmofdestiny.structure_preview_creative": "[§c§lWIP!§f]点击预览结构(仅限创造)",
-  "tip.realmofdestiny.structure_preview_clear": "点击清除结构预览",
+  "tooltip.realmofdestiny.pedestal2": "右键放入物品",
+  "tooltip.realmofdestiny.pedestal3": "Shift + 右键 取出物品",
+  "tooltip.realmofdestiny.pedestal4": "Ctrl + 右键 打开升级页面",
 
 
-  "block.realmofdestiny.gem_polishing_station": "宝石加工站",
+
+  "gui.realmofdestiny.chance": "概率: %d",
+  "gui.realmofdestiny.consume_energy": "消耗电量: ",
+  "gui.realmofdestiny.on_pedestal": "将此物品放在基座上",
+  "gui.realmofdestiny.processingTime": "处理时间: %d tick",
+  "gui.realmofdestiny.not_consume": "不消耗",
+  "gui.realmofdestiny.consume": "有 %d 概率消耗",
+
+
+
   "block.realmofdestiny.pedestal": "基座",
-  "block.realmofdestiny.bolt_log": "电光原木",
-  "block.realmofdestiny.bolt_leaves": "电光树树叶",
-  "block.realmofdestiny.stripped_bolt_log": "去皮电光木原木",
-  "block.realmofdestiny.bolt_sapling": "电光树树苗",
-  "block.realmofdestiny.bolt_planks": "电光树木板",
-  "block.realmofdestiny.creative_energy_matrix": "创造能量矩阵",
-  "block.realmofdestiny.base_fluid_tank": "基础流体储罐",
-  "block.realmofdestiny.void_plant_machine": "虚空植物机",
 
 
-  "recipe.realmofdestiny.changestone.chance": "概率: %d",
-  "recipe.realmofdestiny.changestone.failed": "转化失败",
-  "recipe.realmofdestiny.pedestal_generator.in_pedestal": "将这个物品放在基座上",
-  "recipe.realmofdestiny.progress": "时间: %d tick",
-  "recipe.realmofdestiny.energy": "能量: %d FE",
-  "recipe.realmofdestiny.np_structure_required": "不需要结构",
-  "recipe.realmofdestiny.pedestal_generator": "基座生产",
-  "recipe.realmofdestiny.pedestal_lighting": "雷击基座",
-  "recipe.realmofdestiny.void_plant_machine": "虚空植物",
-  "recipe.realmofdestiny.pedestal_lighting.leaves": "基座正上方要有电光树树叶,并且没有遮挡",
+
+  "item.realmofdestiny.speed_augment_1": "速度升级 Tier1",
+  "item.realmofdestiny.input_augment_1": "输入升级 Tier1",
+  "item.realmofdestiny.output_augment_1": "输出升级 Tier1",
 
 
-  "book.realmofdestiny.name": "生命之境",
-  "book.realmofdestiny.landing_text": "欢迎游玩生命之境mod!你可以在这里找到各种能在旅途中帮助到你的信息。",
 
-  "book.realmofdestiny.multiblock.iron_ore.text": "请在jei中查看更多需求",
-
-  "book.realmofdestiny.pedestal.name": "基座生产所需的多方块",
-  "book.realmofdestiny.pedestal.desc": "这个多方块结构允许基座生产对应物品。",
-  "book.realmofdestiny.pedestal.iron_ore.name": "铁矿",
-  "book.realmofdestiny.pedestal.iron_ore.text": "生产铁矿",
-
-  "book.realmofdestiny.items.name": "物品",
-  "book.realmofdestiny.items.desc": "了解物品用途",
-  "book.realmofdestiny.items.pedestale.name": "基座",
-  "book.realmofdestiny.items.pedestal.text0": "在与基座相邻的容器内生产物品$(br2)1.需要对应结构$(br2)2.基座上要有对应物品(不消耗)$(br2)3.消耗电量",
-  "book.realmofdestiny.items.pedestal.text1": "主手/副手拿着物品对基座右键,可以将手上的物品放到基座上$(br2)空手shift右键基座可以将基座上的物品取下来$(br2)提示:当主副手都有东西时,优先判断主手",
-
-  "book.realmofdestiny.items.change_stone.name": "转化石",
-  "book.realmofdestiny.items.change_stone.text0": "拿着这个石头右键可被转化的方块,方块会被转化成对应的新方块(有一定概率)$(br2)请查看jei获取转化配方以及概率",
-
-  "book.realmofdestiny.items.creative_energy_matrix.name": "创造能量矩阵",
-  "book.realmofdestiny.items.creative_energy_matrix.text0": "可以主动/被动输出FE"
+  "addon_item.realmofdestiny.input_chance": "每个升级可减少 %d 输入物品被消耗概率",
+  "addon_item.realmofdestiny.output_chance": "每个升级可增加 %d 产物产出概率",
+  "addon_item.realmofdestiny.speed": "每个升级可减少 %d 配方时间",
+  "addon_item.realmofdestiny.hold_ctrl": "按住 ctrl + 右键 打开升级界面"
 }

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "realmofdestiny:item/output_augment_1"
+  }
+}

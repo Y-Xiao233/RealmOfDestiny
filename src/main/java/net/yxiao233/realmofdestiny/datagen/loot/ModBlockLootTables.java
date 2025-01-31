@@ -4,7 +4,7 @@ import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.RegistryObject;
-import net.yxiao233.realmofdestiny.ModRegistry.ModBlocks;
+import net.yxiao233.realmofdestiny.registry.ModBlocks;
 
 import java.util.Set;
 
@@ -16,13 +16,6 @@ public class ModBlockLootTables extends BlockLootSubProvider {
     @Override
     protected void generate() {
         this.dropSelf(ModBlocks.PEDESTAL.get());
-        this.dropSelf(ModBlocks.BOLT_LOG.get());
-        this.dropSelf(ModBlocks.BOLT_SAPLING.get());
-        this.dropSelf(ModBlocks.STRIPPED_BOLT_LOG.get());
-        this.dropSelf(ModBlocks.BOLT_PLANKS.get());
-        this.dropSelf(ModBlocks.CREATIVE_ENERGY_MATRIX.get());
-        this.add(ModBlocks.BOLT_LEAVES.get(), block ->
-                createLeavesDrops(block,ModBlocks.BOLT_SAPLING.get(),NORMAL_LEAVES_SAPLING_CHANCES));
     }
 
     @Override
