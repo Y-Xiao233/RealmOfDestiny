@@ -9,7 +9,7 @@ import net.yxiao233.realmofdestiny.compact.kubejs.schemas.PedestalGeneratorSchem
 public class ModKubeJSPlugin extends KubeJSPlugin {
     @Override
     public void init() {
-        RegistryInfo.ITEM.addType("industrialforegoing:speed_addon", AddonItemBuilder.class, AddonItemBuilder::new);
+        RegistryInfo.ITEM.addType("realmofdestiny:addon_item", AddonItemBuilder.class, AddonItemBuilder::new);
     }
 
     @Override
