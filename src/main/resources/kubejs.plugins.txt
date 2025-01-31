@@ -1,1 +1,1 @@
-net.yxiao233.ifeu.compact.kubejs.ModKubeJSPlugin
+net.yxiao233.realmofdestiny.compact.kubejs.ModKubeJSPlugin
