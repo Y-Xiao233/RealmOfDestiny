@@ -1,5 +1,6 @@
 package net.yxiao233.realmofdestiny.compact.jei;
 
+import com.hrznstudio.titanium.util.RecipeUtil;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.helpers.IGuiHelper;
@@ -9,9 +10,13 @@ import mezz.jei.api.registration.IRecipeRegistration;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.RecipeManager;
+import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.level.Level;
 import net.yxiao233.realmofdestiny.RealmOfDestiny;
 import net.yxiao233.realmofdestiny.compact.jei.category.PedestalGeneratorCategory;
+import net.yxiao233.realmofdestiny.recipe.PedestalGeneratorRecipe;
 import net.yxiao233.realmofdestiny.registry.ModItems;
+import net.yxiao233.realmofdestiny.registry.ModRecipes;
 import net.yxiao233.realmofdestiny.util.JEIRegistryHelper;
 
 @JeiPlugin
@@ -27,20 +32,19 @@ public class JEIPlugin implements IModPlugin {
 
     @Override
     public void registerCategories(IRecipeCategoryRegistration registration) {
-        registries(registration.getJeiHelpers().getGuiHelper());
+        IGuiHelper guiHelper = registration.getJeiHelpers().getGuiHelper();
 
-        helper.getRecipeCategories().forEach(registration::addRecipeCategories);
+        registration.addRecipeCategories(new PedestalGeneratorCategory(guiHelper));
     }
 
     @Override
     public void registerRecipes(IRecipeRegistration registration) {
-        RecipeManager manager = Minecraft.getInstance().level.getRecipeManager();
-
-        helper.addRecipes(manager,registration);
+        Level level = Minecraft.getInstance().level;
+        registration.addRecipes(ModRecipeType.PEDESTAL_GENERATOR, RecipeUtil.getRecipes(level,(RecipeType<PedestalGeneratorRecipe>) ModRecipes.PEDESTAL_TYPE.get()));
     }
 
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
-        helper.addRecipeCatalyst(registration);
+        registration.addRecipeCatalyst(ModItems.PEDESTAL_ITEM.get().getDefaultInstance(),ModRecipeType.PEDESTAL_GENERATOR);
     }
 }
