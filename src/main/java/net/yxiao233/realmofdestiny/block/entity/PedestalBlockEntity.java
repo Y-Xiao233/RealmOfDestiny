@@ -34,10 +34,12 @@ import net.yxiao233.realmofdestiny.recipe.PedestalGeneratorRecipe;
 import net.yxiao233.realmofdestiny.registry.ModBlockEntities;
 import net.yxiao233.realmofdestiny.registry.ModRecipes;
 import net.yxiao233.realmofdestiny.screen.PedestalMenu;
+import net.yxiao233.realmofdestiny.util.ItemHandlerUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class PedestalBlockEntity extends BlockEntity implements MenuProvider {
     public ItemStackHandler itemHandler = new ItemStackHandler(1){
@@ -231,6 +233,10 @@ public class PedestalBlockEntity extends BlockEntity implements MenuProvider {
     }
 
     private void checkForContainer(Level level, BlockPos blockPos) {
+        if(currentRecipe == null){
+            this.containerBlockPos = null;
+            return;
+        }
         boolean hasContainerNearby = false;
         BlockPos[] nearbyBlockPosList = {
                 blockPos.offset(0,0,-1),
@@ -244,10 +250,31 @@ public class PedestalBlockEntity extends BlockEntity implements MenuProvider {
             BlockEntity blockEntity = level.getBlockEntity(nearbyBlockPosList[i]);
             hasContainerNearby = blockEntity != null && blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).isPresent();
             if(hasContainerNearby){
-                this.containerBlockPos = nearbyBlockPosList[i];
-                break;
+                if(isPedestal(blockEntity) || !canInsert(blockEntity)){
+                    continue;
+                }else{
+                    this.containerBlockPos = nearbyBlockPosList[i];
+                    break;
+                }
+            }else{
+                this.containerBlockPos = null;
             }
         }
+    }
+
+    private boolean isPedestal(BlockEntity entity){
+        return entity instanceof PedestalBlockEntity;
+    }
+
+    private boolean canInsert(BlockEntity entity){
+        AtomicBoolean c = new AtomicBoolean(false);
+        entity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(itemHandler -> {
+            if(ItemHandlerUtil.canInsertItem(itemHandler,currentRecipe.output)){
+                c.set(true);
+            }
+        });
+
+        return c.get();
     }
 
     private boolean canIncrease(){

@@ -21,6 +21,7 @@
   "gui.realmofdestiny.processingTime": "ProcessingTime: %d tick",
   "gui.realmofdestiny.not_consume": "Not consuming",
   "gui.realmofdestiny.consume": "%d probability of consumption",
+  "gui.realmofdestiny.pedestal.open_menu": "Press Ctrl + right-click on the Pedestal to open the upgrade menu",
 
 
 

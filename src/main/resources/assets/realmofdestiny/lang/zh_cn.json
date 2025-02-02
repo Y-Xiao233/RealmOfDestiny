@@ -21,6 +21,7 @@
   "gui.realmofdestiny.processingTime": "处理时间: %d tick",
   "gui.realmofdestiny.not_consume": "不消耗",
   "gui.realmofdestiny.consume": "有 %d 概率消耗",
+  "gui.realmofdestiny.pedestal.open_menu": "对着基座 ctrl + 右键 打开升级页面",
 
 
 

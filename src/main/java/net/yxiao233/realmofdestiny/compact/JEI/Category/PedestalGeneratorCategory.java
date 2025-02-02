@@ -26,6 +26,7 @@ import net.yxiao233.realmofdestiny.recipe.PedestalGeneratorRecipe;
 import net.yxiao233.realmofdestiny.registry.ModBlocks;
 import net.yxiao233.realmofdestiny.registry.ModItems;
 import net.yxiao233.realmofdestiny.registry.ModRecipes;
+import net.yxiao233.realmofdestiny.registry.ModTags;
 import net.yxiao233.realmofdestiny.util.TooltipCallBackHelper;
 
 public class PedestalGeneratorCategory extends AbstractJEICategory<PedestalGeneratorRecipe> {
@@ -44,13 +45,15 @@ public class PedestalGeneratorCategory extends AbstractJEICategory<PedestalGener
         //Input
         double inputConsumeChance = recipe.inputConsumeChance;
         if(inputConsumeChance <= 0){
-            builder.addSlot(RecipeIngredientRole.INPUT, 36, 26).addIngredients(Ingredient.of(recipe.previewItem.getItems().stream()))
+            builder.addSlot(RecipeIngredientRole.INPUT, 36, 26)
+                    .addIngredients(Ingredient.of(recipe.previewItem.getItems().stream()))
                     .addTooltipCallback(addText(
                             new TooltipCallBackHelper("gui.realmofdestiny.on_pedestal",ChatFormatting.GOLD),
                             new TooltipCallBackHelper("gui.realmofdestiny.not_consume",ChatFormatting.RED)
-                    )).setBackground(drawSlot(INEVITABLE),-1,-1);
+                    )).setBackground(drawBasicSlot(),-1,-1);
         }else{
-            builder.addSlot(RecipeIngredientRole.INPUT, 36, 26).addIngredients(Ingredient.of(recipe.previewItem.getItems().stream()))
+            builder.addSlot(RecipeIngredientRole.INPUT, 36, 26)
+                    .addIngredients(Ingredient.of(recipe.previewItem.getItems().stream()))
                     .addTooltipCallback(addText(
                             new TooltipCallBackHelper("gui.realmofdestiny.on_pedestal",ChatFormatting.GOLD),
                             new TooltipCallBackHelper("gui.realmofdestiny.consume",ChatFormatting.RED,((inputConsumeChance >= 0.01 ? (int) (inputConsumeChance * 100) : "< 1") + "%"))
@@ -70,9 +73,14 @@ public class PedestalGeneratorCategory extends AbstractJEICategory<PedestalGener
         for (int i = 0; i < recipe.output.length; i++) {
             ItemStack stack = recipe.output[i];
             if(chance >= 1){
-                builder.addSlot(RecipeIngredientRole.OUTPUT,x,y).addIngredient(VanillaTypes.ITEM_STACK,stack).setBackground(drawSlot(chance),-1,-1);
+                builder.addSlot(RecipeIngredientRole.OUTPUT,x,y)
+                        .addIngredient(VanillaTypes.ITEM_STACK,stack)
+                        .setBackground(drawSlot(chance),-1,-1);
             }else{
-                builder.addSlot(RecipeIngredientRole.OUTPUT,x,y).addIngredient(VanillaTypes.ITEM_STACK,stack).setBackground(drawSlot(chance),-1,-1).addTooltipCallback(addChanceTooltip(chance));
+                builder.addSlot(RecipeIngredientRole.OUTPUT,x,y)
+                        .addIngredient(VanillaTypes.ITEM_STACK,stack)
+                        .setBackground(drawSlot(chance),-1,-1)
+                        .addTooltipCallback(addChanceTooltip(chance));
             }
             x += 20;
             if(i % 3 == 0 && i != 0){
@@ -80,6 +88,11 @@ public class PedestalGeneratorCategory extends AbstractJEICategory<PedestalGener
             }
         }
 
+        //Upgrade
+        builder.addSlot(RecipeIngredientRole.INPUT,1,62)
+                .addIngredients(Ingredient.of(ModTags.Items.PEDESTAL_UPGRADE_AUGMENT))
+                .setBackground(drawBasicSlot(),-1,-1)
+                .addTooltipCallback(addText("gui.realmofdestiny.pedestal.open_menu",ChatFormatting.BLUE));
     }
 
     @Override
@@ -87,15 +100,15 @@ public class PedestalGeneratorCategory extends AbstractJEICategory<PedestalGener
         //EnergyBar
         int energy = recipe.energy;
         if(energy > 0){
-            EnergyBarScreenAddon.drawBackground(guiGraphics, Minecraft.getInstance().screen, DefaultAssetProvider.DEFAULT_PROVIDER, 0, 12, 0, 0);
-            EnergyBarScreenAddon.drawForeground(guiGraphics, Minecraft.getInstance().screen, DefaultAssetProvider.DEFAULT_PROVIDER, 0, 12, 0, 0, energy, (int) Math.max(PedestalConfig.maxStoredPower, Math.ceil(energy)));
-            addSimpleEnergyTooltip(guiGraphics,energy,18,56,0,12,mouseX,mouseY);
+            EnergyBarScreenAddon.drawBackground(guiGraphics, Minecraft.getInstance().screen, DefaultAssetProvider.DEFAULT_PROVIDER, 0, 2, 0, 0);
+            EnergyBarScreenAddon.drawForeground(guiGraphics, Minecraft.getInstance().screen, DefaultAssetProvider.DEFAULT_PROVIDER, 0, 2, 0, 0, energy, (int) Math.max(PedestalConfig.maxStoredPower, Math.ceil(energy)));
+            addSimpleEnergyTooltip(guiGraphics,energy,18,56,0,2,mouseX,mouseY);
         }
 
         //ProgressBar
         drawTextureWithTooltip(guiGraphics, AllGuiTextures.ARROW_HORIZONTAL,Component.translatable("gui.realmofdestiny.processingTime",recipe.processingTime),60,33,mouseX,mouseY);
 
         //Pedestal
-        guiGraphics.renderItem(ModItems.PEDESTAL_ITEM.get().getDefaultInstance(),36,40);
+        guiGraphics.renderItem(ModItems.PEDESTAL_ITEM.get().getDefaultInstance(),36,38);
     }
 }

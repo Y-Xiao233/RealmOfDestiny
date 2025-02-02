@@ -144,6 +144,10 @@ public abstract class AbstractJEICategory<T extends Recipe<?>> implements IRecip
             }
         };
     }
+
+    public IDrawable drawBasicSlot(){
+        return drawSlot(INEVITABLE);
+    }
     public IRecipeSlotTooltipCallback addChanceTooltip(double chance){
         if(chance >= 1){
             return null;

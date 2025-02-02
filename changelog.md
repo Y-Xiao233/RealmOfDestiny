@@ -10,6 +10,10 @@
 ### v2.0.2
 - 修复了在服务端加载时报错的bug
 
+### v2.0.3
+- 修改了基座配方产物生成逻辑
+- 在基座的jei界面中添加了升级展示
+
 ## en_us
 ### v1.0.0
 - init
@@ -19,3 +23,7 @@
 
 ### v2.0.2
 - Fixed the bug of reporting errors when loading on the server
+
+### v2.0.3
+- Modified the logic for Pedestal Generator recipes
+- Added upgrade display in the JEI interface of the base
