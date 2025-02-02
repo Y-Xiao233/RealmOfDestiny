@@ -3,30 +3,26 @@ package net.yxiao233.realmofdestiny.util;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import net.minecraft.client.Minecraft;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.packs.resources.Resource;
-import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.yxiao233.realmofdestiny.RealmOfDestiny;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.Optional;
 
 public class BlockBoxHelper {
     private static final Gson Gson = new Gson();
     private int size;
     private JsonArray jsonArray;
     public BlockBoxHelper(String fileName){
-        try{
-            ResourceLocation location = new ResourceLocation(RealmOfDestiny.MODID,"models/block/" + fileName + ".json");
-            ResourceManager resourceManager = Minecraft.getInstance().getResourceManager();
-            Optional<Resource> resource = resourceManager.getResource(location);
-            BufferedReader reader = new BufferedReader(new InputStreamReader(resource.get().open()));
+        try {
+            InputStream is = BlockBoxHelper.class.getResourceAsStream("/assets/realmofdestiny/models/block/" + fileName + ".json");
+            if (is == null) {
+                throw new IOException("File not found");
+            }
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
             JsonObject jsonObject = Gson.fromJson(reader, JsonObject.class);
             this.jsonArray = jsonObject.getAsJsonArray("elements");
             this.size = this.jsonArray.size();
