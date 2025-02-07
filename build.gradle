@@ -94,7 +94,6 @@ repositories {
         }
     }
 
-
     maven {
         // Shedaniel's maven (Architectury API)
         url = "https://maven.architectury.dev"
@@ -128,6 +127,9 @@ dependencies {
     implementation fg.deobf("dev.latvian.mods:kubejs-forge:${kubejs_version}")
     implementation fg.deobf("dev.latvian.mods:rhino-forge:${rhino_version}")
     implementation fg.deobf("dev.architectury:architectury-forge:${architectury_version}")
+
+    //Jade
+    implementation fg.deobf("curse.maven:jade-324717:${jade_id}")
 }
 
 tasks.named('processResources', ProcessResources).configure {
