@@ -38,5 +38,10 @@
   "addon_item.realmofdestiny.input_chance": "每个升级可减少 %d 输入物品被消耗概率",
   "addon_item.realmofdestiny.output_chance": "每个升级可增加 %d 产物产出概率",
   "addon_item.realmofdestiny.speed": "每个升级可减少 %d 配方时间",
-  "addon_item.realmofdestiny.hold_ctrl": "按住 ctrl + 右键 打开升级界面"
+  "addon_item.realmofdestiny.hold_ctrl": "按住 ctrl + 右键 打开升级界面",
+
+
+
+  "jade.realmofdestiny.pedestal.progress": "进度: %d",
+  "config.jade.plugin_realmofdestiny.pedestal": "基座"
 }

@@ -28,6 +28,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.network.NetworkHooks;
 import net.yxiao233.realmofdestiny.block.entity.PedestalBlockEntity;
+import net.yxiao233.realmofdestiny.item.custom.AddonItem;
 import net.yxiao233.realmofdestiny.registry.ModBlockEntities;
 import net.yxiao233.realmofdestiny.registry.ModItems;
 import net.yxiao233.realmofdestiny.util.BlockBoxHelper;
@@ -89,13 +90,16 @@ public class PedestalBlock extends BaseEntityBlock {
                 openMenu(blockPos,player,(PedestalBlockEntity) level.getBlockEntity(blockPos));
             }
 
+            if(player.getMainHandItem().getItem() instanceof AddonItem && player.isShiftKeyDown()){
+                if(hand == InteractionHand.MAIN_HAND){
+                    player.sendSystemMessage(Component.translatable("addon_item.realmofdestiny.hold_ctrl").withStyle(ChatFormatting.GRAY));
+                }
+            }
+
             if(player.getMainHandItem().isEmpty() && player.isShiftKeyDown()){
                 ItemStack get = blockEntity.itemHandler.getStackInSlot(0);
                 blockEntity.itemHandler.extractItem(0,count,false);
                 player.setItemInHand(hand,get);
-                if(hand == InteractionHand.MAIN_HAND){
-                    player.sendSystemMessage(Component.translatable("addon_item.realmofdestiny.hold_ctrl").withStyle(ChatFormatting.GRAY));
-                }
             }else if(item == Items.AIR && !player.getMainHandItem().isEmpty()){
                 put(blockEntity,player,count,hand);
             }else if(player.getMainHandItem().is(item) && count < maxStack){

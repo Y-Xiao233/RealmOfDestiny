@@ -72,8 +72,8 @@ public class PedestalBlockEntity extends BlockEntity implements MenuProvider {
     };
 
     public EnergyStorage energyStorage = new EnergyStorage(PedestalConfig.maxStoredPower);
-    private int progress = 0;
-    private int maxProgress = 20;
+    public int progress = 0;
+    public int maxProgress = 20;
     private int neededEnergy;
     private BlockPos containerBlockPos;
     public PedestalGeneratorRecipe currentRecipe;
@@ -140,6 +140,7 @@ public class PedestalBlockEntity extends BlockEntity implements MenuProvider {
         pTag.put("upgrades",upgradeItemHandler.serializeNBT());
         pTag.put("energy",energyStorage.serializeNBT());
         pTag.putInt("progress",progress);
+        pTag.putInt("max_progress",maxProgress);
         super.saveAdditional(pTag);
     }
 
@@ -147,6 +148,7 @@ public class PedestalBlockEntity extends BlockEntity implements MenuProvider {
     public void load(CompoundTag pTag) {
         super.load(pTag);
         this.progress = pTag.getInt("progress");
+        this.maxProgress = pTag.getInt("max_progress");
         energyStorage.deserializeNBT(pTag.get("energy"));
         itemHandler.deserializeNBT(pTag.getCompound("inventory"));
         upgradeItemHandler.deserializeNBT(pTag.getCompound("upgrades"));
@@ -213,7 +215,9 @@ public class PedestalBlockEntity extends BlockEntity implements MenuProvider {
                     if(addonItem.value >= 100){
                         this.maxProgress = 0;
                     }else{
-                        this.maxProgress = (int) (this.maxProgress * (1 - 0.01 * addonItem.value) * upgradeItemHandler.getStackInSlot(i).getCount());
+                        for (int m = 0; m < upgradeItemHandler.getStackInSlot(i).getCount(); m++) {
+                            this.maxProgress = (int) (this.maxProgress * (1 - 0.01 * addonItem.value));
+                        }
                     }
                 }
             }
@@ -316,7 +320,9 @@ public class PedestalBlockEntity extends BlockEntity implements MenuProvider {
                     if(addonItem.value >= 100){
                         chance = 0;
                     }else{
-                        chance = chance * (1 - 0.01 * addonItem.value) * upgradeItemHandler.getStackInSlot(i).getCount();
+                        for (int m = 0; m < upgradeItemHandler.getStackInSlot(i).getCount(); m++) {
+                            chance = chance * (1 - 0.01 * addonItem.value);
+                        }
                     }
                 }
             }
@@ -332,7 +338,9 @@ public class PedestalBlockEntity extends BlockEntity implements MenuProvider {
                     if(addonItem.value >= 100){
                         chance = 1;
                     }else{
-                        chance = chance * (1 + 0.01 * addonItem.value) * upgradeItemHandler.getStackInSlot(i).getCount();
+                        for (int m = 0; m < upgradeItemHandler.getStackInSlot(i).getCount(); m++) {
+                            chance = chance * (1 + 0.01 * addonItem.value);
+                        }
                     }
                 }
             }

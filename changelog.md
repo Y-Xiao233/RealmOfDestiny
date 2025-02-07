@@ -13,6 +13,8 @@
 ### v2.0.3
 - 修改了基座配方产物生成逻辑
 - 在基座的jei界面中添加了升级展示
+- 为基座的进度添加了jade集成
+- 修复了基座升级中同一升级放入个数超过1个导致的各种异常问题
 
 ## en_us
 ### v1.0.0
@@ -26,4 +28,6 @@
 
 ### v2.0.3
 - Modified the logic for Pedestal Generator recipes
-- Added upgrade display in the JEI interface of the base
+- Added upgrade display in the JEI interface of the Pedestal
+- Added Jade integration to the progress of the Pedestal
+- Fixed various abnormal issues caused by placing more than one upgrade in the same Pedestal upgrade
