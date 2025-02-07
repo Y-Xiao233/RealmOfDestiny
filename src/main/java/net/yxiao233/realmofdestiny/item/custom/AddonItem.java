@@ -30,7 +30,6 @@ public class AddonItem extends AbstractBaseItemWithTooltip {
             tooltips.add(Component.translatable("addon_item.realmofdestiny.speed",(this.value+"%")).withStyle(ChatFormatting.GOLD));
         }
     }
-
     public enum Type {
         SPEED("speed"),
         INPUT_CHANCE("input_chance"),
