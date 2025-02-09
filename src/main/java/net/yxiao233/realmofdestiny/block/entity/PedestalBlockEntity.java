@@ -29,7 +29,7 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.ItemStackHandler;
 import net.yxiao233.realmofdestiny.config.machine.PedestalConfig;
-import net.yxiao233.realmofdestiny.item.custom.AddonItem;
+import net.yxiao233.realmofdestiny.api.item.custom.AddonItem;
 import net.yxiao233.realmofdestiny.recipe.PedestalGeneratorRecipe;
 import net.yxiao233.realmofdestiny.registry.ModBlockEntities;
 import net.yxiao233.realmofdestiny.registry.ModRecipes;
@@ -140,7 +140,6 @@ public class PedestalBlockEntity extends BlockEntity implements MenuProvider {
         pTag.put("upgrades",upgradeItemHandler.serializeNBT());
         pTag.put("energy",energyStorage.serializeNBT());
         pTag.putInt("progress",progress);
-        pTag.putInt("max_progress",maxProgress);
         super.saveAdditional(pTag);
     }
 
@@ -148,7 +147,6 @@ public class PedestalBlockEntity extends BlockEntity implements MenuProvider {
     public void load(CompoundTag pTag) {
         super.load(pTag);
         this.progress = pTag.getInt("progress");
-        this.maxProgress = pTag.getInt("max_progress");
         energyStorage.deserializeNBT(pTag.get("energy"));
         itemHandler.deserializeNBT(pTag.getCompound("inventory"));
         upgradeItemHandler.deserializeNBT(pTag.getCompound("upgrades"));
@@ -224,22 +222,24 @@ public class PedestalBlockEntity extends BlockEntity implements MenuProvider {
         }
     }
 
-    private void checkForRecipe(Level level){
+    public boolean checkForRecipe(Level level){
         if (!level.isClientSide()) {
             if (this.currentRecipe != null && this.currentRecipe.matches(itemHandler,level,this.getBlockPos())) {
-                return;
+                return true;
             }
 
             this.currentRecipe = RecipeUtil.getRecipes(this.level, (RecipeType<PedestalGeneratorRecipe>) ModRecipes.PEDESTAL_TYPE.get()).stream().filter((pedestalRecipe) -> {
                 return pedestalRecipe.matches(itemHandler,level,this.getBlockPos());
             }).findFirst().orElse(null);
+            return this.currentRecipe != null;
         }
+        return false;
     }
 
-    private void checkForContainer(Level level, BlockPos blockPos) {
+    public boolean checkForContainer(Level level, BlockPos blockPos) {
         if(currentRecipe == null){
             this.containerBlockPos = null;
-            return;
+            return false;
         }
         boolean hasContainerNearby = false;
         BlockPos[] nearbyBlockPosList = {
@@ -264,13 +264,14 @@ public class PedestalBlockEntity extends BlockEntity implements MenuProvider {
                 this.containerBlockPos = null;
             }
         }
+        return this.containerBlockPos != null;
     }
 
     private boolean isPedestal(BlockEntity entity){
         return entity instanceof PedestalBlockEntity;
     }
 
-    private boolean canInsert(BlockEntity entity){
+    public boolean canInsert(BlockEntity entity){
         AtomicBoolean c = new AtomicBoolean(false);
         entity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(itemHandler -> {
             if(ItemHandlerUtil.canInsertItem(itemHandler,currentRecipe.output)){
@@ -281,7 +282,7 @@ public class PedestalBlockEntity extends BlockEntity implements MenuProvider {
         return c.get();
     }
 
-    private boolean canIncrease(){
+    public boolean canIncrease(){
         return this.energyStorage.getEnergyStored() >= this.neededEnergy;
     }
 

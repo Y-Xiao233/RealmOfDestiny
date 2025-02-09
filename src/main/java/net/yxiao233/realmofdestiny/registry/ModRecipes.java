@@ -8,7 +8,7 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.yxiao233.realmofdestiny.RealmOfDestiny;
-import net.yxiao233.realmofdestiny.api.IModule;
+import net.yxiao233.realmofdestiny.api.module.IModule;
 import net.yxiao233.realmofdestiny.recipe.PedestalGeneratorRecipe;
 
 public class ModRecipes implements IModule {

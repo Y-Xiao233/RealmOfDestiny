@@ -3,11 +3,8 @@ package net.yxiao233.realmofdestiny.screen;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.yxiao233.realmofdestiny.block.entity.PedestalBlockEntity;
+import net.yxiao233.realmofdestiny.api.screen.AbstractModContainerScreen;
 import net.yxiao233.realmofdestiny.gui.AllGuiTextures;
-
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class PedestalScreen extends AbstractModContainerScreen<PedestalMenu> {
     public PedestalScreen(PedestalMenu pMenu, Inventory pPlayerInventory, Component pTitle) {

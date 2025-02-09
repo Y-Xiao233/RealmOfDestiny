@@ -15,7 +15,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeType;
-import net.yxiao233.realmofdestiny.compact.jei.AbstractJEICategory;
+import net.yxiao233.realmofdestiny.api.jei.AbstractJEICategory;
 import net.yxiao233.realmofdestiny.compact.jei.ModRecipeType;
 import net.yxiao233.realmofdestiny.config.machine.PedestalConfig;
 import net.yxiao233.realmofdestiny.gui.AllGuiTextures;

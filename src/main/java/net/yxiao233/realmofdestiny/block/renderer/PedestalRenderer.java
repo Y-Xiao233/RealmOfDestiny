@@ -16,8 +16,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LightLayer;
 import net.yxiao233.realmofdestiny.block.entity.PedestalBlockEntity;
 
-import java.util.List;
-
 public class PedestalRenderer implements BlockEntityRenderer<PedestalBlockEntity> {
     private float rotationAngle = 0.0f;
     public PedestalRenderer(BlockEntityRendererProvider.Context context){

@@ -16,6 +16,10 @@
 - 为基座的进度添加了jade集成
 - 修复了基座升级中同一升级放入个数超过1个导致的各种异常问题
 
+### v2.0.400
+- 优化了基座jade集成的显示内容
+- 调整了部分文件结构
+
 ## en_us
 ### v1.0.0
 - init
@@ -31,3 +35,7 @@
 - Added upgrade display in the JEI interface of the Pedestal
 - Added Jade integration to the progress of the Pedestal
 - Fixed various abnormal issues caused by placing more than one upgrade in the same Pedestal upgrade
+
+### v2.0.400
+- Optimized the display content of the Jade integration for the Pedestal
+- Adjusted some file structures

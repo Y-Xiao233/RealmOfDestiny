@@ -1,4 +1,4 @@
-package net.yxiao233.realmofdestiny.item.custom;
+package net.yxiao233.realmofdestiny.api.item;
 
 public enum KeyType {
     SHIFT("shift"),

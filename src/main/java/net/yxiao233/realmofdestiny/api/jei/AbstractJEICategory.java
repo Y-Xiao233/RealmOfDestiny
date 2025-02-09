@@ -1,4 +1,4 @@
-package net.yxiao233.realmofdestiny.compact.jei;
+package net.yxiao233.realmofdestiny.api.jei;
 
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;

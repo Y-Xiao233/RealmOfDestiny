@@ -1,22 +1,17 @@
 package net.yxiao233.realmofdestiny.block;
 
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -28,13 +23,11 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.network.NetworkHooks;
 import net.yxiao233.realmofdestiny.block.entity.PedestalBlockEntity;
-import net.yxiao233.realmofdestiny.item.custom.AddonItem;
+import net.yxiao233.realmofdestiny.api.item.custom.AddonItem;
 import net.yxiao233.realmofdestiny.registry.ModBlockEntities;
-import net.yxiao233.realmofdestiny.registry.ModItems;
 import net.yxiao233.realmofdestiny.util.BlockBoxHelper;
 import net.yxiao233.realmofdestiny.util.KeyDownUtil;
 import org.jetbrains.annotations.Nullable;
-import org.lwjgl.glfw.GLFW;
 
 
 public class PedestalBlock extends BaseEntityBlock {

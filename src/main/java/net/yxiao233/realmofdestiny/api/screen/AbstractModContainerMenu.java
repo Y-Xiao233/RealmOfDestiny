@@ -1,4 +1,4 @@
-package net.yxiao233.realmofdestiny.screen;
+package net.yxiao233.realmofdestiny.api.screen;
 
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;

@@ -12,7 +12,7 @@ import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.registries.RegistryObject;
-import net.yxiao233.realmofdestiny.compact.jei.AbstractJEICategory;
+import net.yxiao233.realmofdestiny.api.jei.AbstractJEICategory;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.ArrayList;

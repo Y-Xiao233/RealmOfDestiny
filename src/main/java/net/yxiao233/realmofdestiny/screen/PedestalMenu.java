@@ -7,6 +7,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.items.SlotItemHandler;
+import net.yxiao233.realmofdestiny.api.screen.AbstractModContainerMenu;
 import net.yxiao233.realmofdestiny.block.entity.PedestalBlockEntity;
 import net.yxiao233.realmofdestiny.registry.ModMenuTypes;
 

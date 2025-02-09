@@ -42,6 +42,9 @@
 
 
 
-  "jade.realmofdestiny.pedestal.progress": "进度: %d",
+  "jade.realmofdestiny.pedestal.progress": "进度: %s / %s",
+  "jade.realmofdestiny.pedestal.no_recipe": "没有配方",
+  "jade.realmofdestiny.pedestal.no_container": "没有容器相邻或容器已满",
+  "jade.realmofdestiny.pedestal.not_enough_energy": "没有足够能量",
   "config.jade.plugin_realmofdestiny.pedestal": "基座"
 }

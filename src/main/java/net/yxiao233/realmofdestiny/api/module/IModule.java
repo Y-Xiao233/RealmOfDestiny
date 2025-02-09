@@ -1,4 +1,4 @@
-package net.yxiao233.realmofdestiny.api;
+package net.yxiao233.realmofdestiny.api.module;
 
 import com.hrznstudio.titanium.module.DeferredRegistryHelper;
 

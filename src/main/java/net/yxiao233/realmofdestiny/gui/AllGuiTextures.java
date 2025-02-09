@@ -3,6 +3,7 @@ package net.yxiao233.realmofdestiny.gui;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.resources.ResourceLocation;
 import net.yxiao233.realmofdestiny.RealmOfDestiny;
+import net.yxiao233.realmofdestiny.api.gui.ScreenElement;
 
 public enum AllGuiTextures implements ScreenElement {
     //Empty

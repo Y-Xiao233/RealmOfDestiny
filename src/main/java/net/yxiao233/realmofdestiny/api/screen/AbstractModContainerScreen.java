@@ -1,4 +1,4 @@
-package net.yxiao233.realmofdestiny.screen;
+package net.yxiao233.realmofdestiny.api.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.GuiGraphics;

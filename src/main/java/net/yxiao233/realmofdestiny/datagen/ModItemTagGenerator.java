@@ -5,7 +5,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.yxiao233.realmofdestiny.item.custom.AddonItem;
+import net.yxiao233.realmofdestiny.api.item.custom.AddonItem;
 import net.yxiao233.realmofdestiny.registry.ModItems;
 import net.yxiao233.realmofdestiny.registry.ModTags;
 

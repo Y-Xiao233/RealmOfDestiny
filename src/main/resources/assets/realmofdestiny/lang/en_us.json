@@ -42,6 +42,9 @@
 
 
 
-  "jade.realmofdestiny.pedestal.progress": "Progress: %d",
+  "jade.realmofdestiny.pedestal.progress": "Progress: %s / %s",
+  "jade.realmofdestiny.pedestal.no_recipe": "No Recipe",
+  "jade.realmofdestiny.pedestal.no_container": "No adjacent containers or containers are full",
+  "jade.realmofdestiny.pedestal.not_enough_energy": "Not enough energy",
   "config.jade.plugin_realmofdestiny.pedestal": "Pedestal"
 }

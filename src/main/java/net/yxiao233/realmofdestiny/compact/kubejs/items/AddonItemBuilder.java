@@ -5,7 +5,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
-import net.yxiao233.realmofdestiny.item.custom.AddonItem;
+import net.yxiao233.realmofdestiny.api.item.custom.AddonItem;
 
 public class AddonItemBuilder extends ItemBuilder {
     private int value;

@@ -13,7 +13,6 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.common.Tags;
 import net.yxiao233.realmofdestiny.RealmOfDestiny;
 import net.yxiao233.realmofdestiny.recipe.PedestalGeneratorRecipe;
-import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.Map;
 

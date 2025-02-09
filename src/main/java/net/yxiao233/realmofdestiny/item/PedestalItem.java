@@ -1,14 +1,13 @@
 package net.yxiao233.realmofdestiny.item;
 
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.yxiao233.realmofdestiny.item.custom.AbstractBaseBlockItemWithTooltip;
-import net.yxiao233.realmofdestiny.item.custom.KeyType;
+import net.yxiao233.realmofdestiny.api.item.AbstractBaseBlockItemWithTooltip;
+import net.yxiao233.realmofdestiny.api.item.KeyType;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;

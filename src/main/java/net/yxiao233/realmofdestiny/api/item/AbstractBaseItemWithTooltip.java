@@ -1,34 +1,29 @@
-package net.yxiao233.realmofdestiny.item.custom;
+package net.yxiao233.realmofdestiny.api.item;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public abstract class AbstractBaseBlockItemWithTooltip extends BlockItem {
-
-    public AbstractBaseBlockItemWithTooltip(Block pBlock, Properties pProperties) {
-        super(pBlock, pProperties);
+public abstract class AbstractBaseItemWithTooltip extends Item {
+    public AbstractBaseItemWithTooltip(Properties pProperties) {
+        super(pProperties);
     }
-
     @Override
     public abstract void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltips, TooltipFlag flag);
-    public boolean getKeyType(KeyType keyType) {
+    private boolean getKeyType(KeyType keyType) {
         return switch (keyType) {
             case SHIFT -> Screen.hasShiftDown();
             case ALT -> Screen.hasAltDown();
             case CONTROL -> Screen.hasControlDown();
         };
     }
-
 
     //Multiple
     public void addTooltip(List<Component> tooltips, ItemStack itemStack, int index) {
@@ -67,16 +62,6 @@ public abstract class AbstractBaseBlockItemWithTooltip extends BlockItem {
     public void addTooltipWhileKeyDown(KeyType keyType, List<Component> tooltips, ItemStack itemStack, ChatFormatting style, int index) {
         if (getKeyType(keyType)) {
             addTooltip(tooltips, itemStack, style, index);
-        } else {
-            tooltips.add(Component.translatable("tooltip.realmofdestiny.held." + keyType.getValue()).withStyle(ChatFormatting.GRAY));
-        }
-    }
-
-    public void addTooltipsWhileKeyDown(KeyType keyType, List<Component> tooltips, ItemStack itemStack, ChatFormatting style, int[] indexes){
-        if (getKeyType(keyType)) {
-            for (int index : indexes) {
-                addTooltip(tooltips, itemStack, style, index);
-            }
         } else {
             tooltips.add(Component.translatable("tooltip.realmofdestiny.held." + keyType.getValue()).withStyle(ChatFormatting.GRAY));
         }
