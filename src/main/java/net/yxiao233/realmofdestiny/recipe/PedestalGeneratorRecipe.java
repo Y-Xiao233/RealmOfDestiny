@@ -46,8 +46,8 @@ public class PedestalGeneratorRecipe extends SerializableRecipe {
         return false;
     }
 
-    public boolean matches(IItemHandler handler, Level level, BlockPos blockPos){
-        if(previewItem != null && hasContainer(level,blockPos)){
+    public boolean matches(IItemHandler handler){
+        if(previewItem != null){
             Iterator<ItemStack> iterator = previewItem.getItems().iterator();
             boolean hasPreviewItem = false;
             while (iterator.hasNext()){
@@ -61,27 +61,6 @@ public class PedestalGeneratorRecipe extends SerializableRecipe {
         }else{
             return false;
         }
-    }
-
-    private boolean hasContainer(Level level,BlockPos blockPos) {
-        boolean hasContainerNearby = false;
-        BlockPos[] nearbyBlockPosList = {
-                blockPos.offset(0,0,-1),
-                blockPos.offset(0,0,1),
-                blockPos.offset(1,0,0),
-                blockPos.offset(-1,0,0),
-                blockPos.offset(0,1,0),
-                blockPos.offset(0,-1,0)
-        };
-        for (BlockPos pos : nearbyBlockPosList) {
-            BlockEntity blockEntity = level.getBlockEntity(pos);
-            hasContainerNearby = blockEntity != null && blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).isPresent();
-            if (hasContainerNearby) {
-                break;
-            }
-        }
-
-        return hasContainerNearby;
     }
 
     @Override

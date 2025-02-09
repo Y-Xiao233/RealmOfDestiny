@@ -34,7 +34,7 @@ public enum PedestalServerComponentProvider implements IBlockComponentProvider, 
                     int progress = tag.getInt("progress");
                     int maxProgress = tag.getInt("max_progress");
                     float ratio = (float) progress / maxProgress;
-                    IElement element = helper.progress(ratio, Component.translatable("jade.realmofdestiny.pedestal.progress", ChatFormatting.WHITE + String.valueOf(progress), maxProgress).withStyle(ChatFormatting.GRAY), helper.progressStyle(), BoxStyle.DEFAULT,true);
+                    IElement element = helper.progress(ratio,Component.translatable("jade.realmofdestiny.pedestal.progress", ChatFormatting.WHITE + String.valueOf(progress), maxProgress).withStyle(ChatFormatting.GRAY), helper.progressStyle(), BoxStyle.DEFAULT,true);
                     tooltip.add(element);
                 }
             }else{

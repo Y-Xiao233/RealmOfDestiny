@@ -37,14 +37,17 @@ public class AddonItem extends AbstractBaseItemWithTooltip {
         OUTPUT_CHANCE("output_chance"),
         EMPTY("empty");
         public final String id;
+        public static final String SPEED_ID = "speed";
+        public static final String INPUT_CHANCE_ID = "input_chance";
+        public static final String OUTPUT_CHANCE_ID = "output_chance";
         Type(String id){
             this.id = id;
         }
         public static Type getById(String id){
             return switch (id){
-                case "speed" -> SPEED;
-                case "input_chance" -> INPUT_CHANCE;
-                case "output_chance" -> OUTPUT_CHANCE;
+                case SPEED_ID -> SPEED;
+                case INPUT_CHANCE_ID -> INPUT_CHANCE;
+                case OUTPUT_CHANCE_ID -> OUTPUT_CHANCE;
                 default -> EMPTY;
             };
         }

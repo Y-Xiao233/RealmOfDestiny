@@ -86,7 +86,7 @@ public class PedestalGeneratorCategory extends AbstractJEICategory<PedestalGener
         }
 
         //Upgrade
-        builder.addSlot(RecipeIngredientRole.INPUT,1,62)
+        builder.addSlot(RecipeIngredientRole.CATALYST,1,62)
                 .addIngredients(Ingredient.of(ModTags.Items.PEDESTAL_UPGRADE_AUGMENT))
                 .setBackground(drawBasicSlot(),-1,-1)
                 .addTooltipCallback(addText("gui.realmofdestiny.pedestal.open_menu",ChatFormatting.BLUE));

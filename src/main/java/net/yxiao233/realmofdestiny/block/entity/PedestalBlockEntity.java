@@ -224,12 +224,12 @@ public class PedestalBlockEntity extends BlockEntity implements MenuProvider {
 
     public boolean checkForRecipe(Level level){
         if (!level.isClientSide()) {
-            if (this.currentRecipe != null && this.currentRecipe.matches(itemHandler,level,this.getBlockPos())) {
+            if (this.currentRecipe != null && this.currentRecipe.matches(itemHandler)) {
                 return true;
             }
 
             this.currentRecipe = RecipeUtil.getRecipes(this.level, (RecipeType<PedestalGeneratorRecipe>) ModRecipes.PEDESTAL_TYPE.get()).stream().filter((pedestalRecipe) -> {
-                return pedestalRecipe.matches(itemHandler,level,this.getBlockPos());
+                return pedestalRecipe.matches(itemHandler);
             }).findFirst().orElse(null);
             return this.currentRecipe != null;
         }
@@ -250,17 +250,15 @@ public class PedestalBlockEntity extends BlockEntity implements MenuProvider {
                 blockPos.offset(0,1,0),
                 blockPos.offset(0,-1,0)
         };
-        for (int i = 0; i < nearbyBlockPosList.length; i++) {
-            BlockEntity blockEntity = level.getBlockEntity(nearbyBlockPosList[i]);
+        for (BlockPos pos : nearbyBlockPosList) {
+            BlockEntity blockEntity = level.getBlockEntity(pos);
             hasContainerNearby = blockEntity != null && blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).isPresent();
-            if(hasContainerNearby){
-                if(isPedestal(blockEntity) || !canInsert(blockEntity)){
-                    continue;
-                }else{
-                    this.containerBlockPos = nearbyBlockPosList[i];
+            if (hasContainerNearby) {
+                if (!isPedestal(blockEntity) && canInsert(blockEntity)) {
+                    this.containerBlockPos = pos;
                     break;
                 }
-            }else{
+            } else {
                 this.containerBlockPos = null;
             }
         }
