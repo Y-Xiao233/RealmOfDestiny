@@ -28,6 +28,7 @@ import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.ItemStackHandler;
+import net.yxiao233.realmofdestiny.api.block.entity.AbstractProcessingBlockEntityWithMenu;
 import net.yxiao233.realmofdestiny.config.machine.PedestalConfig;
 import net.yxiao233.realmofdestiny.api.item.custom.AddonItem;
 import net.yxiao233.realmofdestiny.recipe.PedestalGeneratorRecipe;
@@ -41,7 +42,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class PedestalBlockEntity extends BlockEntity implements MenuProvider {
+public class PedestalBlockEntity extends AbstractProcessingBlockEntityWithMenu {
     public ItemStackHandler itemHandler = new ItemStackHandler(1){
         @Override
         protected void onContentsChanged(int slot) {
