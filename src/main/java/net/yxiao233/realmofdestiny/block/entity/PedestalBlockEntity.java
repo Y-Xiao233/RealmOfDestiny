@@ -153,6 +153,7 @@ public class PedestalBlockEntity extends AbstractProcessingBlockEntityWithMenu {
         upgradeItemHandler.deserializeNBT(pTag.getCompound("upgrades"));
     }
 
+    @Override
     public void drops(){
         SimpleContainer inventory = new SimpleContainer(itemHandler.getSlots()+upgradeItemHandler.getSlots());
         for (int i = 0; i < itemHandler.getSlots(); i++) {

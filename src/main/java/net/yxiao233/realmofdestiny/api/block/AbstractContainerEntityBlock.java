@@ -14,7 +14,7 @@ public abstract class AbstractContainerEntityBlock<T extends AbstractContainerBl
     @Override
     public void onRemove(BlockState blockState, Level level, BlockPos blockPos, BlockState newState, boolean movedByPiston) {
         if(blockState.getBlock() != newState.getBlock()){
-            AbstractContainerBlockEntity entity = (AbstractContainerBlockEntity) level.getBlockEntity(blockPos);
+            T entity = (T) level.getBlockEntity(blockPos);
             if(entity != null){
                 entity.drops();
             }
