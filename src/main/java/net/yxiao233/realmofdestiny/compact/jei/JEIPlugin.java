@@ -16,14 +16,9 @@ import net.yxiao233.realmofdestiny.compact.jei.category.PedestalGeneratorCategor
 import net.yxiao233.realmofdestiny.recipe.PedestalGeneratorRecipe;
 import net.yxiao233.realmofdestiny.registry.ModItems;
 import net.yxiao233.realmofdestiny.registry.ModRecipes;
-import net.yxiao233.realmofdestiny.util.JEIRegistryHelper;
 
 @JeiPlugin
 public class JEIPlugin implements IModPlugin {
-    private JEIRegistryHelper helper = new JEIRegistryHelper();
-    private void registries(IGuiHelper guiHelper){
-        helper.add(new PedestalGeneratorCategory(guiHelper), ModItems.PEDESTAL_ITEM);
-    }
     @Override
     public ResourceLocation getPluginUid() {
         return new ResourceLocation(RealmOfDestiny.MODID,"jei_plugin");

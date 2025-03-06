@@ -22,7 +22,6 @@ import net.yxiao233.realmofdestiny.block.entity.PedestalBlockEntity;
 import net.yxiao233.realmofdestiny.api.item.custom.AddonItem;
 import net.yxiao233.realmofdestiny.registry.ModBlockEntities;
 import net.yxiao233.realmofdestiny.util.BlockBoxHelper;
-import net.yxiao233.realmofdestiny.util.KeyDownUtil;
 import org.jetbrains.annotations.Nullable;
 
 public class PedestalBlock extends AbstractProcessingEntityBlockWithMenu<PedestalBlockEntity> {
@@ -34,8 +33,8 @@ public class PedestalBlock extends AbstractProcessingEntityBlockWithMenu<Pedesta
         return ModBlockEntities.PEDESTAL_BE.get();
     }
     @Override
-    public boolean openMenuLogic() {
-        return KeyDownUtil.isCtrlDown();
+    public boolean openMenuLogic(Level level, Player player) {
+        return isCtrlDown;
     }
     @SuppressWarnings("deprecation")
     @Override
@@ -50,8 +49,8 @@ public class PedestalBlock extends AbstractProcessingEntityBlockWithMenu<Pedesta
 
     @Override
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+        super.use(state, level, pos, player, hand, hitResult);
         if(!level.isClientSide()){
-            super.use(state, level, pos, player, hand, hitResult);
             return extractAndInsertLogic(state,level,pos,player,hand,hitResult);
         }
         return super.use(state, level, pos, player, hand, hitResult);

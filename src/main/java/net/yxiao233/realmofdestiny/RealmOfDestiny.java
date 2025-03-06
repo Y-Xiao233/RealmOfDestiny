@@ -13,6 +13,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.yxiao233.realmofdestiny.networking.ModNetWorking;
 import net.yxiao233.realmofdestiny.provider.ModRecipeProvider;
 import net.yxiao233.realmofdestiny.provider.ModSerializableProvider;
 import net.yxiao233.realmofdestiny.registry.*;
@@ -26,7 +27,6 @@ public class RealmOfDestiny extends ModuleController {
     {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         MinecraftForge.EVENT_BUS.register(this);
-        modEventBus.addListener(this::commonSetup);
 
 
         ModBlocks.BLOCKS.register(modEventBus);
@@ -34,15 +34,7 @@ public class RealmOfDestiny extends ModuleController {
         ModMenuTypes.MENUS.register(modEventBus);
         ModCreativeModeTab.CREATIVE_MODE_TAB.register(modEventBus);
         ModBlockEntities.BLOCK_ENTITIES.register(modEventBus);
-    }
-
-
-    @SuppressWarnings("deprecation")
-    private void commonSetup(final FMLCommonSetupEvent event)
-    {
-        event.enqueueWork(() -> {
-            ItemBlockRenderTypes.setRenderLayer(ModBlocks.PEDESTAL.get(), RenderType.cutout());
-        });
+        ModNetWorking.register();
     }
     @Override
     protected void initModules() {
@@ -55,12 +47,13 @@ public class RealmOfDestiny extends ModuleController {
         event.getGenerator().addProvider(event.includeServer(), new ModSerializableProvider(event.getGenerator()));
     }
 
-
+    @SuppressWarnings("deprecation")
     @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
             MenuScreens.register(ModMenuTypes.PEDESTAL_MENU.get(), PedestalScreen::new);
+            ItemBlockRenderTypes.setRenderLayer(ModBlocks.PEDESTAL.get(), RenderType.cutout());
         }
     }
 }
