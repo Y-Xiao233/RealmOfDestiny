@@ -1,0 +1,45 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:and",
+          "values": [
+            {
+              "type": "forge:item_exists",
+              "item": "realmofdestiny:pedestal"
+            }
+          ]
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "category": "misc",
+        "key": {
+          "A": {
+            "tag": "forge:glass/yellow"
+          },
+          "B": {
+            "tag": "forge:chests"
+          },
+          "C": {
+            "item": "minecraft:gold_block"
+          },
+          "D": {
+            "item": "minecraft:smooth_stone_slab"
+          }
+        },
+        "pattern": [
+          "ABA",
+          " C ",
+          "DDD"
+        ],
+        "result": {
+          "item": "realmofdestiny:pedestal"
+        },
+        "show_notification": true
+      }
+    }
+  ]
+}
