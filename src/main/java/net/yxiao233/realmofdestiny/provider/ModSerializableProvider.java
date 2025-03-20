@@ -14,6 +14,7 @@ import net.minecraftforge.common.Tags;
 import net.yxiao233.realmofdestiny.RealmOfDestiny;
 import net.yxiao233.realmofdestiny.recipe.PedestalGeneratorRecipe;
 
+import java.util.List;
 import java.util.Map;
 
 public class ModSerializableProvider extends TitaniumSerializableProvider {
@@ -27,18 +28,13 @@ public class ModSerializableProvider extends TitaniumSerializableProvider {
         //Pedestal_Generator
         new PedestalGeneratorRecipe(new ResourceLocation(modId,"cobblestone"),
                 0,tagValue(Tags.Items.COBBLESTONE),
-                new ItemStack[]{
-                        new ItemStack(Items.COBBLESTONE,2),
-                        Items.STONE.getDefaultInstance()
-                },
+                new ItemStack(Items.COBBLESTONE,2),
                 0.8,2000,20
         );
 
         new PedestalGeneratorRecipe(new ResourceLocation(modId,"dirt"),
                 0.4,itemValue(Items.DIRT.getDefaultInstance()),
-                new ItemStack[]{
-                        new ItemStack(Items.DIRT,2)
-                },
+                new ItemStack(Items.DIRT,2),
                 1,2000,20
         );
 

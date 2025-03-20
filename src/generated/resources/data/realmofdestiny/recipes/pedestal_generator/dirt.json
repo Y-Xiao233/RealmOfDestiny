@@ -2,12 +2,10 @@
   "type": "realmofdestiny:pedestal_generator",
   "energy": 2000,
   "inputConsumeChance": 0.4,
-  "output": [
-    {
-      "count": 2,
-      "item": "minecraft:dirt"
-    }
-  ],
+  "output": {
+    "count": 2,
+    "item": "minecraft:dirt"
+  },
   "outputChance": 1.0,
   "previewItem": {
     "item": "minecraft:dirt"

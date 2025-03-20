@@ -3,7 +3,7 @@ package net.yxiao233.realmofdestiny.api.jei;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
-import mezz.jei.api.gui.ingredient.IRecipeSlotTooltipCallback;
+import mezz.jei.api.gui.ingredient.IRecipeSlotRichTooltipCallback;
 import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
@@ -103,13 +103,13 @@ public abstract class AbstractJEICategory<T extends Recipe<?>> implements IRecip
     }
 
     //builder
-    public IRecipeSlotTooltipCallback addText(String translatableKey, ChatFormatting style){
+    public IRecipeSlotRichTooltipCallback addText(String translatableKey, ChatFormatting style){
         return (view, tooltip) ->{
-            tooltip.add(1,Component.translatable(translatableKey).withStyle(style));
+            tooltip.add(Component.translatable(translatableKey).withStyle(style));
         };
     }
 
-    public IRecipeSlotTooltipCallback addText(TooltipCallBackHelper... tooltips){
+    public IRecipeSlotRichTooltipCallback addText(TooltipCallBackHelper... tooltips){
         return (view, tooltip) ->{
             for (int i = 0; i < tooltips.length; i++) {
                 tooltip.add(tooltips[i].getComponent());
@@ -148,12 +148,12 @@ public abstract class AbstractJEICategory<T extends Recipe<?>> implements IRecip
     public IDrawable drawBasicSlot(){
         return drawSlot(INEVITABLE);
     }
-    public IRecipeSlotTooltipCallback addChanceTooltip(double chance){
+    public IRecipeSlotRichTooltipCallback addChanceTooltip(double chance){
         if(chance >= 1){
             return null;
         }
         return (view, tooltip) ->{
-            tooltip.add(1,Component.translatable("gui.realmofdestiny.chance", (chance >= 0.01 ? (int) (chance * 100) : "< 1") + "%").withStyle(ChatFormatting.GOLD));
+            tooltip.add(Component.translatable("gui.realmofdestiny.chance", (chance >= 0.01 ? (int) (chance * 100) : "< 1") + "%").withStyle(ChatFormatting.GOLD));
         };
     }
 }

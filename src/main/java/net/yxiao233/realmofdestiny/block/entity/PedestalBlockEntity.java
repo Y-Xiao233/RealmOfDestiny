@@ -39,6 +39,7 @@ import net.yxiao233.realmofdestiny.util.ItemHandlerUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -274,9 +275,10 @@ public class PedestalBlockEntity extends AbstractProcessingBlockEntityWithMenu {
     public boolean canInsert(BlockEntity entity){
         AtomicBoolean c = new AtomicBoolean(false);
         entity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(itemHandler -> {
-            if(ItemHandlerUtil.canInsertItem(itemHandler,currentRecipe.output)){
+            if(ItemHandlerUtil.canInsertItem(itemHandler, List.of(currentRecipe.output))){
                 c.set(true);
             }
+            c.set(true);
         });
 
         return c.get();
@@ -298,10 +300,8 @@ public class PedestalBlockEntity extends AbstractProcessingBlockEntityWithMenu {
         Random random = new Random();
         double outputChance = outputChancePrefix();
         level.getBlockEntity(containerBlockPos).getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(itemHandler -> {
-            for (int i = 0; i < currentRecipe.output.length; i++) {
-                if(random.nextDouble(0,1) < outputChance){
-                    ItemHandlerHelper.insertItem(itemHandler,currentRecipe.output[i],false);
-                }
+            if(random.nextDouble(0,1) < outputChance){
+                ItemHandlerHelper.insertItem(itemHandler,currentRecipe.output,false);
             }
         });
         double inputConsumeChance = inputConsumeChancePrefix();

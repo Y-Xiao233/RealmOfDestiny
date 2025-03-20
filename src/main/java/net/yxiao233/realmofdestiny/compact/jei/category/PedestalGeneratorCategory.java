@@ -44,52 +44,40 @@ public class PedestalGeneratorCategory extends AbstractJEICategory<PedestalGener
         if(inputConsumeChance <= 0){
             builder.addSlot(RecipeIngredientRole.INPUT, 36, 26)
                     .addIngredients(Ingredient.of(recipe.previewItem.getItems().stream()))
-                    .addTooltipCallback(addText(
+                    .addRichTooltipCallback(addText(
                             new TooltipCallBackHelper("gui.realmofdestiny.on_pedestal",ChatFormatting.GOLD),
                             new TooltipCallBackHelper("gui.realmofdestiny.not_consume",ChatFormatting.RED)
                     )).setBackground(drawBasicSlot(),-1,-1);
         }else{
             builder.addSlot(RecipeIngredientRole.INPUT, 36, 26)
                     .addIngredients(Ingredient.of(recipe.previewItem.getItems().stream()))
-                    .addTooltipCallback(addText(
+                    .addRichTooltipCallback(addText(
                             new TooltipCallBackHelper("gui.realmofdestiny.on_pedestal",ChatFormatting.GOLD),
                             new TooltipCallBackHelper("gui.realmofdestiny.consume",ChatFormatting.RED,((inputConsumeChance >= 0.01 ? (int) (inputConsumeChance * 100) : "< 1") + "%"))
                     )).setBackground(drawSlot(inputConsumeChance),-1,-1);
         }
 
         //Output
-        int x = 89;
-        int y = 13;
-        if(recipe.output.length <= 3){
-            y = 33;
-        }
-        if(recipe.output.length == 1){
-            x = 109;
-        }
+        int x = 109;
+        int y = 33;
         double chance = recipe.outputChance;
-        for (int i = 0; i < recipe.output.length; i++) {
-            ItemStack stack = recipe.output[i];
-            if(chance >= 1){
-                builder.addSlot(RecipeIngredientRole.OUTPUT,x,y)
-                        .addIngredient(VanillaTypes.ITEM_STACK,stack)
-                        .setBackground(drawSlot(chance),-1,-1);
-            }else{
-                builder.addSlot(RecipeIngredientRole.OUTPUT,x,y)
-                        .addIngredient(VanillaTypes.ITEM_STACK,stack)
-                        .setBackground(drawSlot(chance),-1,-1)
-                        .addTooltipCallback(addChanceTooltip(chance));
-            }
-            x += 20;
-            if(i % 3 == 0 && i != 0){
-                y += 20;
-            }
+        ItemStack stack = recipe.output;
+        if(chance >= 1){
+            builder.addSlot(RecipeIngredientRole.OUTPUT,x,y)
+                    .addIngredient(VanillaTypes.ITEM_STACK,stack)
+                    .setBackground(drawSlot(chance),-1,-1);
+        }else{
+            builder.addSlot(RecipeIngredientRole.OUTPUT,x,y)
+                    .addIngredient(VanillaTypes.ITEM_STACK,stack)
+                    .setBackground(drawSlot(chance),-1,-1)
+                    .addRichTooltipCallback(addChanceTooltip(chance));
         }
 
         //Upgrade
         builder.addSlot(RecipeIngredientRole.CATALYST,1,62)
                 .addIngredients(Ingredient.of(ModTags.Items.PEDESTAL_UPGRADE_AUGMENT))
                 .setBackground(drawBasicSlot(),-1,-1)
-                .addTooltipCallback(addText("gui.realmofdestiny.pedestal.open_menu",ChatFormatting.BLUE));
+                .addRichTooltipCallback(addText("gui.realmofdestiny.pedestal.open_menu",ChatFormatting.BLUE));
     }
 
     @Override
@@ -103,7 +91,7 @@ public class PedestalGeneratorCategory extends AbstractJEICategory<PedestalGener
         }
 
         //ProgressBar
-        drawTextureWithTooltip(guiGraphics, AllGuiTextures.ARROW_HORIZONTAL,Component.translatable("gui.realmofdestiny.processingTime",recipe.processingTime),60,33,mouseX,mouseY);
+        drawTextureWithTooltip(guiGraphics, AllGuiTextures.ARROW_HORIZONTAL,Component.translatable("gui.realmofdestiny.processingTime",recipe.processingTime),70,33,mouseX,mouseY);
 
         //Pedestal
         guiGraphics.renderItem(ModItems.PEDESTAL_ITEM.get().getDefaultInstance(),36,42);

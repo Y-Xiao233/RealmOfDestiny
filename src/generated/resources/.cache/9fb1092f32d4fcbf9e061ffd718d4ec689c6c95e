@@ -1,4 +1,5 @@
-// 1.20.1	2025-02-07T23:30:13.8410805	Recipes
+// 1.20.1	2025-03-20T12:26:10.6972262	Recipes
 7c28369cecb4610dd28fee8bb5fd8dcb43d56631 data/realmofdestiny/recipes/input_augment_1.json
 149e7d39256c07497729e3997263038edc20114d data/realmofdestiny/recipes/output_augment_1.json
+5f5d041fc079a6eaf57cad662d91fda1ee35aee1 data/realmofdestiny/recipes/pedestal.json
 d3f03770fa631339a8eb1f207e99016ddb998b19 data/realmofdestiny/recipes/speed_augment_1.json

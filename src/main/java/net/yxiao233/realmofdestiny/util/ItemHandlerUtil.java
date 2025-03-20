@@ -4,14 +4,15 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ItemHandlerUtil {
-    public static boolean canInsertItem(IItemHandler handler, ItemStack[] itemStacks){
-        boolean[] is = new boolean[itemStacks.length];
+    public static boolean canInsertItem(IItemHandler handler, List<ItemStack> itemStacks){
+        boolean[] is = new boolean[itemStacks.size()];
         ArrayList<Integer> emptySlotWillBePutItem = new ArrayList<>();
-        for (int i = 0; i < itemStacks.length; i++) {
+        for (int i = 0; i < itemStacks.size(); i++) {
             for (int m = 0; m < handler.getSlots(); m++) {
-                boolean canStack = handler.getStackInSlot(m).is(itemStacks[i].getItem()) && handler.getStackInSlot(m).getCount() + itemStacks[i].getCount() <= handler.getSlotLimit(i);
+                boolean canStack = handler.getStackInSlot(m).is(itemStacks.get(i).getItem()) && handler.getStackInSlot(m).getCount() + itemStacks.get(i).getCount() <= handler.getSlotLimit(i);
                 is[i] = canStack;
                 if(canStack){
                     break;

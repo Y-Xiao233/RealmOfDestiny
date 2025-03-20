@@ -22,7 +22,7 @@ import java.util.List;
 public class PedestalGeneratorRecipe extends SerializableRecipe {
     public static List<PedestalGeneratorRecipe> RECIPES = new ArrayList<>();
     public Ingredient.Value previewItem;
-    public ItemStack[] output;
+    public ItemStack output;
     public double outputChance;
     public double inputConsumeChance;
     public int processingTime;
@@ -31,7 +31,7 @@ public class PedestalGeneratorRecipe extends SerializableRecipe {
         super(resourceLocation);
     }
 
-    public PedestalGeneratorRecipe(ResourceLocation resourceLocation, double inputConsumeChance, Ingredient.Value previewItem, ItemStack[] output, double outputChance, int energy, int processingTime){
+    public PedestalGeneratorRecipe(ResourceLocation resourceLocation, double inputConsumeChance, Ingredient.Value previewItem, ItemStack output, double outputChance, int energy, int processingTime){
         super(resourceLocation);
         this.previewItem = previewItem;
         this.output = output;
@@ -75,7 +75,7 @@ public class PedestalGeneratorRecipe extends SerializableRecipe {
 
     @Override
     public ItemStack getResultItem(RegistryAccess registryAccess) {
-        return output[0];
+        return output;
     }
 
     @Override
