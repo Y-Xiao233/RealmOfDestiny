@@ -12,7 +12,7 @@ import net.yxiao233.realmofdestiny.config.machine.PedestalConfig;
 public interface PedestalGeneratorSchema {
     RecipeKey<InputItem> INPUT = ItemComponents.INPUT.key("previewItem");
     RecipeKey<Double> INPUT_CONSUME_CHANCE = NumberComponent.doubleRange(0,1).key("inputConsumeChance");
-    RecipeKey<OutputItem[]> OUTPUT = ItemComponents.OUTPUT_ARRAY.key("output");
+    RecipeKey<OutputItem> OUTPUT = ItemComponents.OUTPUT.key("output");
     RecipeKey<Double> OUTPUT_CHANCE = NumberComponent.doubleRange(0,1).key("outputChance");
     RecipeKey<Long> TIME = TimeComponent.TICKS.key("processingTime");
     RecipeKey<Integer> ENERGY = NumberComponent.intRange(0, PedestalConfig.maxStoredPower).key("energy");
