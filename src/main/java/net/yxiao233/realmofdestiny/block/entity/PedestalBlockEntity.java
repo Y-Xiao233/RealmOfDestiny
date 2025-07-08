@@ -69,7 +69,7 @@ public class PedestalBlockEntity extends AbstractProcessingBlockEntityWithMenu {
 
         @Override
         public int getSlotLimit(int slot) {
-            return 4;
+            return PedestalConfig.slotLimitCount;
         }
     };
 

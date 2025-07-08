@@ -39,6 +39,7 @@
   "addon_item.realmofdestiny.output_chance": "Each upgrade can increase the probability of product output by %d",
   "addon_item.realmofdestiny.speed": "Each upgrade can reduce procressingTime by %d",
   "addon_item.realmofdestiny.hold_ctrl": "Press Ctrl + right-click to open the upgrade menu",
+  "addon_item.realmofdestiny.max_stack_size": "Max Stack Size: %d",
 
 
 

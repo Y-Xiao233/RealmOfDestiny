@@ -15,14 +15,15 @@ import java.util.List;
 public class AddonItem extends AbstractBaseItemWithTooltip {
     public final Type type;
     public final int value;
-    public AddonItem(Type type, int value, Rarity rarity) {
-        super(new Item.Properties().rarity(rarity).stacksTo(4));
+    public AddonItem(Type type, int value, Rarity rarity, int stackSize) {
+        super(new Item.Properties().rarity(rarity).stacksTo(stackSize));
         this.type = type;
         this.value = value;
     }
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltips, TooltipFlag flag) {
+        tooltips.add(Component.translatable("addon_item.realmofdestiny.max_stack_size",new Object[]{this.getMaxStackSize(this.getDefaultInstance())}).withStyle(ChatFormatting.GREEN));
         if(this.type == Type.INPUT_CHANCE){
             tooltips.add(Component.translatable("addon_item.realmofdestiny.input_chance",(this.value+"%")).withStyle(ChatFormatting.GOLD));
         }else if(this.type == Type.OUTPUT_CHANCE){

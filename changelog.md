@@ -31,6 +31,10 @@
 - 修复了jei在服务端被破坏的bug
 - 修改了基座配方的json结构
 
+### v3.0.0
+- 添加了可配置的最大升级数量
+- 为升级的KubeJS集成添加了设置最大堆叠数的支持
+
 ## en_us
 ### v1.0.0
 - init
@@ -50,3 +54,7 @@
 ### v2.0.400
 - Optimized the display content of the Jade integration for the Pedestal
 - Adjusted some file structures
+
+### v3.0.0
+- Added configurable maximum upgrade quantity
+- Added support for setting maximum stack size for the upgraded KubeJS integration

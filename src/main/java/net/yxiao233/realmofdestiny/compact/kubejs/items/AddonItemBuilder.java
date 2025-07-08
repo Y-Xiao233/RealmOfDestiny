@@ -11,6 +11,7 @@ public class AddonItemBuilder extends ItemBuilder {
     private int value;
     private AddonItem.Type type;
     private Rarity rarity = Rarity.EPIC;
+    private int size = 4;
     public AddonItemBuilder(ResourceLocation i) {
         super(i);
     }
@@ -30,8 +31,13 @@ public class AddonItemBuilder extends ItemBuilder {
         return this;
     }
 
+    public AddonItemBuilder setStackSize(int size){
+        this.size = size;
+        return this;
+    }
+
     @Override
     public Item createObject() {
-        return new AddonItem(type,value,rarity);
+        return new AddonItem(type,value,rarity,size);
     }
 }

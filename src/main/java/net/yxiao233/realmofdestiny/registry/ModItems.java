@@ -13,13 +13,13 @@ public class ModItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, RealmOfDestiny.MODID);
     //Item
     public static final RegistryObject<Item> SPEED_AUGMENT_1 = ITEMS.register("speed_augment_1", () ->
-            new AddonItem(AddonItem.Type.SPEED,5, Rarity.EPIC));
+            new AddonItem(AddonItem.Type.SPEED,5, Rarity.EPIC,4));
 
     public static final RegistryObject<Item> INPUT_AUGMENT_1 = ITEMS.register("input_augment_1", () ->
-            new AddonItem(AddonItem.Type.INPUT_CHANCE,5, Rarity.EPIC));
+            new AddonItem(AddonItem.Type.INPUT_CHANCE,5, Rarity.EPIC,4));
 
     public static final RegistryObject<Item> OUTPUT_AUGMENT_1 = ITEMS.register("output_augment_1", () ->
-            new AddonItem(AddonItem.Type.OUTPUT_CHANCE,5, Rarity.EPIC));
+            new AddonItem(AddonItem.Type.OUTPUT_CHANCE,5, Rarity.EPIC,4));
 
     //BlockItem
     public static final RegistryObject<Item> PEDESTAL_ITEM = ITEMS.register("pedestal", () ->

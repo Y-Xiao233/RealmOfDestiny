@@ -8,4 +8,7 @@ import net.yxiao233.realmofdestiny.config.MachineConfig;
 public class PedestalConfig {
     @ConfigVal(comment = "Max Stored Power [FE] - Default: [10000 FE]")
     public static int maxStoredPower = 10000;
+
+    @ConfigVal(comment = "Slot Limit Count - Default: 4")
+    public static int slotLimitCount = 4;
 }
