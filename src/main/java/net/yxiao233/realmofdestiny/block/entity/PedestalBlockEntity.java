@@ -36,6 +36,7 @@ import net.yxiao233.realmofdestiny.registry.ModBlockEntities;
 import net.yxiao233.realmofdestiny.registry.ModRecipes;
 import net.yxiao233.realmofdestiny.screen.PedestalMenu;
 import net.yxiao233.realmofdestiny.util.ItemHandlerUtil;
+import net.yxiao233.realmofdestiny.util.UpgradeUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -64,7 +65,7 @@ public class PedestalBlockEntity extends AbstractProcessingBlockEntityWithMenu {
         }
         @Override
         public boolean isItemValid(int slot, @NotNull ItemStack stack) {
-            return stack.getItem() instanceof AddonItem;
+            return UpgradeUtil.canAccept(this,stack);
         }
 
         @Override
